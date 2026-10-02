@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5f2e8" id="themeColorMeta">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CDR San Vito">
+<meta name="mobile-web-app-capable" content="yes">
+<title>CDR San Vito Chietino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+<link rel="icon" type="image/png" sizes="512x512" href="./icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root, body[data-theme="light"]{
+    --ecolan-verde: #1e5a2e;
+    --ecolan-verde-scuro: #144020;
+    --ecolan-verde-chiaro: #4a8f5a;
+    --ecolan-ocra: #c9a533;
+    --ecolan-ocra-scuro: #a5851f;
+    --ecolan-crema: #f5f2e8;
+    --bg: #f5f2e8;
+    --bg-grad-1: #f5f2e8;
+    --bg-grad-2: #ebe6d4;
+    --bg-grad-3: #e0dac4;
+    --bg-solid: #f5f2e8;
+    --panel: #ffffff;
+    --panel-2: #f0ece0;
+    --panel-3: #e4dfd0;
+    --border: #d4cfbc;
+    --border-strong: #b8b19a;
+    --text: #1a2e1a;
+    --muted: #5a6b5a;
+    --text-inverse: #ffffff;
+    --accent: #1e5a2e;
+    --accent-dark: #144020;
+    --accent-light: #4a8f5a;
+    --accent-container: rgba(30,90,46,.12);
+    --danger: #b91c1c;
+    --ok: #16a34a;
+    --gdrive: #4285F4;
+    --admin: #c9a533;
+    --carta: #1e6fbf;
+    --carta-dark: #0f4a86;
+    --imballaggi: #d4a017;
+    --imballaggi-dark: #a37a00;
+    --vetro: #2e8b57;
+    --vetro-dark: #1b5a37;
+    --radius: 18px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --m3-standard: cubic-bezier(.2, 0, 0, 1);
+    --m3-emphasized: cubic-bezier(.05, .7, .1, 1);
+    --m3-emphasized-decel: cubic-bezier(.05, .7, .1, 1);
+    --m3-emphasized-accel: cubic-bezier(.3, 0, .8, .15);
+    --m3-spring: cubic-bezier(.34, 1.56, .64, 1);
+    color-scheme: light;
+  }
+  body[data-theme="dark"]{
+    --ecolan-verde: #4a8f5a;
+    --ecolan-verde-scuro: #2d5c38;
+    --ecolan-verde-chiaro: #6eb57c;
+    --ecolan-ocra: #e5c04a;
+    --ecolan-ocra-scuro: #b8992f;
+    --ecolan-crema: #0f1a12;
+    --bg: #0f1a12;
+    --bg-grad-1: #0a130c;
+    --bg-grad-2: #0f1a12;
+    --bg-grad-3: #162a1c;
+    --bg-solid: #0f1a12;
+    --panel: #1a2e1e;
+    --panel-2: #223829;
+    --panel-3: #2d4634;
+    --border: #2f4a37;
+    --border-strong: #3d5c47;
+    --text: #e8f0e8;
+    --muted: #8fa08f;
+    --text-inverse: #0a130c;
+    --accent: #6eb57c;
+    --accent-dark: #4a8f5a;
+    --accent-light: #8ec99a;
+    --accent-container: rgba(110,181,124,.15);
+    --danger: #dc2626;
+    --ok: #22c55e;
+    --gdrive: #4285F4;
+    --admin: #e5c04a;
+    --carta: #3a82cc;
+    --carta-dark: #1e5a96;
+    --imballaggi: #e5b800;
+    --imballaggi-dark: #a37a00;
+    --vetro: #3ea972;
+    --vetro-dark: #1e6b3e;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+  /* ============ FIX FULL-SCREEN iOS/Android ============ */
+  html{
+    background-color: #f5f2e8;
+    min-height: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+  html[data-theme="dark"]{
+    background-color: #0f1a12;
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;
+    background: linear-gradient(160deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 40%,var(--bg-grad-3) 100%);
+    background-color: var(--bg-solid);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color:var(--text);font-size:16px;line-height:1.4;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 100svh;
+    overflow-x:hidden;
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+    transition:background-color .6s var(--m3-standard), color .4s var(--m3-standard);
+  }
+
+  input,select,button,textarea{font-family:inherit;font-size:16px}
+  .material-symbols-rounded{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;user-select:none}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes popIn{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04);opacity:1}100%{transform:scale(1)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.15)}}
+  @keyframes slideDownLogin{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes checkmark{0%{transform:scale(0) rotate(-45deg);opacity:0}50%{transform:scale(1.3) rotate(-45deg);opacity:1}100%{transform:scale(1) rotate(-45deg);opacity:1}}
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  @keyframes badge-bounce{0%{transform:scale(1)}40%{transform:scale(1.4)}70%{transform:scale(.9)}100%{transform:scale(1)}}
+  @keyframes theme-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes sync-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .anim-in{animation:fadeInUp .45s var(--m3-emphasized) backwards}
+  .app{max-width:520px;margin:0 auto;padding:calc(var(--safe-top) + 12px) 14px calc(120px + var(--safe-bottom));display:flex;flex-direction:column;gap:14px;min-height:100vh;min-height:100dvh}
+  header.app-header{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--panel);border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,.08);transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  body[data-theme="dark"] header.app-header{box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .logo-ecolan{width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background:#fff;transition:background .4s var(--m3-standard)}
+  .logo-ecolan svg{width:100%;height:100%;display:block}
+  .logo-ecolan img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;border-radius:inherit}
+  .header-info{flex:1;min-width:0}
+  .header-info .title{font-size:15px;font-weight:900;line-height:1.1;color:var(--ecolan-verde);letter-spacing:.3px;transition:color .4s var(--m3-standard)}
+  body[data-theme="dark"] .header-info .title{color:var(--ecolan-verde-chiaro)}
+  .header-info .subtitle{font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+  .theme-toggle{width:38px;height:38px;border-radius:50%;background:var(--panel-2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .5s var(--m3-spring), background .3s var(--m3-standard), border-color .3s var(--m3-standard)}
+  .theme-toggle:active{transform:scale(.88)}
+  .theme-toggle .material-symbols-rounded{font-size:20px;font-variation-settings:'FILL' 1, 'wght' 500;transition:transform .55s var(--m3-spring), color .3s var(--m3-standard)}
+  .theme-toggle.animating .material-symbols-rounded{animation:theme-spin .6s var(--m3-spring)}
+  body[data-theme="light"] .theme-toggle .material-symbols-rounded{color:var(--ecolan-ocra)}
+  body[data-theme="dark"] .theme-toggle .material-symbols-rounded{color:var(--ecolan-ocra)}
+  .sync-badge{display:flex;align-items:center;gap:6px;background:var(--panel-2);padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-size:11px;font-weight:600;flex-shrink:0;cursor:pointer;transition:transform .3s var(--m3-spring), background .3s var(--m3-standard);color:var(--text)}
+  .sync-badge:active{transform:scale(.92)}
+  .sync-badge .cloud-dot{width:9px;height:9px;border-radius:50%;background:#94a3b8;flex-shrink:0;transition:background .3s}
+  .sync-badge .cloud-dot.on{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .sync-badge .cloud-dot.syncing{background:#f59e0b;animation:pulse 1.2s infinite}
+  .sync-badge .cloud-dot.error{background:var(--danger);animation:pulse 1.5s infinite}
+  .sync-badge .cloud-dot.offline{background:#94a3b8}
+  .sync-badge .label{display:none}
+  .sync-badge .sync-icon{font-size:16px;color:var(--muted);font-variation-settings:'FILL' 0, 'wght' 500;transition:transform .3s var(--m3-standard), color .3s var(--m3-standard)}
+  .sync-badge.syncing .sync-icon{animation:sync-spin 1.2s linear infinite;color:#f59e0b}
+  .sync-badge.on .sync-icon{color:var(--ok)}
+  .sync-badge.error .sync-icon{color:var(--danger)}
+  .sync-badge.offline .sync-icon{color:var(--muted)}
+  .user-row{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:8px 10px;transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  .user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--ecolan-verde),var(--ecolan-verde-scuro));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex-shrink:0}
+  .user-avatar.admin{background:linear-gradient(135deg,var(--ecolan-ocra),var(--ecolan-ocra-scuro));color:#231a00}
+  .user-info{flex:1;min-width:0}
+  .user-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .user-role{font-size:11px;color:var(--muted)}
+  .icon-btn{width:40px;height:40px;border-radius:50%;background:var(--panel-2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .3s var(--m3-spring), background .3s var(--m3-standard), border-color .3s var(--m3-standard)}
+  .icon-btn .material-symbols-rounded{font-size:20px}
+  .icon-btn:active{transform:scale(.88);background:var(--panel-3)}
+  .icon-btn:active .material-symbols-rounded{font-variation-settings:'FILL' 1, 'wght' 500}
+  .icon-btn.logout:active{border-color:var(--danger);color:var(--danger)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  body[data-theme="dark"] .card{box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .card-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:12px}
+  .card-title .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;font-size:11px;font-weight:900}
+  .card-title .material-symbols-rounded{font-size:18px;color:var(--accent);font-variation-settings:'FILL' 1, 'wght' 500}
+  .waste-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .waste-card{position:relative;cursor:pointer;border:none;border-radius:16px;padding:16px 8px 14px;color:#fff;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .35s var(--m3-spring), box-shadow .3s var(--m3-standard);outline:3px solid transparent;overflow:hidden;text-shadow:0 1px 2px rgba(0,0,0,.35);min-height:96px;justify-content:center}
+  .waste-card .emoji{font-size:28px;line-height:1;transition:transform .4s var(--m3-spring)}
+  .waste-card[data-tipo="carta"]{background:linear-gradient(150deg,var(--carta),var(--carta-dark))}
+  .waste-card[data-tipo="imballaggi"]{background:linear-gradient(150deg,var(--imballaggi),var(--imballaggi-dark));color:#231a00;text-shadow:none}
+  .waste-card[data-tipo="vetro"]{background:linear-gradient(150deg,var(--vetro),var(--vetro-dark))}
+  .waste-card:active{transform:scale(.94)}
+  .waste-card.selected{outline-color:var(--ecolan-ocra);box-shadow:0 0 0 3px var(--ecolan-ocra),0 10px 24px rgba(0,0,0,.5);animation:popIn .35s var(--m3-spring)}
+  .waste-card.selected .emoji{transform:scale(1.18)}
+  .waste-card.selected::after{content:"✓";position:absolute;top:6px;right:8px;font-size:15px;font-weight:900;animation:checkmark .35s var(--m3-spring) forwards;transform-origin:center}
+  .form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .form-field label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding-left:4px}
+  .form-field select,.form-field input{width:100%;background:var(--panel-2);color:var(--text);border:2px solid var(--border);border-radius:14px;padding:14px 16px;font-size:16px;font-weight:600;outline:none;transition:border-color .3s var(--m3-standard), box-shadow .3s var(--m3-standard), background .3s var(--m3-standard);appearance:none;-webkit-appearance:none;min-height:52px}
+  .form-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23889988' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+  .form-field select:focus,.form-field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-container);background:var(--panel)}
+  .form-field select:disabled,.form-field input:disabled{opacity:.75;cursor:not-allowed}
+  .form-field input[type=number]{font-variant-numeric:tabular-nums;font-size:20px;font-weight:700;letter-spacing:.5px;text-align:center}
+  .btn-primary{position:relative;width:100%;margin-top:6px;padding:18px;border:none;border-radius:16px;background:linear-gradient(120deg,var(--ecolan-verde),var(--ecolan-verde-scuro));color:#fff;font-size:17px;font-weight:800;letter-spacing:.4px;cursor:pointer;overflow:hidden;box-shadow:0 8px 20px rgba(30,90,46,.35), inset 0 1px 0 rgba(255,255,255,.15);transition:transform .3s var(--m3-spring), box-shadow .3s var(--m3-standard);min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .btn-primary:not(:disabled)::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);background-size:200% 100%;animation:shimmer 2.4s linear infinite;pointer-events:none}
+  .btn-primary:active:not(:disabled){transform:scale(.96)}
+  .btn-primary:disabled{background:var(--panel-3);color:var(--muted);box-shadow:none;cursor:not-allowed}
+  .btn-primary .material-symbols-rounded{font-size:22px;font-variation-settings:'FILL' 1, 'wght' 600}
+  .totals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .total-card{border-radius:14px;padding:12px 10px;color:#fff;display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;min-height:82px;justify-content:center}
+  .total-card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(255,255,255,.12),transparent 60%);pointer-events:none}
+  .total-card[data-tipo="carta"]{background:linear-gradient(150deg,var(--carta),var(--carta-dark))}
+  .total-card[data-tipo="imballaggi"]{background:linear-gradient(150deg,var(--imballaggi),var(--imballaggi-dark));color:#231a00}
+  .total-card[data-tipo="vetro"]{background:linear-gradient(150deg,var(--vetro),var(--vetro-dark))}
+  .total-card .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;opacity:.9;position:relative}
+  .total-card .val{font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;position:relative;line-height:1.1}
+  .total-card .cnt{font-size:10px;opacity:.85;position:relative}
+  .entries-list{display:flex;flex-direction:column;gap:10px}
+  .entry-card{position:relative;background:var(--panel-2);border:1px solid var(--border);border-radius:14px;padding:12px 14px 12px 18px;display:flex;align-items:center;gap:12px;animation:fadeInUp .4s var(--m3-emphasized-decel) backwards;overflow:hidden;transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  .entry-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:14px 0 0 14px}
+  .entry-card[data-tipo="carta"]::before{background:linear-gradient(180deg,var(--carta),var(--carta-dark))}
+  .entry-card[data-tipo="imballaggi"]::before{background:linear-gradient(180deg,var(--imballaggi),var(--imballaggi-dark))}
+  .entry-card[data-tipo="vetro"]::before{background:linear-gradient(180deg,var(--vetro),var(--vetro-dark))}
+  .entry-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .entry-card[data-tipo="carta"] .entry-icon{background:rgba(30,111,191,.15)}
+  .entry-card[data-tipo="imballaggi"] .entry-icon{background:rgba(240,180,0,.18)}
+  .entry-card[data-tipo="vetro"] .entry-icon{background:rgba(46,139,87,.15)}
+  .entry-body{flex:1;min-width:0}
+  .entry-line1{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px}
+  .entry-tipo{font-size:13px;font-weight:800}
+  .entry-peso{font-size:17px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--text);white-space:nowrap}
+  .entry-line2{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:11px;color:var(--muted);line-height:1.3}
+  .entry-line2 span{display:inline-flex;align-items:center;gap:3px}
+  .entry-line2 .material-symbols-rounded{font-size:12px}
+  .entry-ora{font-size:11px;font-weight:700;color:var(--muted);padding:3px 8px;background:var(--panel-3);border-radius:999px;flex-shrink:0}
+  .empty-state{text-align:center;padding:32px 16px;color:var(--muted);font-size:13px}
+  .empty-state .material-symbols-rounded{font-size:48px;display:block;margin:0 auto 10px;opacity:.5;font-variation-settings:'FILL' 0, 'wght' 300}
+
+  /* ============ TAB BAR full-bleed con safe-area ============ */
+  .tab-bar{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    background:var(--panel);
+    backdrop-filter:blur(24px) saturate(180%);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
+    border-top:1px solid var(--border);
+    padding:6px 6px 6px;
+    padding-bottom: calc(6px + var(--safe-bottom));
+    padding-left: calc(6px + var(--safe-left));
+    padding-right: calc(6px + var(--safe-right));
+    display:flex;justify-content:space-around;gap:2px;
+    z-index:50;
+    transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard);
+    margin:0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  body[data-theme="dark"] .tab-bar{background:rgba(26,46,30,.92)}
+  body[data-theme="light"] .tab-bar{background:rgba(255,255,255,.95)}
+
+  .tab-btn{position:relative;flex:1;background:transparent;border:none;color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;min-height:64px;justify-content:center;user-select:none;transition:color .35s var(--m3-standard)}
+  .tab-icon-wrapper{position:relative;width:64px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:transparent;transition:background-color .4s var(--m3-emphasized-decel)}
+  .tab-btn.active .tab-icon-wrapper{background:var(--accent-container)}
+  .tab-icon{font-size:24px;color:var(--muted);font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;transition:font-variation-settings .45s var(--m3-spring), transform .45s var(--m3-spring), color .35s var(--m3-standard)}
+  .tab-btn.active .tab-icon{color:var(--accent);font-variation-settings:'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;transform:scale(1.08)}
+  .tab-btn:active .tab-icon{transform:scale(.88)}
+  .tab-btn.active:active .tab-icon{transform:scale(.96)}
+  .tab-label{font-size:11px;font-weight:600;letter-spacing:.3px;color:var(--muted);transition:color .35s var(--m3-standard), font-weight .35s var(--m3-standard), transform .45s var(--m3-spring)}
+  .tab-btn.active .tab-label{color:var(--text);font-weight:800}
+  .tab-btn .badge-count{position:absolute;top:-3px;right:calc(50% - 24px);background:linear-gradient(135deg,var(--ecolan-ocra),var(--ecolan-ocra-scuro));color:#231a00;font-size:10px;font-weight:900;padding:1px 6px;border-radius:999px;min-width:18px;text-align:center;box-shadow:0 2px 6px rgba(201,165,51,.5), 0 0 0 2px var(--panel);transition:transform .35s var(--m3-spring);pointer-events:none}
+  .tab-btn .badge-count.updated{animation:badge-bounce .55s var(--m3-spring)}
+  .tab-content{display:none}
+  .tab-content.active{display:flex;flex-direction:column;gap:14px;animation:fadeInUp .35s var(--m3-emphasized-decel)}
+  .filters{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;background:var(--panel-2);border-radius:14px;border:1px solid var(--border);transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  .filters .form-field{margin-bottom:0}
+  .filters .form-field input,.filters .form-field select{padding:11px 12px;min-height:46px;font-size:14px;border-radius:12px}
+  .filters .span-2{grid-column:span 2}
+  .filters .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;grid-column:span 2}
+  .btn-sm{padding:12px 14px;border-radius:12px;border:none;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .3s var(--m3-spring);min-height:46px}
+  .btn-sm .material-symbols-rounded{font-size:18px;font-variation-settings:'FILL' 1, 'wght' 500}
+  .btn-sm:active{transform:scale(.95)}
+  .btn-sm.apply{background:linear-gradient(120deg,var(--accent),var(--accent-dark));color:#fff;box-shadow:0 4px 12px rgba(30,90,46,.3)}
+  .btn-sm.clear{background:var(--panel-3);color:var(--text);border:1px solid var(--border-strong)}
+  .stat-totale{position:relative;background:linear-gradient(135deg,var(--panel),var(--panel-2));color:var(--text);border-radius:16px;padding:16px 20px;border-left:6px solid var(--ecolan-ocra);box-shadow:0 4px 16px rgba(0,0,0,.08);overflow:hidden;transition:background .4s var(--m3-standard)}
+  .stat-totale::after{content:"Σ";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:60px;font-weight:900;color:var(--ecolan-ocra);opacity:.15;line-height:1;pointer-events:none}
+  .stat-totale .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+  .stat-totale .val{font-size:28px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--text);line-height:1.1;margin-top:2px}
+  .stat-totale .cnt{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+  #toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-bottom));transform:translate(-50%, 120%);background:var(--panel);border:1px solid var(--border);color:var(--text);padding:14px 20px;border-radius:16px;font-weight:700;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:0;z-index:300;pointer-events:none;max-width:calc(100vw - 32px);text-align:center;transition:transform .45s var(--m3-spring), opacity .35s var(--m3-standard)}
+  body[data-theme="dark"] #toast{box-shadow:0 12px 30px rgba(0,0,0,.6)}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #toast.ok{border-color:var(--ok);box-shadow:0 12px 30px rgba(22,163,74,.25)}
+  #toast.err{border-color:var(--danger);box-shadow:0 12px 30px rgba(220,38,38,.25)}
+  #toast.info{border-color:var(--gdrive)}
+
+  /* ============ LOGIN ============ */
+  #loginOverlay{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background: linear-gradient(160deg,var(--bg-grad-1),var(--bg-grad-2) 40%,var(--bg-grad-3));
+    background-color: var(--bg-solid);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding: max(20px, var(--safe-top)) 20px max(20px, var(--safe-bottom));
+    overflow-y:auto;
+    transition:background .4s var(--m3-standard);
+  }
+  #loginOverlay.show{display:flex}
+  .login-card{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:28px 22px;box-shadow:0 24px 60px rgba(0,0,0,.2);animation:slideDownLogin .5s var(--m3-spring);transition:background .4s var(--m3-standard), border-color .4s var(--m3-standard)}
+  body[data-theme="dark"] .login-card{box-shadow:0 24px 60px rgba(0,0,0,.7)}
+  .login-logo{width:120px;height:120px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;animation:popIn .55s var(--m3-spring);overflow:hidden;border-radius:24px;background:#fff;transition:background .4s var(--m3-standard);box-shadow:0 8px 20px rgba(30,90,46,.15)}
+  .login-logo svg{width:100%;height:100%;display:block}
+  .login-logo img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;border-radius:inherit}
+  .login-card h1{font-size:22px;font-weight:900;text-align:center;margin-bottom:6px;color:var(--ecolan-verde);transition:color .4s var(--m3-standard)}
+  body[data-theme="dark"] .login-card h1{color:var(--ecolan-verde-chiaro)}
+  .login-card .sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:24px}
+  .btn-login{width:100%;margin-top:8px;padding:18px;border:none;border-radius:16px;background:linear-gradient(120deg,var(--ecolan-verde),var(--ecolan-verde-scuro));color:#fff;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(30,90,46,.35);transition:transform .3s var(--m3-spring);min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .btn-login .material-symbols-rounded{font-size:22px;font-variation-settings:'FILL' 1, 'wght' 600}
+  .btn-login:active{transform:scale(.96)}
+  .login-error{color:var(--danger);font-size:13px;margin-top:12px;text-align:center;min-height:20px;font-weight:600}
+  .login-hint{color:var(--muted);font-size:12px;text-align:center;margin-top:16px;line-height:1.5;padding:10px;background:var(--panel-2);border-radius:12px;transition:background .4s var(--m3-standard)}
+  .login-theme-toggle{position:fixed;top: calc(20px + var(--safe-top)); right: calc(20px + var(--safe-right)); width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:201;transition:transform .5s var(--m3-spring), background .3s var(--m3-standard)}
+  .login-theme-toggle:active{transform:scale(.88)}
+  .login-theme-toggle .material-symbols-rounded{font-size:22px;font-variation-settings:'FILL' 1, 'wght' 500;color:var(--ecolan-ocra)}
+  .modal-overlay{position:fixed;inset:0;z-index:210;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+  .modal-overlay.show{display:flex}
+  .modal-card{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.4);animation:slideDownLogin .4s var(--m3-spring);transition:background .4s var(--m3-standard)}
+  .modal-card h2{font-size:18px;margin-bottom:18px;color:var(--text);font-weight:800;display:flex;align-items:center;gap:8px}
+  .modal-card h2 .material-symbols-rounded{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 1}
+  .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .modal-actions button{padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;border:none;transition:transform .3s var(--m3-spring);min-height:52px}
+  .modal-actions button:active{transform:scale(.95)}
+  .modal-actions .btn-cancel{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong)}
+  .modal-actions .btn-save{background:linear-gradient(120deg,var(--ecolan-verde),var(--ecolan-verde-scuro));color:#fff;box-shadow:0 6px 14px rgba(30,90,46,.3)}
+  .pwd-error{color:var(--danger);font-size:13px;margin-top:10px;text-align:center;min-height:18px;font-weight:600}
+  @media (min-width:600px){
+    .sync-badge .label{display:inline}
+    .waste-card{padding:20px 10px 18px;font-size:13px;min-height:110px}
+    .waste-card .emoji{font-size:32px}
+    .total-card .val{font-size:22px}
+  }
+</style>
+</head>
+<body data-theme="light">
+
+<!-- ============ ICONA SVG (fallback se PNG non carica) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cdr-symbol" viewBox="0 0 200 200">
+    <rect width="200" height="200" rx="42" ry="42" fill="#f5f2e8"/>
+    <path d="M 100 28 L 22 88 Q 16 94 24 96 L 100 96 Z" fill="#1e5a2e"/>
+    <path d="M 100 28 L 178 88 Q 184 94 176 96 L 100 96 Z" fill="#c9a533"/>
+    <circle cx="100" cy="66" r="21" fill="#f5f2e8"/>
+    <path d="M 88 66 Q 88 54 100 54 Q 112 54 112 66 L 88 66 M 88 66 Q 88 78 100 78 Q 107 78 111 74" fill="none" stroke="#1e5a2e" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 44 96 L 44 178 L 156 178 L 156 96" fill="none" stroke="#1e5a2e" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M 58 122 L 56 172 L 78 172 L 76 122 Z" fill="#ffffff" stroke="#1e5a2e" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="54" y1="119" x2="80" y2="119" stroke="#1e5a2e" stroke-width="3" stroke-linecap="round"/>
+    <rect x="64" y="138" width="6" height="26" rx="2" fill="none" stroke="#c9a533" stroke-width="1.5"/>
+    <rect x="65.5" y="133" width="3" height="6" rx="1" fill="none" stroke="#c9a533" stroke-width="1.2"/>
+    <path d="M 86 122 L 84 172 L 108 172 L 106 122 Z" fill="#ffffff" stroke="#1e5a2e" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="82" y1="119" x2="110" y2="119" stroke="#1e5a2e" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 92 138 L 102 138 L 102 148 L 99 148 L 99 162 L 92 162 Z" fill="none" stroke="#c9a533" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M 116 122 L 114 172 L 138 172 L 136 122 Z" fill="#ffffff" stroke="#1e5a2e" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="112" y1="119" x2="140" y2="119" stroke="#1e5a2e" stroke-width="3" stroke-linecap="round"/>
+    <rect x="123" y="138" width="6" height="24" rx="2" fill="none" stroke="#c9a533" stroke-width="1.5"/>
+    <rect x="124.5" y="133" width="3" height="6" rx="1" fill="none" stroke="#c9a533" stroke-width="1.2"/>
+    <path d="M 145 100 Q 168 95 174 118 Q 158 130 145 118 Q 138 108 145 100 Z" fill="#c9a533"/>
+    <path d="M 126 150 Q 146 148 150 165 Q 136 174 126 160 Q 122 154 126 150 Z" fill="#c9a533"/>
+  </symbol>
+</svg>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginOverlay">
+  <button class="login-theme-toggle" id="btnLoginTheme" title="Cambia tema">
+    <span class="material-symbols-rounded" id="loginThemeIcon">dark_mode</span>
+  </button>
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="./icon.png" alt="CDR San Vito Chietino" id="loginLogoImg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <svg viewBox="0 0 200 200" style="display:none;width:100%;height:100%"><use href="#cdr-symbol"/></svg>
+    </div>
+    <h1>CDR San Vito Chietino</h1>
+    <div class="sub">Registro entrate — accedi per iniziare</div>
+    <div class="form-field">
+      <label>Operatore</label>
+      <select id="loginOperatore"></select>
+    </div>
+    <div class="form-field">
+      <label>Password</label>
+      <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Inserisci password">
+    </div>
+    <button class="btn-login" id="btnLogin">
+      <span class="material-symbols-rounded">login</span> Accedi
+    </button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-hint">Primo accesso? Usa <strong>nomecognome</strong> (es. <em>mariorossi</em>)</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="pwdModal">
+  <div class="modal-card">
+    <h2><span class="material-symbols-rounded">key</span> Cambia password</h2>
+    <div class="form-field"><label>Password attuale</label><input type="password" id="pwdOld"></div>
+    <div class="form-field"><label>Nuova password</label><input type="password" id="pwdNew"></div>
+    <div class="form-field"><label>Conferma nuova password</label><input type="password" id="pwdConfirm"></div>
+    <div class="pwd-error" id="pwdError"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnPwdCancel">Annulla</button>
+      <button class="btn-save" id="btnPwdSave">Salva</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+  <header class="app-header">
+    <div class="logo-ecolan">
+      <img src="./icon.png" alt="CDR" id="headerLogoImg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <svg viewBox="0 0 200 200" style="display:none;width:100%;height:100%"><use href="#cdr-symbol"/></svg>
+    </div>
+    <div class="header-info">
+      <div class="title">CDR San Vito</div>
+      <div class="subtitle" id="clock">--/--/---- --:--</div>
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" id="btnTheme" title="Cambia tema">
+        <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
+      </button>
+      <div class="sync-badge" id="syncBadge" title="Tocca per sincronizzare ora">
+        <span class="cloud-dot" id="cloudDot"></span>
+        <span class="material-symbols-rounded sync-icon" id="syncIcon">cloud_sync</span>
+        <span class="label" id="cloudLabel">Avvio...</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="user-row">
+    <div class="user-avatar" id="userAvatar">?</div>
+    <div class="user-info">
+      <div class="user-name" id="userName">--</div>
+      <div class="user-role" id="userRole">Operatore</div>
+    </div>
+    <button class="icon-btn" id="btnChangePwd" title="Cambia password"><span class="material-symbols-rounded">key</span></button>
+    <button class="icon-btn logout" id="btnLogout" title="Esci"><span class="material-symbols-rounded">logout</span></button>
+  </div>
+
+  <!-- TAB: INSERIMENTO -->
+  <div class="tab-content active" id="tab-inserimento">
+    <div class="card anim-in" style="animation-delay:.05s">
+      <div class="card-title"><span class="num">1</span> Tipo di rifiuto</div>
+      <div class="waste-grid" id="wasteGrid">
+        <button class="waste-card" data-tipo="carta"><span class="emoji">📄</span>Carta</button>
+        <button class="waste-card" data-tipo="imballaggi"><span class="emoji">📦</span>Imballaggi</button>
+        <button class="waste-card" data-tipo="vetro"><span class="emoji">🍾</span>Vetro</button>
+      </div>
+    </div>
+    <div class="card anim-in" style="animation-delay:.1s">
+      <div class="card-title"><span class="num">2</span> Dettagli entrata</div>
+      <div class="form-field"><label>Operatore</label><select id="operatore"></select></div>
+      <div class="form-field"><label>Targa mezzo</label><select id="targa"></select></div>
+      <div class="form-field"><label>Peso (kg)</label><input id="peso" type="number" step="0.1" min="0" inputmode="decimal" placeholder="0.0"></div>
+      <button class="btn-primary" id="btnRegistra" disabled>
+        <span class="material-symbols-rounded">check_circle</span> Registra entrata
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB: OGGI -->
+  <div class="tab-content" id="tab-oggi">
+    <div class="card">
+      <div class="card-title"><span class="material-symbols-rounded">analytics</span> Totali di oggi</div>
+      <div class="totals-grid" id="statsGrid"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">list_alt</span> Registrazioni di oggi
+        <span id="countOggi" style="margin-left:auto;font-size:11px;color:var(--muted);font-weight:700"></span>
+      </div>
+      <div class="entries-list" id="tbodyOggi">
+        <div class="empty-state"><span class="material-symbols-rounded">inbox</span>Nessuna registrazione oggi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: STORICO -->
+  <div class="tab-content" id="tab-storico">
+    <div class="card">
+      <div class="card-title"><span class="material-symbols-rounded">filter_alt</span> Filtri</div>
+      <div class="filters">
+        <div class="form-field"><label>Dal</label><input type="date" id="filtroDal"></div>
+        <div class="form-field"><label>Al</label><input type="date" id="filtroAl"></div>
+        <div class="form-field span-2" id="filterOpLabel"><label>Operatore</label>
+          <select id="filtroOperatore"><option value="">Tutti</option></select>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm apply" id="btnFiltra"><span class="material-symbols-rounded">search</span> Filtra</button>
+          <button class="btn-sm clear" id="btnPulisciFiltri"><span class="material-symbols-rounded">close</span> Pulisci</button>
+        </div>
+      </div>
+    </div>
+    <div><div id="totaleStorico"></div></div>
+    <div class="card">
+      <div class="card-title"><span class="material-symbols-rounded">category</span> Per tipo di rifiuto</div>
+      <div class="totals-grid" id="statsStorico"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">history</span> Registrazioni
+        <span id="countStorico" style="margin-left:auto;font-size:11px;color:var(--muted);font-weight:700"></span>
+      </div>
+      <div class="entries-list" id="tbodyStorico">
+        <div class="empty-state"><span class="material-symbols-rounded">search_off</span>Nessuna registrazione trovata</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="inserimento">
+    <div class="tab-icon-wrapper"><span class="material-symbols-rounded tab-icon">edit_note</span></div>
+    <span class="tab-label">Inserisci</span>
+  </button>
+  <button class="tab-btn" data-tab="oggi">
+    <div class="tab-icon-wrapper">
+      <span class="material-symbols-rounded tab-icon">today</span>
+      <span class="badge-count" id="badgeOggi" style="display:none">0</span>
+    </div>
+    <span class="tab-label">Oggi</span>
+  </button>
+  <button class="tab-btn" data-tab="storico">
+    <div class="tab-icon-wrapper"><span class="material-symbols-rounded tab-icon">history</span></div>
+    <span class="tab-label">Storico</span>
+  </button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function() {
+"use strict";
+
+/* ==================== CONFIG ==================== */
+const CONFIG = {
+  operatori: [
+    "AMOROSO Massimo","ANGELUCCI Davide","BUCCO Domenico","D'ANGELO Giulia",
+    "D'ORSOGNA Giandomenico","D'ULISSE Dimitri","DI CAMPLI Antonio","DI LORETO Giuseppe",
+    "DI VIRGILIO Gianluca","DRAGANI Angelo","FERRANTE Fabrizio","MONTEBRUNO Daniel",
+    "NOCERINO Edoardo","NOCERINO Paolo","PIZZI Domenico"
+  ],
+  targhe: [
+    "APJ603","EZ489TT","FN134CH","FV140ZN","FV144NZ",
+    "FW514KN","GR506PC","GX988KS","HE069MJ","ZA849KB"
+  ],
+  tipi: {
+    carta:      { label:"Carta",            color:"#1e6fbf", icon:"📄" },
+    imballaggi: { label:"Imballaggi misti", color:"#f0b400", icon:"📦" },
+    vetro:      { label:"Vetro",            color:"#2e8b57", icon:"🍾" }
+  },
+  admin: "ANGELUCCI Davide",
+  masterPassword: "cdrsanvito",
+  driveFolderName: "CDR_SanVito_Chietino",
+  drivePasswordsFile: "passwords.json",
+  monthsToSync: 4,
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyZnE4n_jFr-whx6Jy9-Uz3dJOWHxvTJUSL0vr_aoKc1iNGGZAK7jOwDISLL1Vic_gg/exec",
+  appsScriptSecret: "cdrsanvito-2025-segreto-segreto",
+  monthNames: ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"]
+};
+
+const CACHE_ENTRIES    = "cdr_sanvito_v19_entries";
+const CACHE_PASSWORDS  = "cdr_sanvito_v19_passwords";
+const CACHE_SYNCED     = "cdr_sanvito_v19_synced_ids";
+const CACHE_PENDINGDEL = "cdr_sanvito_v19_pending_del";
+const CACHE_DELETEDIDS = "cdr_sanvito_v19_deleted_ids";
+const CACHE_LASTSYNC   = "cdr_sanvito_v19_lastsync";
+const SESSION_KEY      = "cdr_sanvito_v19_session";
+const THEME_KEY        = "cdr_sanvito_v13_theme";
+
+let entries = [];
+let passwords = {};
+let syncedIds = new Set();
+let pendingDeletions = [];
+let deletedIds = new Set();
+let currentUser = null;
+let isAdmin = false;
+let selectedTipo = null;
+let pendingSync = false;
+let syncInProgress = false;
+let lastSyncTime = 0;
+let proxyReady = false;
+let proxyFailed = false;
+let lastBadgeCount = -1;
+let currentTheme = "light";
+
+const $ = (id) => document.getElementById(id);
+const todayKey = (d) => {
+  d = d || new Date();
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), g=String(d.getDate()).padStart(2,"0");
+  return y + "-" + m + "-" + g;
+};
+function fmtDataIt(iso) { if (!iso) return ""; const p = iso.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
+function fmtOra(d) { return d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"}); }
+function toast(msg, kind) {
+  kind = kind || "ok";
+  const t = $("toast"); if (!t) return;
+  t.textContent = msg; t.className = "show " + kind;
+  clearTimeout(t._tid); t._tid = setTimeout(function(){ t.className = ""; }, 2800);
+}
+function defaultPasswordFor(nome) { return nome.toLowerCase().replace(/[^a-z]/g, ""); }
+function isOnline() { return navigator.onLine !== false; }
+function initials(name) {
+  if (!name) return "?";
+  const parts = name.split(" ");
+  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+  return name.substring(0,2).toUpperCase();
+}
+
+/* ==================== TEMA ==================== */
+function detectSystemTheme() {
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  return "light";
+}
+function applyTheme(theme, animate) {
+  try {
+    currentTheme = theme;
+    if (document.body) document.body.setAttribute("data-theme", theme);
+    if (document.documentElement) {
+      document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.style.backgroundColor = (theme === "light") ? "#f5f2e8" : "#0f1a12";
+    }
+    const icon = $("themeIcon"), loginIcon = $("loginThemeIcon");
+    const newIcon = theme === "light" ? "dark_mode" : "light_mode";
+    if (icon) icon.textContent = newIcon;
+    if (loginIcon) loginIcon.textContent = newIcon;
+    const meta = document.getElementById("themeColorMeta");
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f5f2e8" : "#0f1a12");
+    if (animate) {
+      [ $("btnTheme"), $("btnLoginTheme") ].forEach(function(btn) {
+        if (!btn) return;
+        btn.classList.remove("animating");
+        void btn.offsetWidth;
+        btn.classList.add("animating");
+        setTimeout(function(){ btn.classList.remove("animating"); }, 650);
+      });
+    }
+    localStorage.setItem(THEME_KEY, theme);
+  } catch(e) { console.warn("applyTheme", e); }
+}
+function toggleTheme() { applyTheme(currentTheme === "light" ? "dark" : "light", true); }
+function loadTheme() {
+  try {
+    const saved = localStorage.getItem(THEME_KEY);
+    applyTheme(saved === "light" || saved === "dark" ? saved : detectSystemTheme(), false);
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e) {
+        if (!localStorage.getItem(THEME_KEY)) applyTheme(e.matches ? "dark" : "light", false);
+      });
+    }
+  } catch(e) { console.warn("loadTheme", e); }
+}
+
+/* ==================== PROXY ==================== */
+function initProxy() {
+  if (!CONFIG.appsScriptUrl || !CONFIG.appsScriptSecret || CONFIG.appsScriptUrl.indexOf("INCOLLA_QUI") >= 0) {
+    proxyReady = false; return false;
+  }
+  proxyReady = true; return true;
+}
+function proxyGet(params) {
+  const withSecret = Object.assign({ secret: CONFIG.appsScriptSecret }, params);
+  const qs = Object.keys(withSecret).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(withSecret[k]); }).join("&");
+  return fetch(CONFIG.appsScriptUrl + "?" + qs, { method: "GET" })
+    .then(function(res){
+      if (!res.ok) throw new Error("Proxy GET " + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      if (data.error) throw new Error(data.error);
+      return data;
+    });
+}
+function proxyPost(payload) {
+  const body = Object.assign({ secret: CONFIG.appsScriptSecret }, payload);
+  return fetch(CONFIG.appsScriptUrl, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(body)
+  })
+    .then(function(res){
+      if (!res.ok) throw new Error("Proxy POST " + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      if (data.error) throw new Error(data.error);
+      return data;
+    });
+}
+function apiGetPasswords() { return proxyGet({ action: "getPasswords" }).then(function(r){ return r.content; }); }
+function apiSetPasswords(p) { return proxyPost({ action: "setPasswords", content: p }); }
+function apiGetDeletedIds() { return proxyGet({ action: "getDeletedIds" }).then(function(r){ return r.ids || []; }); }
+function apiGetEntries(y, m) { return proxyGet({ action: "getEntries", year: y, month: m }).then(function(r){ return r.entries || []; }); }
+function apiAppendEntries(l) { return proxyPost({ action: "appendEntries", entries: l }); }
+function apiDeleteEntries(ids) { return proxyPost({ action: "deleteEntries", ids: ids }); }
+
+/* ==================== CACHE ==================== */
+function loadCache() {
+  try { entries = JSON.parse(localStorage.getItem(CACHE_ENTRIES) || "[]") || []; } catch(e) { entries = []; }
+  try { syncedIds = new Set((JSON.parse(localStorage.getItem(CACHE_SYNCED) || "[]") || []).map(String)); } catch(e) { syncedIds = new Set(); }
+  try { pendingDeletions = JSON.parse(localStorage.getItem(CACHE_PENDINGDEL) || "[]") || []; } catch(e) { pendingDeletions = []; }
+  try { deletedIds = new Set((JSON.parse(localStorage.getItem(CACHE_DELETEDIDS) || "[]") || []).map(String)); } catch(e) { deletedIds = new Set(); }
+  try { passwords = normalizePasswords(JSON.parse(localStorage.getItem(CACHE_PASSWORDS) || "{}")); } catch(e) { passwords = {}; }
+  lastSyncTime = parseInt(localStorage.getItem(CACHE_LASTSYNC) || "0", 10) || 0;
+}
+function saveCache() {
+  try {
+    localStorage.setItem(CACHE_ENTRIES, JSON.stringify(entries));
+    localStorage.setItem(CACHE_PASSWORDS, JSON.stringify(passwords));
+    localStorage.setItem(CACHE_SYNCED, JSON.stringify(Array.from(syncedIds)));
+    localStorage.setItem(CACHE_PENDINGDEL, JSON.stringify(pendingDeletions));
+    localStorage.setItem(CACHE_DELETEDIDS, JSON.stringify(Array.from(deletedIds)));
+    localStorage.setItem(CACHE_LASTSYNC, String(lastSyncTime));
+  } catch(e) { console.warn("saveCache", e); }
+}
+function normalizePasswords(raw) {
+  const out = {};
+  if (!raw || typeof raw !== "object") return out;
+  Object.keys(raw).forEach(function(k) {
+    const v = raw[k];
+    if (typeof v === "string") out[k] = { pwd: v, updated: 0 };
+    else if (v && typeof v === "object" && typeof v.pwd === "string") out[k] = { pwd: v.pwd, updated: Number(v.updated) || 0 };
+  });
+  return out;
+}
+function ensureDefaultPasswords() {
+  let changed = false;
+  CONFIG.operatori.forEach(function(op) {
+    if (!passwords[op] || !passwords[op].pwd) {
+      passwords[op] = { pwd: defaultPasswordFor(op), updated: 0 }; changed = true;
+    }
+  });
+  if (changed) saveCache();
+}
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (s && s.user && CONFIG.operatori.indexOf(s.user) >= 0) return s;
+  } catch(e) {}
+  return null;
+}
+function saveSession() {
+  if (currentUser) localStorage.setItem(SESSION_KEY, JSON.stringify({ user: currentUser, admin: isAdmin, ts: Date.now() }));
+  else localStorage.removeItem(SESSION_KEY);
+}
+function clearSession() { localStorage.removeItem(SESSION_KEY); }
+
+/* ==================== MERGE ==================== */
+function mergeEntries(local, remote) {
+  const map = new Map();
+  (remote || []).forEach(function(e) { if (e && e.id) map.set(String(e.id), e); });
+  (local  || []).forEach(function(e) { if (e && e.id) map.set(String(e.id), e); });
+  return Array.from(map.values());
+}
+function mergePasswords(local, remote) {
+  const result = {};
+  const keys = new Set(Object.keys(local || {}).concat(Object.keys(remote || {})));
+  keys.forEach(function(k) {
+    const l = local ? local[k] : null, r = remote ? remote[k] : null;
+    if (!l) { result[k] = r; return; }
+    if (!r) { result[k] = l; return; }
+    result[k] = ((l.updated || 0) >= (r.updated || 0)) ? l : r;
+  });
+  return result;
+}
+function applyDeleted() {
+  const delSet = new Set(deletedIds);
+  entries = entries.filter(function(e){ return !delSet.has(String(e.id)); });
+}
+function getLastNMonths(n) {
+  const out = []; const now = new Date();
+  for (let i = 0; i < n; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    out.push({ year: d.getFullYear(), month: d.getMonth() + 1, name: CONFIG.monthNames[d.getMonth()] + " " + d.getFullYear() });
+  }
+  return out;
+}
+
+/* ==================== CLOUD UI ==================== */
+function updateCloudUI() {
+  const badge = $("syncBadge"), dot = $("cloudDot"), label = $("cloudLabel");
+  if (!badge || !dot) return;
+  let dotCls = "cloud-dot", badgeCls = "sync-badge", txt = "Avvio...";
+  if (!proxyReady) { dotCls += " error"; badgeCls += " error"; txt = "Non config."; }
+  else if (proxyFailed) { dotCls += " error"; badgeCls += " error"; txt = "Errore"; }
+  else if (!isOnline()) { dotCls += " offline"; badgeCls += " offline"; txt = "Offline"; }
+  else if (syncInProgress) { dotCls += " syncing"; badgeCls += " syncing"; txt = "Sync..."; }
+  else if (lastSyncTime > 0) {
+    dotCls += " on"; badgeCls += " on";
+    const d = new Date(lastSyncTime);
+    txt = d.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"});
+  } else { dotCls += " syncing"; badgeCls += " syncing"; txt = "Connessione..."; }
+  dot.className = dotCls;
+  badge.className = badgeCls;
+  if (label) label.textContent = txt;
+}
+
+function trySync(fromUI) {
+  if (!proxyReady) { if (fromUI) toast("Proxy non configurato","err"); return Promise.resolve(false); }
+  if (!isOnline()) { updateCloudUI(); if (fromUI) toast("Nessuna connessione","err"); return Promise.resolve(false); }
+  if (syncInProgress) { pendingSync = true; return Promise.resolve(false); }
+  syncInProgress = true; proxyFailed = false; updateCloudUI();
+  return Promise.resolve()
+    .then(function(){
+      return apiGetPasswords().then(function(remotePasswords) {
+        if (remotePasswords) passwords = mergePasswords(passwords, normalizePasswords(remotePasswords));
+        ensureDefaultPasswords();
+        return apiSetPasswords(passwords);
+      });
+    })
+    .then(function(){ return apiGetDeletedIds(); })
+    .then(function(remoteDeleted){
+      remoteDeleted.forEach(function(id){ deletedIds.add(String(id)); });
+      applyDeleted();
+      const months = getLastNMonths(CONFIG.monthsToSync);
+      let chain = Promise.resolve([]);
+      months.forEach(function(m){
+        chain = chain.then(function(acc){
+          return apiGetEntries(m.year, m.month)
+            .then(function(list){ return acc.concat(list); })
+            .catch(function(e){ console.warn("Errore fetch " + m.name, e); return acc; });
+        });
+      });
+      return chain;
+    })
+    .then(function(remoteEntries){
+      entries = mergeEntries(entries, remoteEntries);
+      applyDeleted();
+      remoteEntries.forEach(function(e){ if (e.id) syncedIds.add(String(e.id)); });
+      const toSend = entries.filter(function(e){ return !syncedIds.has(String(e.id)); });
+      if (toSend.length) {
+        return apiAppendEntries(toSend).then(function(result){
+          toSend.forEach(function(e){ syncedIds.add(String(e.id)); });
+          console.log("Sync: +" + result.appended + " agg, " + result.skipped + " skip");
+        });
+      }
+    })
+    .then(function(){
+      if (pendingDeletions.length) {
+        return apiDeleteEntries(pendingDeletions).then(function(){ pendingDeletions = []; })
+          .catch(function(e){ console.warn("Retry cancellazioni", e); });
+      }
+    })
+    .then(function(){
+      lastSyncTime = Date.now();
+      saveCache();
+      pendingSync = false; proxyFailed = false;
+      updateCloudUI();
+      if (currentUser) renderAll();
+      if (fromUI) toast("✓ Sincronizzato","ok");
+      return true;
+    })
+    .catch(function(e){
+      console.error("trySync", e);
+      proxyFailed = true; updateCloudUI();
+      if (fromUI) toast("Errore: " + e.message,"err");
+      return false;
+    })
+    .then(function(result){
+      syncInProgress = false;
+      if (pendingSync) { pendingSync = false; setTimeout(function(){ trySync(); }, 1500); }
+      return result;
+    });
+}
+
+/* ==================== POPOLAMENTO ==================== */
+function populateLoginSelect() {
+  const el = $("loginOperatore"); if (!el) return;
+  el.innerHTML = CONFIG.operatori.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("");
+}
+function populateTargheSelect() {
+  const el = $("targa"); if (!el) return;
+  el.innerHTML = CONFIG.targhe.map(function(t){ return '<option value="'+t+'">'+t+'</option>'; }).join("");
+}
+function populateOperatoreSelect() {
+  const el = $("operatore"); if (!el) return;
+  if (isAdmin) {
+    el.innerHTML = CONFIG.operatori.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("");
+    el.disabled = false;
+  } else if (currentUser) {
+    el.innerHTML = '<option value="'+currentUser+'">'+currentUser+'</option>';
+    el.value = currentUser;
+    el.disabled = true;
+  }
+}
+
+/* ==================== LOGIN ==================== */
+function showLoginError(msg) { const el = $("loginError"); if (el) el.textContent = msg || ""; }
+function tryLogin() {
+  const op = $("loginOperatore").value, pwd = $("loginPassword").value;
+  if (!op) { showLoginError("Seleziona il tuo nome"); return; }
+  if (!pwd) { showLoginError("Inserisci la password"); return; }
+  const stored = passwords[op] ? passwords[op].pwd : null;
+  const isMaster = (pwd === CONFIG.masterPassword);
+  const isPersonal = (stored === pwd);
+  if (!isMaster && !isPersonal) { showLoginError("Password errata. Riprova."); return; }
+  currentUser = op;
+  isAdmin = (op === CONFIG.admin && isPersonal);
+  saveSession();
+  setupAfterLogin();
+  showLoginError("");
+  $("loginPassword").value = "";
+  setTimeout(function(){ trySync(); }, 400);
+}
+function doLogout() {
+  if (!confirm("Vuoi uscire?")) return;
+  currentUser = null; isAdmin = false; clearSession();
+  $("loginOverlay").classList.add("show");
+  $("loginPassword").value = "";
+  $("loginOperatore").focus();
+  showLoginError("");
+  switchTab("inserimento");
+}
+function openPwdModal() {
+  $("pwdOld").value = ""; $("pwdNew").value = ""; $("pwdConfirm").value = "";
+  $("pwdError").textContent = "";
+  $("pwdModal").classList.add("show"); $("pwdOld").focus();
+}
+function closePwdModal() { $("pwdModal").classList.remove("show"); }
+function showPwdError(m) { $("pwdError").textContent = m || ""; }
+function changePassword() {
+  if (!currentUser) return;
+  const oldPwd = $("pwdOld").value, newPwd = $("pwdNew").value, conf = $("pwdConfirm").value;
+  const isMaster = (oldPwd === CONFIG.masterPassword);
+  const isPersonal = passwords[currentUser] && passwords[currentUser].pwd === oldPwd;
+  if (!isMaster && !isPersonal) { showPwdError("Password attuale errata"); return; }
+  if (!newPwd || newPwd.length < 6) { showPwdError("Minimo 6 caratteri"); return; }
+  if (newPwd !== conf) { showPwdError("Le password non coincidono"); return; }
+  if (newPwd === CONFIG.masterPassword) { showPwdError("Non puoi usare la password master"); return; }
+  passwords[currentUser] = { pwd: newPwd, updated: Date.now() };
+  saveCache(); closePwdModal();
+  toast("✓ Password aggiornata","ok");
+  trySync();
+}
+
+/* ==================== SETUP POST LOGIN ==================== */
+function setupAfterLogin() {
+  const el = $("userName"); if (el) el.textContent = currentUser;
+  const av = $("userAvatar");
+  if (av) { av.textContent = initials(currentUser); av.classList.toggle("admin", isAdmin); }
+  const ur = $("userRole"); if (ur) ur.textContent = isAdmin ? "Amministratore" : "Operatore";
+  populateOperatoreSelect();
+  populateTargheSelect();
+  const fOp = $("filtroOperatore"), fLabel = $("filterOpLabel");
+  if (fOp && fLabel) {
+    if (isAdmin) {
+      fOp.innerHTML = '<option value="">Tutti</option>' + CONFIG.operatori.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("");
+      fOp.disabled = false; fLabel.style.display = "";
+    } else {
+      fOp.innerHTML = '<option value="'+currentUser+'">'+currentUser+'</option>';
+      fOp.value = currentUser; fOp.disabled = true; fLabel.style.display = "none";
+    }
+  }
+  $("loginOverlay").classList.remove("show");
+  renderAll();
+  updateCloudUI();
+}
+
+/* ==================== RENDER ==================== */
+function renderAll() {
+  renderStats(); renderTableOggi(); renderTableStorico(); updateBadgeOggi();
+}
+function updateBadgeOggi() {
+  const oggi = entries.filter(function(e){ return e.data === todayKey(); });
+  const badge = $("badgeOggi");
+  if (!badge) return;
+  if (oggi.length > 0) {
+    if (badge.style.display === "none") badge.style.display = "";
+    if (lastBadgeCount !== oggi.length) {
+      badge.textContent = oggi.length;
+      badge.classList.remove("updated");
+      void badge.offsetWidth;
+      badge.classList.add("updated");
+      lastBadgeCount = oggi.length;
+    }
+  } else { badge.style.display = "none"; lastBadgeCount = 0; }
+  const cntOggi = $("countOggi");
+  if (cntOggi) cntOggi.textContent = oggi.length ? oggi.length + " tot." : "";
+}
+function renderStats() {
+  const oggi = entries.filter(function(e){ return e.data === todayKey(); });
+  const grid = $("statsGrid"); if (!grid) return;
+  grid.innerHTML = Object.entries(CONFIG.tipi).map(function(entry) {
+    const k = entry[0], v = entry[1];
+    const list = oggi.filter(function(e){ return e.tipo === k; });
+    const tot = list.reduce(function(s,e){ return s + e.peso; }, 0);
+    return '<div class="total-card" data-tipo="'+k+'">' +
+      '<span class="lbl">'+v.label+'</span>' +
+      '<span class="val">'+tot.toFixed(1)+' kg</span>' +
+      '<span class="cnt">'+list.length+' entrat'+(list.length===1?"a":"e")+'</span>' +
+    '</div>';
+  }).join("");
+}
+function renderEntryCard(e, index, showDate) {
+  const tipo = CONFIG.tipi[e.tipo] || { label: e.tipo, icon: "♻️" };
+  const delay = Math.min(index * 0.03, 0.3);
+  return '<div class="entry-card" data-tipo="'+e.tipo+'" style="animation-delay:'+delay+'s">' +
+    '<div class="entry-icon">'+tipo.icon+'</div>' +
+    '<div class="entry-body">' +
+      '<div class="entry-line1">' +
+        '<span class="entry-tipo">'+tipo.label+'</span>' +
+        '<span class="entry-peso">'+e.peso.toFixed(1)+' kg</span>' +
+      '</div>' +
+      '<div class="entry-line2">' +
+        '<span><span class="material-symbols-rounded">person</span>'+e.operatore+'</span>' +
+        '<span><span class="material-symbols-rounded">local_shipping</span>'+e.targa+'</span>' +
+        (showDate ? '<span><span class="material-symbols-rounded">calendar_today</span>'+fmtDataIt(e.data)+'</span>' : '') +
+      '</div>' +
+    '</div>' +
+    '<div class="entry-ora">'+e.ora+'</div>' +
+  '</div>';
+}
+function renderTableOggi() {
+  const oggi = entries.filter(function(e){ return e.data === todayKey(); }).sort(function(a,b){ return b.ts-a.ts; });
+  const el = $("tbodyOggi"); if (!el) return;
+  if (!oggi.length) { el.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">inbox</span>Nessuna registrazione oggi</div>'; return; }
+  el.innerHTML = oggi.map(function(e,i){ return renderEntryCard(e, i, false); }).join("");
+}
+function getFilteredEntries() {
+  let list = entries.slice();
+  const dal = $("filtroDal").value, al = $("filtroAl").value;
+  if (dal) list = list.filter(function(e){ return e.data >= dal; });
+  if (al) list = list.filter(function(e){ return e.data <= al; });
+  if (isAdmin) {
+    const op = $("filtroOperatore").value;
+    if (op) list = list.filter(function(e){ return e.operatore === op; });
+  } else if (currentUser) {
+    list = list.filter(function(e){ return e.operatore === currentUser; });
+  }
+  return list.sort(function(a,b){ return b.ts-a.ts; });
+}
+function renderStatsStorico(filtered) {
+  const totBox = $("totaleStorico"); if (!totBox) return;
+  const tot = filtered.reduce(function(s,e){ return s + e.peso; }, 0);
+  const n = filtered.length;
+  totBox.innerHTML = '<div class="stat-totale">' +
+    '<span class="lbl">Totale periodo'+(!isAdmin && currentUser ? " · " + currentUser : "")+'</span>' +
+    '<span class="val">'+tot.toFixed(1)+' kg</span>' +
+    '<span class="cnt">'+n+' registrazion'+(n===1?"e":"i")+'</span>' +
+  '</div>';
+  const grid = $("statsStorico"); if (!grid) return;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    byTipo[k] = filtered.filter(function(e){ return e.tipo === k; }).reduce(function(s,e){ return s + e.peso; }, 0);
+  });
+  grid.innerHTML = Object.entries(CONFIG.tipi).map(function(entry) {
+    const k = entry[0], v = entry[1];
+    return '<div class="total-card" data-tipo="'+k+'">' +
+      '<span class="lbl">'+v.label+'</span>' +
+      '<span class="val">'+byTipo[k].toFixed(1)+' kg</span>' +
+      '<span class="cnt">'+filtered.filter(function(e){ return e.tipo===k; }).length+' entrate</span>' +
+    '</div>';
+  }).join("");
+}
+function renderTableStorico() {
+  const filtered = getFilteredEntries();
+  renderStatsStorico(filtered);
+  const el = $("tbodyStorico"); if (!el) return;
+  const cnt = $("countStorico");
+  if (cnt) cnt.textContent = filtered.length ? filtered.length + " tot." : "";
+  if (!filtered.length) { el.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">search_off</span>Nessuna registrazione trovata</div>'; return; }
+  el.innerHTML = filtered.slice(0, 200).map(function(e,i){ return renderEntryCard(e, i, true); }).join("");
+}
+function resetFiltri() {
+  $("filtroDal").value = ""; $("filtroAl").value = "";
+  if (isAdmin) $("filtroOperatore").value = "";
+  renderTableStorico();
+}
+
+/* ==================== AZIONI ==================== */
+function selezionaTipo(tipo) {
+  selectedTipo = tipo;
+  document.querySelectorAll(".waste-card").forEach(function(c){ c.classList.toggle("selected", c.dataset.tipo === tipo); });
+  $("btnRegistra").disabled = !tipo;
+  if (navigator.vibrate) navigator.vibrate(10);
+  if (!isAdmin) $("peso").focus(); else $("operatore").focus();
+}
+function registra() {
+  if (!currentUser) { toast("Devi essere loggato","err"); return; }
+  const tipo = selectedTipo;
+  const operatore = isAdmin ? $("operatore").value : currentUser;
+  const targa = $("targa").value;
+  const peso = parseFloat($("peso").value.replace(",","."));
+  if (!tipo) { toast("Seleziona il tipo di rifiuto","err"); return; }
+  if (!operatore || !targa) { toast("Operatore e targa obbligatori","err"); return; }
+  if (!isFinite(peso) || peso <= 0) { toast("Inserisci un peso valido","err"); return; }
+  const now = new Date();
+  const entry = {
+    id: now.getTime() + "-" + (Math.random()*1e6|0),
+    ts: now.getTime(), data: todayKey(now), ora: fmtOra(now),
+    tipo: tipo, operatore: operatore, targa: targa, peso: peso
+  };
+  entries.push(entry);
+  saveCache();
+  $("peso").value = ""; selectedTipo = null;
+  document.querySelectorAll(".waste-card").forEach(function(c){ c.classList.remove("selected"); });
+  $("btnRegistra").disabled = true;
+  if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+  renderAll();
+  toast("✓ " + CONFIG.tipi[tipo].label + " · " + peso.toFixed(1) + " kg","ok");
+  pushEntryImmediate(entry);
+}
+function pushEntryImmediate(entry) {
+  if (!proxyReady || !isOnline()) return;
+  apiAppendEntries([entry]).then(function(){
+    syncedIds.add(String(entry.id));
+    saveCache();
+    lastSyncTime = Date.now();
+    updateCloudUI();
+  }).catch(function(e){ console.warn("pushEntryImmediate", e); });
+}
+
+/* ==================== TAB ==================== */
+function switchTab(name) {
+  document.querySelectorAll(".tab-btn").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === name); });
+  document.querySelectorAll(".tab-content").forEach(function(c){ c.classList.toggle("active", c.id === "tab-" + name); });
+  if (navigator.vibrate) navigator.vibrate(8);
+  if (name === "storico") renderTableStorico();
+  if (name === "oggi") { renderStats(); renderTableOggi(); updateBadgeOggi(); }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ==================== BINDING ==================== */
+function bind() {
+  document.querySelectorAll(".tab-btn").forEach(function(b){ b.addEventListener("click", function(){ switchTab(b.dataset.tab); }); });
+  document.querySelectorAll(".waste-card").forEach(function(c){ c.addEventListener("click", function(){ selezionaTipo(c.dataset.tipo); }); });
+  $("btnRegistra").addEventListener("click", registra);
+  $("peso").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); registra(); } });
+  $("btnFiltra").addEventListener("click", renderTableStorico);
+  $("btnPulisciFiltri").addEventListener("click", resetFiltri);
+  $("btnLogin").addEventListener("click", tryLogin);
+  $("loginPassword").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); tryLogin(); } });
+  $("btnLogout").addEventListener("click", doLogout);
+  $("btnChangePwd").addEventListener("click", openPwdModal);
+  $("btnPwdCancel").addEventListener("click", closePwdModal);
+  $("btnPwdSave").addEventListener("click", changePassword);
+  $("pwdModal").addEventListener("click", function(e){ if (e.target === $("pwdModal")) closePwdModal(); });
+  $("pwdConfirm").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); changePassword(); } });
+  $("syncBadge").addEventListener("click", function(){ trySync(true); });
+  $("btnTheme").addEventListener("click", toggleTheme);
+  $("btnLoginTheme").addEventListener("click", toggleTheme);
+  window.addEventListener("online", function(){ toast("Rete tornata","info"); trySync(); updateCloudUI(); });
+  window.addEventListener("offline", function(){ updateCloudUI(); });
+  setInterval(function(){ if (pendingSync && isOnline()) trySync(); updateCloudUI(); }, 60000);
+}
+
+function selfTest() {
+  const results = [];
+  function t(name, cond) { results.push({ name: name, ok: !!cond }); }
+  t("Config: 3 tipi rifiuto", Object.keys(CONFIG.tipi).length === 3);
+  t("Config: 15 operatori", CONFIG.operatori.length === 15);
+  t("Proxy: URL configurato", !!(CONFIG.appsScriptUrl && CONFIG.appsScriptUrl.indexOf("https://script.google.com/") === 0));
+  t("Merge entries", mergeEntries([{id:"a"},{id:"b"}], [{id:"b"},{id:"c"}]).length === 3);
+  t("3 tab presenti", document.querySelectorAll(".tab-btn").length === 3);
+  t("Material Symbols caricato", !!document.querySelector(".material-symbols-rounded"));
+  t("Symbol SVG fallback presente", !!document.getElementById("cdr-symbol"));
+  t("Icona login usa img PNG", !!document.querySelector(".login-logo img[src*='icon.png']"));
+  t("Icona header usa img PNG", !!document.querySelector(".logo-ecolan img[src*='icon.png']"));
+  t("Manifest linkato", !!document.querySelector("link[rel='manifest']"));
+  const fail = results.filter(function(r){ return !r.ok; });
+  console.group("🧪 Self-test CDR v19");
+  results.forEach(function(r){ console.log((r.ok?"✅":"❌") + " " + r.name); });
+  console.log(fail.length ? "❌ " + fail.length + " falliti su " + results.length : "✅ Tutti i " + results.length + " test superati");
+  console.groupEnd();
+}
+
+function renderClock() {
+  const d = new Date();
+  const el = $("clock");
+  if (el) el.textContent = d.toLocaleDateString("it-IT") + " · " + d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+}
+
+/* ==================== BOOT ==================== */
+function boot() {
+  try {
+    console.log("🚀 Avvio CDR v19");
+
+    const loginOv = $("loginOverlay");
+    if (loginOv) loginOv.classList.add("show");
+
+    loadTheme();
+
+    const criticalIds = ["loginOverlay","loginOperatore","loginPassword","btnLogin","operatore","targa","peso","btnRegistra","statsGrid","tbodyOggi","tbodyStorico"];
+    const missing = criticalIds.filter(function(id){ return !document.getElementById(id); });
+    if (missing.length) {
+      console.error("❌ Elementi mancanti:", missing);
+      return;
+    }
+
+    loadCache();
+    ensureDefaultPasswords();
+    applyDeleted();
+    bind();
+    populateLoginSelect();
+    populateTargheSelect();
+    populateOperatoreSelect();
+    renderClock();
+    setInterval(renderClock, 1000);
+
+    initProxy();
+    updateCloudUI();
+
+    setTimeout(function(){
+      const lo = $("loginOperatore");
+      if (lo) lo.focus();
+    }, 200);
+
+    if (proxyReady && isOnline()) {
+      setTimeout(function(){
+        trySync().then(function(){
+          updateCloudUI();
+          const session = loadSession();
+          if (session) {
+            currentUser = session.user;
+            isAdmin = !!session.admin && session.user === CONFIG.admin;
+            setupAfterLogin();
+          }
+        });
+      }, 300);
+    } else {
+      const session = loadSession();
+      if (session) {
+        currentUser = session.user;
+        isAdmin = !!session.admin && session.user === CONFIG.admin;
+        setupAfterLogin();
+      }
+    }
+
+    setTimeout(selfTest, 600);
+    console.log("✅ Boot completato");
+  } catch(e) {
+    console.error("❌ Errore fatale in boot:", e);
+    const loginOv = $("loginOverlay");
+    if (loginOv) loginOv.classList.add("show");
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+})();
+</script>
+</body>
+</html>
