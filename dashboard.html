@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5f2e8" id="themeColorMeta">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dashboard CDR">
+<title>Dashboard · CDR San Vito Chietino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+<link rel="icon" type="image/png" sizes="512x512" href="./icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+<style>
+  :root, body[data-theme="light"]{
+    --ecolan-verde: #1e5a2e;
+    --ecolan-verde-scuro: #144020;
+    --ecolan-verde-chiaro: #4a8f5a;
+    --ecolan-verde-brillante: #2d8a4a;
+    --ecolan-ocra: #c9a533;
+    --ecolan-ocra-scuro: #a5851f;
+    --ecolan-ocra-brillante: #e5c04a;
+    --bg: #f5f2e8;
+    --bg-2: #ece8dc;
+    --panel: #ffffff;
+    --panel-2: #f7f4ea;
+    --panel-3: #ece7d8;
+    --sidebar-bg: #ffffff;
+    --border: #e0dcc8;
+    --border-strong: #c8c2a8;
+    --text: #1a2e1a;
+    --muted: #6a766a;
+    --muted-2: #98a098;
+    --accent: #1e5a2e;
+    --accent-soft: rgba(30,90,46,.10);
+    --danger: #b91c1c;
+    --ok: #16a34a;
+    --warn: #d97706;
+    --carta: #1e6fbf;
+    --carta-dark: #0f4a86;
+    --imballaggi: #d4a017;
+    --imballaggi-dark: #a37a00;
+    --vetro: #2e8b57;
+    --vetro-dark: #1b5a37;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+    --shadow: 0 4px 16px rgba(0,0,0,.06);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,.10);
+    --radius: 18px;
+    --radius-sm: 12px;
+    --m3-spring: cubic-bezier(.34, 1.56, .64, 1);
+    --m3-emphasized: cubic-bezier(.2, 0, 0, 1);
+    color-scheme: light;
+  }
+  body[data-theme="dark"]{
+    --ecolan-verde: #4a8f5a;
+    --ecolan-verde-scuro: #2d5c38;
+    --ecolan-verde-chiaro: #6eb57c;
+    --ecolan-verde-brillante: #3ea972;
+    --ecolan-ocra: #e5c04a;
+    --ecolan-ocra-scuro: #b8992f;
+    --ecolan-ocra-brillante: #f0d16a;
+    --bg: #0a130c;
+    --bg-2: #0f1a12;
+    --panel: #16241a;
+    --panel-2: #1c2e21;
+    --panel-3: #22382a;
+    --sidebar-bg: #0f1a12;
+    --border: #2a4030;
+    --border-strong: #3d5c47;
+    --text: #e8f0e8;
+    --muted: #8fa08f;
+    --muted-2: #6b7c6b;
+    --accent: #6eb57c;
+    --accent-soft: rgba(110,181,124,.15);
+    --danger: #dc2626;
+    --ok: #22c55e;
+    --warn: #f59e0b;
+    --carta: #3a82cc;
+    --carta-dark: #1e5a96;
+    --imballaggi: #e5b800;
+    --imballaggi-dark: #a37a00;
+    --vetro: #3ea972;
+    --vetro-dark: #1e6b3e;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+    --shadow: 0 4px 16px rgba(0,0,0,.4);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.45;
+    transition:background .4s ease, color .4s ease;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body::before{
+    content:"";position:fixed;inset:-15%;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(74,143,90,.20), transparent 38%),
+      radial-gradient(circle at 88% 12%, rgba(201,165,51,.16), transparent 38%),
+      radial-gradient(circle at 22% 88%, rgba(30,111,191,.10), transparent 38%),
+      radial-gradient(circle at 82% 78%, rgba(74,143,90,.16), transparent 42%);
+    filter: blur(28px);
+    animation: meshMove 26s ease-in-out infinite alternate;
+  }
+  body[data-theme="dark"]::before{
+    background:
+      radial-gradient(circle at 12% 18%, rgba(74,143,90,.18), transparent 38%),
+      radial-gradient(circle at 88% 12%, rgba(201,165,51,.14), transparent 38%),
+      radial-gradient(circle at 22% 88%, rgba(58,130,204,.12), transparent 38%),
+      radial-gradient(circle at 82% 78%, rgba(74,143,90,.16), transparent 42%);
+  }
+  @keyframes meshMove{
+    0%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(3%,-2%) scale(1.06)}
+    100%{transform:translate(-2%,3%) scale(1)}
+  }
+  button{font-family:inherit}
+  .material-symbols-rounded{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;user-select:none}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.15)}}
+  @keyframes popIn{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.05);opacity:1}100%{transform:scale(1)}}
+  @keyframes floatIcon{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @keyframes barGrow{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
+  @keyframes drawSeg{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+  @keyframes gradText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @keyframes slideInLeft{from{transform:translateY(-50%) scaleY(0)}to{transform:translateY(-50%) scaleY(1)}}
+  @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+  .layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh;transition:grid-template-columns .3s ease;position:relative;z-index:1}
+  @media (max-width:1100px){ .layout{grid-template-columns:78px 1fr} }
+
+  .sidebar{
+    background:var(--sidebar-bg);border-right:1px solid var(--border);
+    display:flex;flex-direction:column;padding:20px 14px;
+    position:sticky;top:0;height:100vh;overflow:hidden;
+  }
+  .sidebar::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201,165,51,.06), transparent 55%),
+      radial-gradient(circle at 0% 100%, rgba(30,90,46,.05), transparent 55%);
+  }
+  .sidebar-logo{display:flex;align-items:center;gap:10px;padding:6px 6px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;position:relative;z-index:1}
+  .sidebar-logo-img{width:40px;height:40px;flex-shrink:0;border-radius:12px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(30,90,46,.12);animation:floatIcon 4s ease-in-out infinite}
+  .sidebar-logo-img img{width:100%;height:100%;object-fit:contain;display:block}
+  .sidebar-logo-text{font-size:14px;font-weight:900;color:var(--ecolan-verde);line-height:1.15;letter-spacing:-.2px}
+  body[data-theme="dark"] .sidebar-logo-text{color:var(--ecolan-verde-chiaro)}
+  .sidebar-logo-text small{display:block;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-top:1px}
+  @media (max-width:1100px){
+    .sidebar-logo{justify-content:center;padding:6px 0 20px}
+    .sidebar-logo-text{display:none}
+  }
+
+  .sidebar-nav{display:flex;flex-direction:column;gap:3px;flex:1;position:relative;z-index:1;overflow-y:auto;overflow-x:hidden;padding-right:2px}
+  .sidebar-nav::-webkit-scrollbar{width:4px}
+  .sidebar-nav::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+  .nav-item{
+    position:relative;display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;
+    background:transparent;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:600;
+    cursor:pointer;text-align:left;width:100%;
+    transition:background .25s ease, color .25s ease, transform .25s var(--m3-spring);
+  }
+  .nav-item:hover{background:var(--panel-2);color:var(--text);transform:translateX(2px)}
+  .nav-item:active{transform:scale(.97)}
+  .nav-item.active{
+    background:linear-gradient(135deg, rgba(30,90,46,.13), rgba(201,165,51,.10));
+    color:var(--ecolan-verde);font-weight:800;
+  }
+  body[data-theme="dark"] .nav-item.active{color:var(--ecolan-verde-chiaro);background:linear-gradient(135deg, rgba(110,181,124,.18), rgba(229,192,74,.10))}
+  .nav-item.active::before{
+    content:"";position:absolute;left:-14px;top:50%;transform:translateY(-50%);
+    width:4px;height:26px;border-radius:0 4px 4px 0;
+    background:linear-gradient(180deg, var(--ecolan-ocra), var(--ecolan-verde));
+    animation: slideInLeft .35s var(--m3-spring);
+  }
+  .nav-item .material-symbols-rounded{font-size:20px;flex-shrink:0;transition:transform .35s var(--m3-spring)}
+  .nav-item.active .material-symbols-rounded{transform:scale(1.12);font-variation-settings:'FILL' 1, 'wght' 500}
+  .nav-item:hover .material-symbols-rounded{transform:scale(1.08)}
+  .nav-item .nav-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media (max-width:1100px){
+    .nav-item{justify-content:center;padding:11px 6px}
+    .nav-item .nav-label{display:none}
+    .nav-item:hover{transform:scale(1.05)}
+  }
+
+  .sidebar-footer{
+    margin-top:auto;padding-top:14px;border-top:1px solid var(--border);
+    display:flex;flex-direction:column;gap:4px;position:relative;z-index:1;
+  }
+  .sidebar-footer .nav-item{font-size:12.5px}
+  @media (max-width:1100px){
+    .sidebar-footer .nav-item{justify-content:center}
+  }
+
+  .main{padding:24px 32px 48px;max-width:1600px;width:100%;margin:0 auto}
+  @media (max-width:900px){ .main{padding:20px 22px 36px} }
+
+  .page{animation:pageIn .35s ease}
+  .page.hidden{display:none}
+
+  .top-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px;animation:fadeIn .5s ease}
+  .top-title h1{
+    font-size:32px;font-weight:900;letter-spacing:-.7px;line-height:1.1;
+    background:linear-gradient(120deg, var(--ecolan-verde) 0%, var(--ecolan-verde-brillante) 40%, var(--ecolan-ocra) 100%);
+    background-size:200% 200%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation: gradText 10s ease infinite;
+  }
+  body[data-theme="dark"] .top-title h1{
+    background:linear-gradient(120deg, var(--ecolan-verde-chiaro) 0%, var(--ecolan-ocra) 100%);
+    background-size:200% 200%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .top-title p{color:var(--muted);font-size:14px;margin-top:4px}
+  .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+  .pill-select{
+    display:flex;gap:3px;padding:4px;background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    box-shadow:var(--shadow-sm);
+  }
+  .pill-select button{
+    padding:8px 14px;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:700;
+    border-radius:10px;cursor:pointer;transition:all .25s var(--m3-spring);letter-spacing:.2px;position:relative;
+  }
+  .pill-select button.active{
+    background:linear-gradient(135deg, var(--ecolan-verde), var(--ecolan-verde-brillante));
+    color:#fff;box-shadow:0 6px 16px rgba(30,90,46,.30);transform:scale(1.02);
+  }
+  body[data-theme="dark"] .pill-select button.active{color:#0a130c}
+  .pill-select button:not(.active):hover{background:var(--panel-2);color:var(--text)}
+  .pill-select button:active{transform:scale(.95)}
+
+  .sync-state{
+    display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;
+    background:var(--panel);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--muted);
+    box-shadow:var(--shadow-sm);cursor:pointer;transition:all .25s ease;
+  }
+  .sync-state:hover{color:var(--text);transform:translateY(-1px);box-shadow:var(--shadow)}
+  .sync-state .dot{width:8px;height:8px;border-radius:50%;background:var(--muted-2);transition:all .3s}
+  .sync-state .dot.on{background:var(--ok);box-shadow:0 0 10px var(--ok), 0 0 0 4px rgba(22,163,74,.15)}
+  .sync-state .dot.syncing{background:var(--warn);animation:pulse 1.2s infinite}
+  .sync-state .dot.error{background:var(--danger)}
+  .sync-state .dot.offline{background:var(--muted-2)}
+  .sync-state .material-symbols-rounded{font-size:16px}
+  .sync-state.syncing .material-symbols-rounded{animation:spin 1.2s linear infinite;color:var(--warn)}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:20px}
+  @media (max-width:1280px){ .kpi-grid{grid-template-columns:repeat(3,1fr)} }
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2,1fr)} }
+
+  .kpi{
+    position:relative;overflow:hidden;border-radius:20px;padding:20px 22px 18px;
+    display:flex;flex-direction:column;gap:4px;
+    color:#fff;
+    box-shadow:0 12px 28px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.15);
+    transition:transform .35s var(--m3-spring), box-shadow .35s ease;
+    animation: popIn .55s var(--m3-spring) backwards;
+  }
+  .kpi:nth-child(1){animation-delay:.05s}
+  .kpi:nth-child(2){animation-delay:.11s}
+  .kpi:nth-child(3){animation-delay:.17s}
+  .kpi:nth-child(4){animation-delay:.23s}
+  .kpi:nth-child(5){animation-delay:.29s}
+  .kpi:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.20), 0 4px 10px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.2)}
+  .kpi::before{
+    content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    background:rgba(255,255,255,.10);pointer-events:none;
+  }
+  .kpi::after{
+    content:"";position:absolute;left:-60px;bottom:-60px;width:130px;height:130px;border-radius:50%;
+    background:rgba(0,0,0,.06);pointer-events:none;
+  }
+
+  .kpi-viola{background:linear-gradient(135deg, #3b1e5a 0%, #6a3fa0 45%, #9d6ce0 100%)}
+  .kpi-ocra{background:linear-gradient(135deg, #7c4a03 0%, #c47f0c 50%, #f0a828 100%)}
+  .kpi-blu{background:linear-gradient(135deg, #0a3a6a 0%, #1e6fbf 50%, #4a9fe0 100%)}
+  .kpi-ambra{background:linear-gradient(135deg, #8f6c10 0%, #c9a533 50%, #e5c04a 100%);color:#231a00}
+  .kpi-verde{background:linear-gradient(135deg, #144a2c 0%, #2e8b57 50%, #4aae77 100%)}
+
+  body[data-theme="dark"] .kpi-viola{background:linear-gradient(135deg, #4c2780 0%, #7a4fb5 55%, #a878ea 100%)}
+
+  .kpi-icon{
+    position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+    background:rgba(255,255,255,.18);backdrop-filter:blur(6px);
+    font-variation-settings:'FILL' 1, 'wght' 500;
+    animation: floatIcon 4s ease-in-out infinite;
+  }
+  .kpi-ambra .kpi-icon{background:rgba(0,0,0,.10)}
+  .kpi:nth-child(2) .kpi-icon{animation-delay:.4s}
+  .kpi:nth-child(3) .kpi-icon{animation-delay:.8s}
+  .kpi:nth-child(4) .kpi-icon{animation-delay:1.2s}
+  .kpi:nth-child(5) .kpi-icon{animation-delay:1.6s}
+
+  .kpi-label{
+    font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.9px;
+    opacity:.92;position:relative;padding-right:56px;
+  }
+  .kpi-value{
+    font-size:30px;font-weight:900;letter-spacing:-.8px;line-height:1.05;
+    font-variant-numeric:tabular-nums;position:relative;margin-top:2px;
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .kpi-unit{font-size:16px;font-weight:700;opacity:.85;letter-spacing:0}
+  .kpi-sub{font-size:12px;font-weight:600;opacity:.88;position:relative;display:flex;align-items:center;gap:5px;margin-top:2px}
+  .kpi-sub .material-symbols-rounded{font-size:14px}
+  .kpi-chip{
+    display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.20);
+    padding:4px 9px;border-radius:999px;font-size:11px;font-weight:800;
+    width:fit-content;margin-top:6px;position:relative;
+    backdrop-filter:blur(6px);
+  }
+  .kpi-ambra .kpi-chip{background:rgba(0,0,0,.14)}
+  .kpi-chip .material-symbols-rounded{font-size:13px}
+
+  @media (min-width:1281px){
+    .kpi{padding:18px 18px 16px}
+    .kpi-value{font-size:26px}
+    .kpi-label{font-size:11px;padding-right:50px}
+    .kpi-icon{width:38px;height:38px;font-size:20px;top:12px;right:12px}
+  }
+
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+    box-shadow:var(--shadow-sm);transition:transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
+    position:relative;overflow:hidden;
+  }
+  .card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+  .card-title{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px}
+  .card-title > .material-symbols-rounded:first-child{
+    width:28px;height:28px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:16px;padding:0;
+    background:linear-gradient(135deg, var(--accent-soft), transparent);
+    color:var(--accent);
+  }
+  .card-title .title-right{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);text-transform:none;letter-spacing:0}
+
+  .custom-period-chip{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 6px 8px 12px;margin-bottom:16px;
+    background:linear-gradient(135deg, rgba(30,90,46,.10), rgba(201,165,51,.12));
+    border:1px solid var(--border);
+    border-radius:999px;
+    font-size:12.5px;font-weight:800;
+    color:var(--text);
+    animation: fadeIn .3s ease;
+  }
+  .custom-period-chip .material-symbols-rounded:first-child{font-size:16px;color:var(--accent)}
+  .custom-period-chip button{
+    background:transparent;border:none;cursor:pointer;
+    width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);transition:background .2s ease,color .2s ease;
+  }
+  .custom-period-chip button:hover{background:var(--panel-3);color:var(--danger)}
+  .custom-period-chip button .material-symbols-rounded{font-size:16px}
+
+  .grid-2{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:20px}
+  .grid-2-eq{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  @media (max-width:1100px){
+    .grid-2,.grid-2-eq{grid-template-columns:1fr}
+  }
+
+  .reveal-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s var(--m3-spring)}
+  .reveal-on-scroll.revealed{opacity:1;transform:translateY(0)}
+
+  .chart-wrap{height:220px;display:flex;align-items:flex-end;gap:6px;padding-top:24px}
+  .chart-col{flex:1;display:grid;grid-template-rows:1fr auto;gap:8px;align-items:end;min-width:0}
+  .chart-bar{
+    width:100%;max-width:48px;margin:0 auto;border-radius:10px 10px 4px 4px;
+    background:linear-gradient(180deg, var(--ecolan-verde-chiaro), var(--ecolan-verde));
+    position:relative;min-height:4px;
+    transform-origin:bottom;
+    animation: barGrow .75s var(--m3-spring) backwards;
+    animation-delay: calc(var(--i) * 55ms + 100ms);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.30), 0 4px 10px rgba(30,90,46,.12);
+    transition: filter .25s ease, transform .25s var(--m3-spring);
+  }
+  .chart-bar:hover{filter:brightness(1.10);transform:scaleY(1.03)}
+  body[data-theme="dark"] .chart-bar{background:linear-gradient(180deg, var(--ecolan-verde), var(--ecolan-verde-scuro))}
+  .chart-bar.empty{background:var(--panel-3);box-shadow:none}
+  .chart-bar.today{
+    background:linear-gradient(180deg, var(--ecolan-ocra-brillante), var(--ecolan-ocra));
+    box-shadow: 0 6px 18px rgba(201,165,51,.35), inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .chart-bar .chart-val{
+    position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+    font-size:10.5px;font-weight:800;color:var(--muted);white-space:nowrap;opacity:0;
+    transition:opacity .3s;
+  }
+  .chart-bar.has-value .chart-val{opacity:1}
+  .chart-label{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  .chart-col.today .chart-label{color:var(--ecolan-ocra-scuro);font-weight:900}
+
+  .donut-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .donut{width:170px;height:170px;flex-shrink:0;position:relative}
+  .donut svg{width:100%;height:100%;display:block;overflow:visible}
+  .donut-seg{
+    animation: drawSeg .9s cubic-bezier(.34,1.2,.64,1) both;
+    animation-delay: calc(var(--i) * 160ms + 250ms);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.10));
+  }
+  .donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+  .donut-center .dc-val{font-size:24px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1;background:linear-gradient(135deg, var(--ecolan-verde), var(--ecolan-ocra));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  body[data-theme="dark"] .donut-center .dc-val{background:linear-gradient(135deg, var(--ecolan-verde-chiaro), var(--ecolan-ocra));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .donut-center .dc-lbl{font-size:10px;font-weight:800;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.8px}
+  .donut-legend{flex:1;display:flex;flex-direction:column;gap:12px;min-width:170px}
+  .donut-legend-item{
+    display:flex;align-items:center;gap:10px;font-size:13px;
+    padding:8px 12px;border-radius:10px;
+    background:var(--panel-2);
+    transition:transform .25s var(--m3-spring), background .25s ease;
+  }
+  .donut-legend-item:hover{transform:translateX(4px);background:var(--panel-3)}
+  .donut-legend-dot{width:12px;height:12px;border-radius:4px;flex-shrink:0;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+  .donut-legend-name{flex:1;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .donut-legend-val{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .donut-legend-pct{font-size:12px;font-weight:800;color:var(--muted);min-width:40px;text-align:right;font-variant-numeric:tabular-nums}
+
+  .list{display:flex;flex-direction:column;gap:8px}
+  .list-item{
+    display:flex;align-items:center;gap:12px;padding:11px 13px;
+    background:var(--panel-2);border-radius:var(--radius-sm);border:1px solid var(--border);
+    transition:transform .25s var(--m3-spring), background .25s ease, box-shadow .25s ease;
+  }
+  .list-item:hover{background:var(--panel-3);transform:translateX(4px);box-shadow:var(--shadow-sm)}
+  .list-rank{
+    width:30px;height:30px;border-radius:9px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12.5px;font-weight:900;color:#fff;
+    background:linear-gradient(135deg, var(--muted), var(--text));
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .list-rank.r1{background:linear-gradient(135deg, #fbbf24, #b45309);color:#231a00;box-shadow:0 4px 12px rgba(251,191,36,.35)}
+  .list-rank.r2{background:linear-gradient(135deg, #e2e8f0, #64748b);color:#1e293b;box-shadow:0 4px 12px rgba(148,163,184,.35)}
+  .list-rank.r3{background:linear-gradient(135deg, #d97706, #7c2d12);box-shadow:0 4px 12px rgba(217,119,6,.30)}
+  .list-body{flex:1;min-width:0}
+  .list-name{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .list-sub{font-size:11.5px;color:var(--muted);font-weight:600}
+  .list-val{
+    font-size:14px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap;flex-shrink:0;
+    background:linear-gradient(135deg, var(--ecolan-verde), var(--ecolan-ocra));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  body[data-theme="dark"] .list-val{background:linear-gradient(135deg, var(--ecolan-verde-chiaro), var(--ecolan-ocra));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  .mini-entry{
+    display:flex;align-items:center;gap:10px;padding:11px 13px;
+    background:var(--panel-2);border-radius:var(--radius-sm);border:1px solid var(--border);
+    border-left:4px solid var(--border);
+    transition:transform .25s var(--m3-spring), background .25s ease, box-shadow .25s ease;
+    animation: fadeIn .4s ease backwards;
+  }
+  .mini-entry:hover{background:var(--panel-3);transform:translateX(4px);box-shadow:var(--shadow-sm)}
+  .mini-entry[data-tipo="carta"]{border-left-color:var(--carta)}
+  .mini-entry[data-tipo="imballaggi"]{border-left-color:var(--imballaggi)}
+  .mini-entry[data-tipo="vetro"]{border-left-color:var(--vetro)}
+  .mini-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--panel-3)}
+  .mini-entry[data-tipo="carta"] .mini-icon{background:rgba(30,111,191,.12)}
+  .mini-entry[data-tipo="imballaggi"] .mini-icon{background:rgba(212,160,23,.15)}
+  .mini-entry[data-tipo="vetro"] .mini-icon{background:rgba(46,139,87,.12)}
+  .mini-body{flex:1;min-width:0}
+  .mini-line1{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .mini-tipo{font-size:12.5px;font-weight:800}
+  .mini-peso{font-size:14px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mini-line2{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;color:var(--muted);margin-top:1px}
+  .mini-ora{font-size:11px;font-weight:800;color:var(--muted);padding:3px 8px;background:var(--panel-3);border-radius:999px;flex-shrink:0}
+
+  .empty{text-align:center;padding:32px 12px;color:var(--muted);font-size:13px;font-weight:600}
+  .empty .material-symbols-rounded{font-size:42px;display:block;margin:0 auto 8px;opacity:.35}
+
+  .loading-state{display:flex;align-items:center;gap:10px;padding:24px 12px;justify-content:center;color:var(--muted);font-size:13px;font-weight:600}
+  .loading-state .spinner{width:22px;height:22px;border:3px solid var(--panel-3);border-top-color:var(--accent);border-radius:50%;animation:spin .9s linear infinite}
+
+  /* ============ PAGE TOTALI ============ */
+  /* HERO ANTARCITE (cambiato da verde) */
+  .totali-hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg, #1c1c26 0%, #2e2e3d 45%, #45455a 100%);
+    color:#fff;
+    border-radius:22px;padding:24px 28px;
+    margin-bottom:20px;
+    box-shadow:0 12px 32px rgba(20,20,30,.35);
+    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  body[data-theme="dark"] .totali-hero{
+    background:linear-gradient(135deg, #0a0a12 0%, #1a1a26 45%, #2a2a3d 100%);
+  }
+  .totali-hero::before{
+    content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;
+    background:rgba(201,165,51,.10);pointer-events:none;
+  }
+  .totali-hero::after{
+    content:"";position:absolute;left:-60px;bottom:-80px;width:180px;height:180px;border-radius:50%;
+    background:rgba(255,255,255,.03);pointer-events:none;
+  }
+  .totali-hero-text{position:relative;z-index:1}
+  .totali-hero-text h2{
+    font-size:20px;font-weight:900;letter-spacing:-.4px;
+    background:linear-gradient(120deg, #ffffff 0%, #e5c04a 100%);
+    background-size:200% 200%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation: gradText 8s ease infinite;
+  }
+  .totali-hero-text p{font-size:13px;opacity:.85;margin-top:4px}
+  .totali-hero-icon{
+    position:relative;z-index:1;
+    width:64px;height:64px;border-radius:20px;
+    background:linear-gradient(135deg, rgba(201,165,51,.25), rgba(201,165,51,.10));
+    border:1px solid rgba(201,165,51,.35);
+    backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;
+    font-size:32px;
+    color:#e5c04a;
+    animation: floatIcon 4s ease-in-out infinite;
+  }
+
+  .totali-tabs{
+    display:flex;gap:3px;padding:4px;
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    box-shadow:var(--shadow-sm);width:fit-content;
+    margin-bottom:20px;
+  }
+  .totali-tabs button{
+    padding:10px 22px;border:none;background:transparent;color:var(--muted);
+    font-family:inherit;font-size:13px;font-weight:800;
+    border-radius:10px;cursor:pointer;
+    transition:all .25s var(--m3-spring);
+    display:flex;align-items:center;gap:6px;
+  }
+  .totali-tabs button .material-symbols-rounded{font-size:18px}
+  .totali-tabs button.active{
+    background:linear-gradient(135deg, var(--ecolan-verde), var(--ecolan-verde-brillante));
+    color:#fff;box-shadow:0 6px 16px rgba(30,90,46,.30);
+  }
+  body[data-theme="dark"] .totali-tabs button.active{color:#0a130c}
+  .totali-tabs button:not(.active):hover{background:var(--panel-2);color:var(--text)}
+
+  .totali-summary-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;
+  }
+  @media (max-width:1100px){ .totali-summary-grid{grid-template-columns:repeat(2,1fr)} }
+  .totali-summary-card{
+    border-radius:16px;padding:16px 18px;
+    position:relative;overflow:hidden;
+    color:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+    animation: popIn .5s var(--m3-spring) backwards;
+    transition: transform .3s var(--m3-spring), box-shadow .3s ease;
+  }
+  .totali-summary-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.15)}
+  .totali-summary-card.tot{background:linear-gradient(135deg, #3b1e5a, #6a3fa0);animation-delay:.05s}
+  .totali-summary-card.carta{background:linear-gradient(135deg, #0a3a6a, #1e6fbf);animation-delay:.1s}
+  .totali-summary-card.imb{background:linear-gradient(135deg, #8f6c10, #c9a533);color:#231a00;animation-delay:.15s}
+  .totali-summary-card.vetro{background:linear-gradient(135deg, #144a2c, #2e8b57);animation-delay:.2s}
+  .totali-summary-card .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;opacity:.9}
+  .totali-summary-card .val{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums;margin-top:4px;line-height:1.1}
+  .totali-summary-card .sub{font-size:11px;font-weight:700;opacity:.85;margin-top:2px}
+  .totali-summary-card .scope{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:10px;font-weight:800;
+    background:rgba(255,255,255,.20);
+    padding:2px 7px;border-radius:999px;
+    margin-top:6px;
+    backdrop-filter:blur(4px);
+  }
+  .totali-summary-card.imb .scope{background:rgba(0,0,0,.12)}
+  .totali-summary-card .scope .material-symbols-rounded{font-size:12px}
+
+  .totali-head{
+    display:grid;
+    grid-template-columns: 130px 1fr 1fr 1fr 30px;
+    gap:8px;
+    padding: 10px 14px;
+    margin-bottom: 4px;
+    font-size:10.5px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    color: var(--muted);
+  }
+  .totali-head span:not(:first-child):not(:last-child){text-align:right}
+  .totali-head span:last-child{text-align:center}
+
+  .totali-group{
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background .2s ease;
+  }
+  .totali-group + .totali-group{margin-top:2px}
+
+  .totali-row{
+    display:grid;
+    grid-template-columns: 130px 1fr 1fr 1fr 30px;
+    gap:8px;
+    padding: 9px 14px;
+    border-radius: 12px;
+    align-items:center;
+    cursor:pointer;
+    transition: background .2s ease, transform .2s ease;
+    animation: fadeIn .3s ease backwards;
+    border:1px solid transparent;
+  }
+  .totali-row:hover{background: var(--panel-2); transform: translateX(2px); border-color:var(--border)}
+  .totali-row:active{transform: scale(.99)}
+  .totali-row.future{opacity:.35;cursor:default;pointer-events:none}
+  .totali-row.today{
+    background: linear-gradient(135deg, rgba(201,165,51,.15), transparent);
+    border-color:rgba(201,165,51,.35);
+  }
+  .totali-group.open > .totali-row{
+    border-color: var(--ecolan-verde);
+    background: linear-gradient(135deg, rgba(30,90,46,.10), rgba(201,165,51,.08));
+  }
+
+  .data-lbl{
+    font-size:13px;
+    font-weight:800;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .data-lbl .dot{
+    width:6px;height:6px;border-radius:50%;
+    background: var(--ecolan-ocra);
+    flex-shrink:0;
+  }
+  .data-lbl .rel{
+    font-size:10px;
+    font-weight:700;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+
+  .totali-cell{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    padding: 7px 12px;
+    border-radius: 10px;
+    text-align:right;
+    transition: transform .25s var(--m3-spring);
+  }
+  .totali-row:hover .totali-cell{transform: scale(1.03)}
+  .totali-cell.carta{background: rgba(30,111,191,.10); color: var(--carta)}
+  .totali-cell.imballaggi{background: rgba(212,160,23,.15); color: var(--ecolan-ocra-scuro)}
+  .totali-cell.vetro{background: rgba(46,139,87,.12); color: var(--vetro)}
+  body[data-theme="dark"] .totali-cell.carta{background: rgba(58,130,204,.14); color:#8dc3ee}
+  body[data-theme="dark"] .totali-cell.imballaggi{background: rgba(229,184,0,.14); color:#f0d16a}
+  body[data-theme="dark"] .totali-cell.vetro{background: rgba(62,169,114,.14); color:#7fd0a2}
+  .totali-cell .kg{
+    font-size:14px;
+    font-weight:900;
+    font-variant-numeric:tabular-nums;
+    line-height:1.15;
+  }
+  .totali-cell .cnt{
+    font-size:10.5px;
+    font-weight:700;
+    opacity:.85;
+  }
+  .totali-cell .kg.zero{opacity:.45}
+
+  .totali-chevron{
+    display:flex;align-items:center;justify-content:center;
+    color: var(--muted);
+    transition: transform .3s var(--m3-spring), color .2s ease;
+  }
+  .totali-chevron .material-symbols-rounded{font-size:20px}
+  .totali-group.open .totali-chevron{transform: rotate(180deg);color: var(--accent)}
+
+  .totali-expand{
+    background: var(--panel-2);
+    border-radius: 12px;
+    margin-top: 4px;
+    padding: 0 14px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .35s ease, opacity .25s ease, padding .3s ease;
+  }
+  .totali-group.open .totali-expand{
+    max-height: 1200px;
+    opacity: 1;
+    padding: 14px;
+  }
+  .totali-expand-head{
+    font-size:11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .totali-expand-head .material-symbols-rounded{font-size:16px;color:var(--accent)}
+  .totali-expand-empty{
+    padding: 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .totali-expand-list{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .totali-expand-list::-webkit-scrollbar{width:6px}
+  .totali-expand-list::-webkit-scrollbar-thumb{background: var(--border);border-radius:3px}
+  .totali-exp-item{
+    display:grid;
+    grid-template-columns: 52px 32px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 12px;
+    background: var(--panel);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    animation: fadeIn .3s ease backwards;
+  }
+  .totali-exp-item[data-tipo="carta"]{border-left-color: var(--carta)}
+  .totali-exp-item[data-tipo="imballaggi"]{border-left-color: var(--imballaggi)}
+  .totali-exp-item[data-tipo="vetro"]{border-left-color: var(--vetro)}
+  .totali-exp-item .exp-ora{
+    font-size: 12.5px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .totali-exp-item .exp-icon{
+    width: 32px;height: 32px;
+    border-radius: 9px;
+    display: flex;align-items: center; justify-content: center;
+    font-size: 17px;
+    background: var(--panel-3);
+  }
+  .totali-exp-item[data-tipo="carta"] .exp-icon{background: rgba(30,111,191,.12)}
+  .totali-exp-item[data-tipo="imballaggi"] .exp-icon{background: rgba(212,160,23,.15)}
+  .totali-exp-item[data-tipo="vetro"] .exp-icon{background: rgba(46,139,87,.12)}
+  .totali-exp-item .exp-body{min-width: 0}
+  .totali-exp-item .exp-tipo{
+    font-size: 12.5px;
+    font-weight: 800;
+    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
+  }
+  .totali-exp-item .exp-sub{
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    display: flex;flex-wrap: wrap;gap: 4px 8px;margin-top: 1px;
+  }
+  .totali-exp-item .exp-peso{
+    font-size: 14px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .totali-footnote{
+    margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);
+    font-size:11.5px;color:var(--muted);font-weight:600;
+    display:flex;align-items:center;gap:8px;
+  }
+  .totali-footnote .material-symbols-rounded{font-size:16px}
+
+  @media (max-width:900px){
+    .totali-hero{padding:20px}
+    .totali-hero-text h2{font-size:18px}
+    .totali-hero-icon{width:52px;height:52px;font-size:26px}
+    .totali-tabs button{padding:8px 14px;font-size:12px}
+    .totali-head{grid-template-columns: 90px 1fr 1fr 1fr 24px; font-size:9px;padding:8px}
+    .totali-row{grid-template-columns: 90px 1fr 1fr 1fr 24px; padding: 7px 8px; gap:6px}
+    .totali-cell{padding:5px 7px}
+    .totali-cell .kg{font-size:12px}
+    .totali-cell .cnt{font-size:9px}
+    .data-lbl{font-size:11.5px}
+    .totali-exp-item{grid-template-columns: 44px 28px 1fr auto;gap:8px;padding:7px 9px}
+    .totali-exp-item .exp-ora{font-size:11.5px}
+    .totali-exp-item .exp-peso{font-size:13px}
+    .totali-exp-item .exp-tipo{font-size:11.5px}
+  }
+
+  #mobileBlock{position:fixed;inset:0;background:linear-gradient(160deg,var(--bg),var(--bg-2));display:none;align-items:center;justify-content:center;padding:24px;z-index:500;text-align:center}
+  #mobileBlock.show{display:flex}
+  .mb-card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:32px 24px;max-width:380px;width:100%;box-shadow:var(--shadow-lg);animation:popIn .5s var(--m3-spring)}
+  .mb-icon{width:80px;height:80px;margin:0 auto 16px;border-radius:50%;background:linear-gradient(135deg, var(--accent-soft), rgba(201,165,51,.15));display:flex;align-items:center;justify-content:center}
+  .mb-icon .material-symbols-rounded{font-size:42px;color:var(--accent);font-variation-settings:'FILL' 1}
+  .mb-card h2{font-size:18px;font-weight:900;margin-bottom:10px;color:var(--text)}
+  .mb-card p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+  .mb-card .mb-url{display:inline-block;background:var(--panel-2);border:1px dashed var(--border-strong);padding:8px 12px;border-radius:10px;font-size:12px;font-weight:700;color:var(--text);word-break:break-all;font-family:'SF Mono',Consolas,monospace;margin-bottom:16px}
+  .mb-card .mb-continue{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:10px 16px;border-radius:10px;cursor:pointer;font-family:inherit;transition:all .25s ease}
+  .mb-card .mb-continue:hover{border-color:var(--accent);color:var(--accent)}
+
+  #toast{
+    position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);
+    background:var(--panel);border:1px solid var(--border);color:var(--text);
+    padding:12px 20px;border-radius:14px;font-weight:700;font-size:13.5px;
+    box-shadow:var(--shadow-lg);opacity:0;z-index:600;pointer-events:none;
+    transition:transform .4s var(--m3-spring), opacity .3s ease;
+  }
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #toast.ok{border-color:var(--ok);box-shadow:0 12px 30px rgba(22,163,74,.20)}
+  #toast.err{border-color:var(--danger);box-shadow:0 12px 30px rgba(220,38,38,.20)}
+  #toast.warn{border-color:var(--warn);box-shadow:0 12px 30px rgba(217,119,6,.20)}
+</style>
+</head>
+<body data-theme="light">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cdr-symbol" viewBox="0 0 200 200">
+    <rect width="200" height="200" rx="42" fill="#f5f2e8"/>
+    <path d="M 100 28 L 22 88 Q 16 94 24 96 L 100 96 Z" fill="#1e5a2e"/>
+    <path d="M 100 28 L 178 88 Q 184 94 176 96 L 100 96 Z" fill="#c9a533"/>
+    <circle cx="100" cy="66" r="21" fill="#f5f2e8"/>
+  </symbol>
+</svg>
+
+<div id="mobileBlock">
+  <div class="mb-card">
+    <div class="mb-icon"><span class="material-symbols-rounded">desktop_windows</span></div>
+    <h2>Dashboard non disponibile su smartphone</h2>
+    <p>Questa pagina è progettata per <strong>PC o tablet</strong> (schermo ≥ 768px).<br>Aprila da un computer o da un tablet in orizzontale.</p>
+    <div class="mb-url">davide2710.github.io/cdr-sanvito/dashboard.html</div>
+    <p style="font-size:11px;color:var(--muted-2);margin-bottom:14px">Per registrare le entrate usa l'app principale:<br><strong>davide2710.github.io/cdr-sanvito/</strong></p>
+    <button class="mb-continue" id="btnForceMobile">Apri lo stesso (sconsigliato)</button>
+  </div>
+</div>
+
+<div class="layout" id="appLayout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-img">
+        <img src="./icon.png" alt="CDR" onerror="this.style.display='none';this.parentNode.innerHTML='<svg viewBox=\'0 0 200 200\' style=\'width:100%;height:100%\'><use href=\'#cdr-symbol\'/></svg>'">
+      </div>
+      <div class="sidebar-logo-text">
+        CDR San Vito
+        <small>Ecolan</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <button class="nav-item active" data-nav="dashboard">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span class="nav-label">Dashboard</span>
+      </button>
+      <button class="nav-item" data-nav="andamento">
+        <span class="material-symbols-rounded">bar_chart</span>
+        <span class="nav-label">Andamento</span>
+      </button>
+      <button class="nav-item" data-nav="ripartizione">
+        <span class="material-symbols-rounded">donut_large</span>
+        <span class="nav-label">Ripartizione</span>
+      </button>
+      <button class="nav-item" data-nav="classifiche">
+        <span class="material-symbols-rounded">emoji_events</span>
+        <span class="nav-label">Classifiche</span>
+      </button>
+      <button class="nav-item" data-nav="attivita">
+        <span class="material-symbols-rounded">schedule</span>
+        <span class="nav-label">Attività recente</span>
+      </button>
+      <button class="nav-item" data-nav="totali">
+        <span class="material-symbols-rounded">calendar_month</span>
+        <span class="nav-label">Totali</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="nav-item" id="navTheme">
+        <span class="material-symbols-rounded" id="navThemeIcon">dark_mode</span>
+        <span class="nav-label">Tema</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="page" id="page-main">
+
+      <div class="top-bar">
+        <div class="top-title">
+          <h1>Dashboard</h1>
+          <p id="topSubtitle">Riepilogo attività Centro di Raccolta Rifiuti</p>
+        </div>
+        <div class="top-actions">
+          <div class="pill-select" id="periodSelect">
+            <button class="active" data-period="oggi">Oggi</button>
+            <button data-period="7gg">7 giorni</button>
+            <button data-period="mese">Mese</button>
+            <button data-period="anno">Anno</button>
+          </div>
+          <div class="sync-state" data-sync-state title="Clicca per aggiornare">
+            <span class="dot" data-sync-dot></span>
+            <span class="material-symbols-rounded" data-sync-icon>cloud_sync</span>
+            <span data-sync-label>...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="opFilterCard" style="padding:12px 16px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span style="font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">Operatore</span>
+          <select id="filtroOperatore" style="background:var(--panel-2);border:2px solid var(--border);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--text);font-family:inherit;outline:none;min-width:220px;cursor:pointer;transition:border-color .25s ease">
+            <option value="">Tutti gli operatori</option>
+          </select>
+        </div>
+      </div>
+
+      <section id="section-dashboard" class="reveal-on-scroll" style="scroll-margin-top:20px">
+        <div id="customPeriodChip" class="custom-period-chip" style="display:none">
+          <span class="material-symbols-rounded">filter_alt</span>
+          <span id="customPeriodLabel"></span>
+          <button id="btnClearCustomPeriod" title="Rimuovi filtro periodo">
+            <span class="material-symbols-rounded">close</span>
+          </button>
+        </div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section id="section-andamento" class="reveal-on-scroll" style="scroll-margin-top:20px">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">bar_chart</span>
+              Andamento
+              <span class="title-right" id="chartSubtitle"></span>
+            </div>
+            <div class="chart-wrap" id="chart"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">insights</span>
+              Riepilogo periodo
+            </div>
+            <div id="summaryBlock"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-ripartizione" class="reveal-on-scroll" style="scroll-margin-top:20px">
+        <div class="grid-2-eq">
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">donut_large</span>
+              Ripartizione per tipo
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="donut"></div>
+              <div class="donut-legend" id="donutLegend"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">speed</span>
+              Medie
+            </div>
+            <div id="medieBlock"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-classifiche" class="reveal-on-scroll" style="scroll-margin-top:20px">
+        <div class="grid-2-eq">
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">emoji_events</span>
+              Top operatori
+            </div>
+            <div class="list" id="topOp"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <span class="material-symbols-rounded">local_shipping</span>
+              Top targhe
+            </div>
+            <div class="list" id="topTarghe"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-attivita" class="reveal-on-scroll" style="scroll-margin-top:20px">
+        <div class="card">
+          <div class="card-title">
+            <span class="material-symbols-rounded">schedule</span>
+            Ultime registrazioni
+            <span class="title-right" id="recentCount"></span>
+          </div>
+          <div class="list" id="recentList"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="page hidden" id="page-totali">
+
+      <div class="top-bar">
+        <div class="top-title">
+          <h1>Totali per tipo</h1>
+          <p>Dettaglio giornaliero e mensile di Carta, Imballaggi e Vetro</p>
+        </div>
+        <div class="top-actions">
+          <div class="sync-state" data-sync-state title="Clicca per aggiornare">
+            <span class="dot" data-sync-dot></span>
+            <span class="material-symbols-rounded" data-sync-icon>cloud_sync</span>
+            <span data-sync-label>...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="opFilterCard2" style="padding:12px 16px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span style="font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">Operatore</span>
+          <select id="filtroOperatore2" style="background:var(--panel-2);border:2px solid var(--border);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--text);font-family:inherit;outline:none;min-width:220px;cursor:pointer;transition:border-color .25s ease">
+            <option value="">Tutti gli operatori</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="totali-hero">
+        <div class="totali-hero-text">
+          <h2 id="totaliHeroTitle">Riepilogo Carta · Imballaggi · Vetro</h2>
+          <p id="totaliHeroSub">Vista per tipo di rifiuto</p>
+        </div>
+        <div class="totali-hero-icon material-symbols-rounded">analytics</div>
+      </div>
+
+      <div class="totali-summary-grid" id="totaliSummaryGrid"></div>
+
+      <div class="totali-tabs" id="totaliTabSelect">
+        <button class="active" data-totali="giornaliero">
+          <span class="material-symbols-rounded">today</span>
+          Giornaliero
+        </button>
+        <button data-totali="mensile">
+          <span class="material-symbols-rounded">calendar_month</span>
+          Mensile
+        </button>
+      </div>
+
+      <div class="card" style="padding:18px 14px">
+        <div id="totaliListGiornaliero"></div>
+        <div id="totaliListMensile" style="display:none"></div>
+
+        <div class="totali-footnote">
+          <span class="material-symbols-rounded">touch_app</span>
+          Clicca una riga per vedere il dettaglio · Le card sopra si aggiornano con il periodo selezionato
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function() {
+"use strict";
+
+/* ==================== CONFIG ==================== */
+const CONFIG = {
+  operatori: [
+    "AMOROSO Massimo","ANGELUCCI Davide","BUCCO Domenico","D'ANGELO Giulia",
+    "D'ORSOGNA Giandomenico","D'ULISSE Dimitri","DI CAMPLI Antonio","DI LORETO Giuseppe",
+    "DI VIRGILIO Gianluca","DRAGANI Angelo","FERRANTE Fabrizio","MONTEBRUNO Daniel",
+    "NOCERINO Edoardo","NOCERINO Paolo","PIZZI Domenico"
+  ],
+  tipi: {
+    carta:      { label:"Carta",            icon:"📄" },
+    imballaggi: { label:"Imballaggi misti", icon:"📦" },
+    vetro:      { label:"Vetro",            icon:"🍾" }
+  },
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyZnE4n_jFr-whx6Jy9-Uz3dJOWHxvTJUSL0vr_aoKc1iNGGZAK7jOwDISLL1Vic_gg/exec",
+  appsScriptSecret: "cdrsanvito-2025-segreto-segreto",
+  monthShort: ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],
+  dayShort: ["Dom","Lun","Mar","Mer","Gio","Ven","Sab"],
+  monthNames: ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"],
+  cacheFreshMs: 5 * 60 * 1000,
+  giorniTotaliVista: 30
+};
+
+/* ==================== CHIAVI ==================== */
+const THEME_KEY              = "cdr_sanvito_v13_theme";
+const DASH_VIEW_KEY          = "cdr_sanvito_dash_view_v2";
+const DASH_LASTSYNC_KEY      = "cdr_sanvito_dash_lastsync_v2";
+const DASH_DELETEDIDS_KEY    = "cdr_sanvito_dash_deleted_v2";
+const MIN_WIDTH              = 768;
+
+/* ==================== STATO ==================== */
+let viewCache = {};
+let lastSyncPerMonth = {};
+let deletedIds = new Set();
+let monthsInFlight = {};
+
+let currentPage = "main";
+let dashboardPeriod = "oggi";
+let customPeriod = null;
+let totaliView = "giornaliero";
+let selectedTotaliPeriod = null;  // { type:"day"|"month", key, label }
+let expandedKey = null;
+let syncInProgress = false;
+let currentTheme = "light";
+let filterOperatore = "";
+
+const $ = (id) => document.getElementById(id);
+
+/* ==================== UTILITY ==================== */
+function todayKey(d) {
+  d = d || new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function monthKeyFromDate(d) {
+  d = d || new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0");
+}
+function parseMonthKey(mk) {
+  const p = mk.split("-");
+  return { year: parseInt(p[0],10), month: parseInt(p[1],10) };
+}
+function fmtKg(n) { return n.toFixed(1).replace(".",",") + " kg"; }
+function fmtDataIt(iso) { if (!iso) return ""; const p = iso.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
+function toast(msg, kind) {
+  kind = kind || "ok";
+  const t = $("toast"); if (!t) return;
+  t.textContent = msg; t.className = "show " + kind;
+  clearTimeout(t._tid); t._tid = setTimeout(function(){ t.className = ""; }, 2600);
+}
+function isOnline() { return navigator.onLine !== false; }
+function isDeleted(id) { return deletedIds.has(String(id)); }
+
+/* ==================== MOBILE BLOCK ==================== */
+function checkViewport() {
+  const w = window.innerWidth;
+  const forced = sessionStorage.getItem("cdr_dash_force_mobile") === "1";
+  if (w < MIN_WIDTH && !forced) {
+    $("mobileBlock").classList.add("show");
+    return false;
+  }
+  $("mobileBlock").classList.remove("show");
+  return true;
+}
+
+/* ==================== TEMA ==================== */
+function detectSystemTheme() {
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  return "light";
+}
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.body.setAttribute("data-theme", theme);
+  const icon = $("navThemeIcon");
+  if (icon) icon.textContent = theme === "light" ? "dark_mode" : "light_mode";
+  const meta = document.getElementById("themeColorMeta");
+  if (meta) meta.setAttribute("content", theme === "light" ? "#f5f2e8" : "#0a130c");
+  localStorage.setItem(THEME_KEY, theme);
+}
+function toggleTheme() { applyTheme(currentTheme === "light" ? "dark" : "light"); }
+function loadTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  applyTheme(saved === "light" || saved === "dark" ? saved : detectSystemTheme());
+}
+
+/* ==================== PROXY ==================== */
+function proxyGet(params) {
+  const withSecret = Object.assign({ secret: CONFIG.appsScriptSecret }, params);
+  const qs = Object.keys(withSecret).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(withSecret[k]); }).join("&");
+  return fetch(CONFIG.appsScriptUrl + "?" + qs, { method: "GET" })
+    .then(function(res){ if (!res.ok) throw new Error("Proxy GET " + res.status); return res.json(); })
+    .then(function(data){ if (data.error) throw new Error(data.error); return data; });
+}
+function apiGetEntries(y, m) { return proxyGet({ action: "getEntries", year: y, month: m }).then(function(r){ return r.entries || []; }); }
+function apiGetDeletedIds() { return proxyGet({ action: "getDeletedIds" }).then(function(r){ return r.ids || []; }); }
+
+/* ==================== PERSISTENZA ==================== */
+function loadCache() {
+  try { viewCache = JSON.parse(localStorage.getItem(DASH_VIEW_KEY) || "{}") || {}; } catch(e) { viewCache = {}; }
+  try { lastSyncPerMonth = JSON.parse(localStorage.getItem(DASH_LASTSYNC_KEY) || "{}") || {}; } catch(e) { lastSyncPerMonth = {}; }
+  try { deletedIds = new Set((JSON.parse(localStorage.getItem(DASH_DELETEDIDS_KEY) || "[]") || []).map(String)); } catch(e) { deletedIds = new Set(); }
+}
+function saveCache() {
+  try {
+    localStorage.setItem(DASH_VIEW_KEY, JSON.stringify(viewCache));
+    localStorage.setItem(DASH_LASTSYNC_KEY, JSON.stringify(lastSyncPerMonth));
+    localStorage.setItem(DASH_DELETEDIDS_KEY, JSON.stringify(Array.from(deletedIds)));
+  } catch(e) { console.warn("saveCache", e); }
+}
+
+/* ==================== VIEW CACHE HELPERS ==================== */
+function getEntriesFromCache(monthKey) {
+  const list = viewCache[monthKey] || [];
+  return list.filter(function(e){ return !isDeleted(e.id); });
+}
+
+function monthsForChart(period) {
+  if (customPeriod) return monthsInRangeCustom(customPeriod.from, customPeriod.to);
+  const now = new Date();
+  const list = [];
+  if (period === "oggi" || period === "7gg") {
+    list.push(monthKeyFromDate(now));
+    const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    list.push(monthKeyFromDate(prev));
+  } else if (period === "mese") {
+    list.push(monthKeyFromDate(now));
+  } else if (period === "anno") {
+    const currentMonth = now.getMonth() + 1;
+    for (let i = 1; i <= currentMonth; i++) list.push(now.getFullYear() + "-" + String(i).padStart(2,"0"));
+  }
+  return Array.from(new Set(list));
+}
+
+function monthsInRangeCustom(from, to) {
+  const out = [];
+  if (!from || !to) return out;
+  const [fy, fm] = from.split("-").map(Number);
+  const [ty, tm] = to.split("-").map(Number);
+  let y = fy, m = fm;
+  while (y < ty || (y === ty && m <= tm)) {
+    out.push(y + "-" + String(m).padStart(2, "0"));
+    m++;
+    if (m > 12) { m = 1; y++; }
+    if (out.length > 36) break;
+  }
+  return out;
+}
+
+function monthsForTotali() {
+  const now = new Date();
+  const set = new Set();
+  const currentMonth = now.getMonth() + 1;
+  for (let i = 1; i <= currentMonth; i++) set.add(now.getFullYear() + "-" + String(i).padStart(2, "0"));
+  const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+  set.add(monthKeyFromDate(prev));
+  return Array.from(set);
+}
+
+/* ==================== FETCH ==================== */
+function fetchMonth(monthKey, force) {
+  if (!isOnline()) return Promise.resolve(null);
+  if (monthsInFlight[monthKey]) return monthsInFlight[monthKey];
+
+  const fresh = lastSyncPerMonth[monthKey] && (Date.now() - lastSyncPerMonth[monthKey] < CONFIG.cacheFreshMs);
+  if (!force && fresh && viewCache[monthKey]) return Promise.resolve(viewCache[monthKey]);
+
+  const p = parseMonthKey(monthKey);
+  const promise = apiGetEntries(p.year, p.month)
+    .then(function(list){
+      const map = new Map();
+      (list || []).forEach(function(e){
+        if (!e || !e.id) return;
+        if (isDeleted(e.id)) return;
+        map.set(String(e.id), e);
+      });
+      viewCache[monthKey] = Array.from(map.values());
+      lastSyncPerMonth[monthKey] = Date.now();
+      saveCache();
+      return viewCache[monthKey];
+    })
+    .catch(function(e){
+      console.warn("Fetch " + monthKey + " fallito:", e.message);
+      return null;
+    })
+    .then(function(r){
+      delete monthsInFlight[monthKey];
+      return r;
+    });
+
+  monthsInFlight[monthKey] = promise;
+  return promise;
+}
+
+function isLoadingAny(monthKeys) {
+  return monthKeys.some(function(mk){ return !!monthsInFlight[mk]; });
+}
+
+/* ==================== SYNC UI ==================== */
+function updateCloudUI() {
+  const wraps = document.querySelectorAll("[data-sync-state]");
+  if (!wraps.length) return;
+  let dotCls = "", wrapCls = "sync-state", txt = "...";
+  if (!isOnline()) { dotCls = "offline"; wrapCls += " offline"; txt = "Offline"; }
+  else if (syncInProgress) { dotCls = "syncing"; wrapCls += " syncing"; txt = "Aggiorno"; }
+  else if (lastSyncPerMonth["_all"] && (Date.now() - lastSyncPerMonth["_all"] < 60000)) {
+    dotCls = "on"; wrapCls += " on";
+    const d = new Date(lastSyncPerMonth["_all"]);
+    txt = "Ora " + d.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"});
+  }
+  else if (lastSyncPerMonth["_all"]) {
+    dotCls = "on"; wrapCls += " on";
+    const d = new Date(lastSyncPerMonth["_all"]);
+    txt = d.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"});
+  } else { dotCls = "syncing"; wrapCls += " syncing"; txt = "Connessione"; }
+
+  wraps.forEach(function(wrap){
+    wrap.className = wrapCls;
+    const dot = wrap.querySelector("[data-sync-dot]");
+    const lbl = wrap.querySelector("[data-sync-label]");
+    if (dot) dot.className = "dot " + dotCls;
+    if (lbl) lbl.textContent = txt;
+  });
+}
+
+function refreshData(fromUI) {
+  if (!isOnline()) { updateCloudUI(); if (fromUI) toast("Nessuna connessione","err"); return Promise.resolve(false); }
+  if (syncInProgress) return Promise.resolve(false);
+  syncInProgress = true; updateCloudUI();
+
+  const months = monthsForChart(dashboardPeriod).concat(monthsForTotali());
+  const uniqueMonths = Array.from(new Set(months));
+
+  return Promise.resolve()
+    .then(function(){ return apiGetDeletedIds(); })
+    .then(function(ids){
+      let changed = false;
+      (ids || []).forEach(function(id){
+        if (!deletedIds.has(String(id))) { deletedIds.add(String(id)); changed = true; }
+      });
+      if (changed) {
+        Object.keys(viewCache).forEach(function(mk){
+          const before = viewCache[mk].length;
+          viewCache[mk] = viewCache[mk].filter(function(e){ return !isDeleted(e.id); });
+          if (viewCache[mk].length !== before) changed = true;
+        });
+        saveCache();
+      }
+    })
+    .then(function(){
+      return Promise.all(uniqueMonths.map(function(mk){ return fetchMonth(mk, true); }));
+    })
+    .then(function(){
+      lastSyncPerMonth["_all"] = Date.now();
+      saveCache();
+      renderAll();
+      if (fromUI) toast("✓ Dati aggiornati","ok");
+      return true;
+    })
+    .catch(function(e){
+      console.error("refreshData", e);
+      if (fromUI) toast("Errore: " + e.message,"err");
+      return false;
+    })
+    .then(function(r){
+      syncInProgress = false;
+      updateCloudUI();
+      return r;
+    });
+}
+
+/* ==================== DATA ==================== */
+function getVisibleEntries() {
+  const seen = new Set();
+  const out = [];
+  Object.keys(viewCache).forEach(function(mk){
+    (viewCache[mk] || []).forEach(function(e){
+      if (!e || !e.id) return;
+      if (seen.has(String(e.id))) return;
+      if (isDeleted(e.id)) return;
+      seen.add(String(e.id));
+      if (filterOperatore && e.operatore !== filterOperatore) return;
+      out.push(e);
+    });
+  });
+  return out;
+}
+
+function getPeriodRange(period) {
+  if (customPeriod) {
+    return {
+      from: new Date(customPeriod.from + "T00:00:00"),
+      to: new Date(customPeriod.to + "T23:59:59")
+    };
+  }
+  const now = new Date();
+  const t = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (period === "oggi") return { from: t, to: t };
+  if (period === "7gg") { const f = new Date(t); f.setDate(f.getDate() - 6); return { from: f, to: t }; }
+  if (period === "mese") return { from: new Date(now.getFullYear(), now.getMonth(), 1), to: t };
+  if (period === "anno") return { from: new Date(now.getFullYear(), 0, 1), to: t };
+  return { from: t, to: t };
+}
+function entriesInRange(list, from, to) {
+  const f = todayKey(from), t = todayKey(to);
+  return list.filter(function(e){ return e.data && e.data >= f && e.data <= t; });
+}
+function periodLabel(p) {
+  if (customPeriod) return customPeriod.label;
+  if (p === "oggi") return "Oggi";
+  if (p === "7gg") return "Ultimi 7 giorni";
+  if (p === "mese") return "Questo mese";
+  if (p === "anno") return "Quest'anno";
+  return "";
+}
+
+/* ==================== PAGINE ==================== */
+function setPage(name) {
+  if (currentPage === name) return;
+  currentPage = name;
+  const pageMain = $("page-main");
+  const pageTotali = $("page-totali");
+  if (name === "totali") {
+    pageMain.classList.add("hidden");
+    pageTotali.classList.remove("hidden");
+    pageTotali.style.animation = "none";
+    void pageTotali.offsetWidth;
+    pageTotali.style.animation = "";
+    document.querySelectorAll("#sidebarNav .nav-item").forEach(function(b){
+      b.classList.toggle("active", b.dataset.nav === "totali");
+    });
+    renderTotali();
+    const mks = monthsForTotali();
+    Promise.all(mks.map(function(mk){ return fetchMonth(mk); })).then(function(){
+      renderTotali();
+      updateCloudUI();
+    });
+  } else {
+    pageTotali.classList.add("hidden");
+    pageMain.classList.remove("hidden");
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function navigateToSection(sectionName) {
+  if (currentPage !== "main") setPage("main");
+  const el = document.getElementById("section-" + sectionName);
+  if (el) setTimeout(function(){ el.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
+  document.querySelectorAll("#sidebarNav .nav-item").forEach(function(b){
+    if (b.dataset.nav === "totali") return;
+    b.classList.toggle("active", b.dataset.nav === sectionName);
+  });
+}
+
+/* ==================== CUSTOM PERIOD ==================== */
+function updateCustomPeriodChip() {
+  const chip = $("customPeriodChip"), lbl = $("customPeriodLabel");
+  if (!chip || !lbl) return;
+  if (customPeriod) {
+    chip.style.display = "";
+    lbl.textContent = customPeriod.label;
+  } else {
+    chip.style.display = "none";
+  }
+}
+function clearCustomPeriod() {
+  customPeriod = null;
+  updateCustomPeriodChip();
+  dashboardPeriod = "oggi";
+  document.querySelectorAll("#periodSelect button").forEach(function(x){
+    x.classList.toggle("active", x.dataset.period === "oggi");
+  });
+  const months = monthsForChart(dashboardPeriod);
+  Promise.all(months.map(function(mk){ return fetchMonth(mk); })).then(function(){
+    renderAll();
+  });
+  renderAll();
+}
+
+/* ==================== RENDER MAIN ==================== */
+function renderAll() {
+  renderMainPage();
+  renderTotali();
+}
+
+function renderMainPage() {
+  const all = getVisibleEntries();
+  const range = getPeriodRange(dashboardPeriod);
+  const periodEntries = entriesInRange(all, range.from, range.to);
+
+  const totalPeso = periodEntries.reduce(function(s,e){ return s + e.peso; }, 0);
+  const totalCount = periodEntries.length;
+
+  renderKPI(periodEntries, totalPeso, totalCount, range);
+  renderChart(all);
+  renderSummary(periodEntries, totalPeso, totalCount);
+  renderDonut(periodEntries, totalPeso);
+  renderMedie(periodEntries, totalPeso, range);
+  renderTopLists(periodEntries);
+  renderRecent(all);
+}
+
+function renderKPI(periodEntries, totalPeso, totalCount, range) {
+  const el = $("kpiGrid"); if (!el) return;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    const l = periodEntries.filter(function(e){ return e.tipo === k; });
+    byTipo[k] = { peso: l.reduce(function(s,e){ return s + e.peso; }, 0), count: l.length };
+  });
+  const numDays = Math.max(1, Math.round((range.to - range.from) / 86400000) + 1);
+  const media = totalPeso / numDays;
+  const pctCarta = totalPeso > 0 ? Math.round(byTipo.carta.peso / totalPeso * 100) : 0;
+  const pctImb = totalPeso > 0 ? Math.round(byTipo.imballaggi.peso / totalPeso * 100) : 0;
+  const pctVetro = totalPeso > 0 ? Math.round(byTipo.vetro.peso / totalPeso * 100) : 0;
+
+  el.innerHTML =
+    '<div class="kpi kpi-viola">' +
+      '<span class="kpi-icon material-symbols-rounded">scale</span>' +
+      '<span class="kpi-label">Peso totale</span>' +
+      '<span class="kpi-value"><span>' + totalPeso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '<span class="kpi-sub">' + periodLabel(dashboardPeriod) + ' · ' + numDays + (numDays === 1 ? ' giorno' : ' giorni') + '</span>' +
+      '<span class="kpi-chip"><span class="material-symbols-rounded">receipt_long</span>' + totalCount + ' ' + (totalCount === 1 ? 'entrata' : 'entrate') + '</span>' +
+    '</div>' +
+    '<div class="kpi kpi-ocra">' +
+      '<span class="kpi-icon material-symbols-rounded">speed</span>' +
+      '<span class="kpi-label">Media giornaliera</span>' +
+      '<span class="kpi-value"><span>' + media.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '<span class="kpi-sub"><span class="material-symbols-rounded">trending_up</span>sul periodo selezionato</span>' +
+      '<span class="kpi-chip"><span class="material-symbols-rounded">calendar_month</span>' + numDays + ' gg</span>' +
+    '</div>' +
+    '<div class="kpi kpi-blu">' +
+      '<span class="kpi-icon material-symbols-rounded">description</span>' +
+      '<span class="kpi-label">Carta</span>' +
+      '<span class="kpi-value"><span>' + byTipo.carta.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '<span class="kpi-sub">' + byTipo.carta.count + ' ' + (byTipo.carta.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '<span class="kpi-chip"><span class="material-symbols-rounded">percent</span>' + pctCarta + '% del totale</span>' +
+    '</div>' +
+    '<div class="kpi kpi-ambra">' +
+      '<span class="kpi-icon material-symbols-rounded">inventory_2</span>' +
+      '<span class="kpi-label">Imballaggi misti</span>' +
+      '<span class="kpi-value"><span>' + byTipo.imballaggi.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '<span class="kpi-sub">' + byTipo.imballaggi.count + ' ' + (byTipo.imballaggi.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '<span class="kpi-chip"><span class="material-symbols-rounded">percent</span>' + pctImb + '% del totale</span>' +
+    '</div>' +
+    '<div class="kpi kpi-verde">' +
+      '<span class="kpi-icon material-symbols-rounded">wine_bar</span>' +
+      '<span class="kpi-label">Vetro</span>' +
+      '<span class="kpi-value"><span>' + byTipo.vetro.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '<span class="kpi-sub">' + byTipo.vetro.count + ' ' + (byTipo.vetro.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '<span class="kpi-chip"><span class="material-symbols-rounded">percent</span>' + pctVetro + '% del totale</span>' +
+    '</div>';
+}
+
+function renderChart(all) {
+  const el = $("chart"); if (!el) return;
+  const bars = [];
+  const now = new Date();
+
+  if (customPeriod) {
+    const from = new Date(customPeriod.from + "T00:00:00");
+    const to = new Date(customPeriod.to + "T23:59:59");
+    const days = Math.max(1, Math.round((to - from) / 86400000) + 1);
+    if (days <= 31) {
+      for (let i = 0; i < days; i++) {
+        const d = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i);
+        const key = todayKey(d);
+        const peso = all.filter(function(e){ return e.data === key; }).reduce(function(s,e){ return s + e.peso; }, 0);
+        bars.push({ label: String(d.getDate()), value: peso, isToday: key === todayKey() });
+      }
+    } else {
+      let weekStart = new Date(from);
+      let w = 1;
+      while (weekStart <= to) {
+        const weekEnd = new Date(weekStart); weekEnd.setDate(weekEnd.getDate() + 6);
+        const ws = todayKey(weekStart), we = todayKey(weekEnd);
+        const peso = all.filter(function(e){ return e.data >= ws && e.data <= we; })
+          .reduce(function(s,e){ return s + e.peso; }, 0);
+        bars.push({ label: "S" + w, value: peso, isToday: false });
+        weekStart.setDate(weekStart.getDate() + 7);
+        w++;
+      }
+    }
+    $("chartSubtitle").textContent = customPeriod.label;
+  } else if (dashboardPeriod === "oggi" || dashboardPeriod === "7gg") {
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+      const key = todayKey(d);
+      const peso = all.filter(function(e){ return e.data === key; }).reduce(function(s,e){ return s + e.peso; }, 0);
+      bars.push({ label: CONFIG.dayShort[d.getDay()], value: peso, isToday: i === 0 });
+    }
+    $("chartSubtitle").textContent = "Ultimi 7 giorni";
+  } else if (dashboardPeriod === "mese") {
+    const y = now.getFullYear(), m = now.getMonth();
+    const firstDay = new Date(y, m, 1);
+    const lastDay = new Date(y, m + 1, 0);
+    const numWeeks = Math.ceil((lastDay.getDate() + firstDay.getDay()) / 7);
+    const prefix = y + "-" + String(m + 1).padStart(2, "0");
+    for (let w = 0; w < numWeeks; w++) {
+      const startD = 1 + w * 7 - firstDay.getDay();
+      const endD = startD + 6;
+      const peso = all.filter(function(e){
+        if (!e.data || e.data.slice(0, 7) !== prefix) return false;
+        const day = parseInt(e.data.slice(8), 10);
+        return day >= Math.max(1, startD) && day <= Math.min(lastDay.getDate(), endD);
+      }).reduce(function(s,e){ return s + e.peso; }, 0);
+      const isCurrent = (now.getDate() >= Math.max(1,startD) && now.getDate() <= Math.min(lastDay.getDate(),endD));
+      bars.push({ label: "S" + (w + 1), value: peso, isToday: isCurrent });
+    }
+    $("chartSubtitle").textContent = "Settimane di " + CONFIG.monthShort[m] + " " + y;
+  } else if (dashboardPeriod === "anno") {
+    const y = now.getFullYear();
+    for (let i = 0; i < 12; i++) {
+      const prefix = y + "-" + String(i + 1).padStart(2, "0");
+      const peso = all.filter(function(e){ return e.data && e.data.slice(0, 7) === prefix; })
+        .reduce(function(s,e){ return s + e.peso; }, 0);
+      bars.push({ label: CONFIG.monthShort[i], value: peso, isToday: i === now.getMonth() });
+    }
+    $("chartSubtitle").textContent = "Anno " + y;
+  }
+
+  const max = Math.max.apply(null, bars.map(function(b){ return b.value; }).concat([1]));
+  el.innerHTML = bars.map(function(b, i){
+    const pct = max > 0 ? (b.value / max) * 100 : 0;
+    const h = b.value > 0 ? Math.max(pct, 8) : 4;
+    const cls = "chart-bar" + (b.value > 0 ? " has-value" : " empty") + (b.isToday ? " today" : "");
+    const valHtml = b.value > 0 ? '<span class="chart-val">' + Math.round(b.value) + '</span>' : '';
+    return '<div class="chart-col' + (b.isToday ? " today" : "") + '">' +
+      '<div class="' + cls + '" style="height:' + h + '%;--i:' + i + '">' + valHtml + '</div>' +
+      '<span class="chart-label">' + b.label + '</span>' +
+    '</div>';
+  }).join("");
+}
+
+function renderSummary(periodEntries, totalPeso, totalCount) {
+  const el = $("summaryBlock"); if (!el) return;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    const l = periodEntries.filter(function(e){ return e.tipo === k; });
+    byTipo[k] = { peso: l.reduce(function(s,e){ return s + e.peso; }, 0), count: l.length };
+  });
+  const targaMap = {};
+  periodEntries.forEach(function(e){
+    if (!targaMap[e.targa]) targaMap[e.targa] = { peso: 0, count: 0 };
+    targaMap[e.targa].peso += e.peso;
+    targaMap[e.targa].count++;
+  });
+  const topTarga = Object.keys(targaMap).map(function(k){ return { name: k, peso: targaMap[k].peso, count: targaMap[k].count }; }).sort(function(a,b){ return b.peso - a.peso; })[0];
+
+  const lines = [
+    { lbl: "Peso totale", val: fmtKg(totalPeso), color: "#6a3fa0" },
+    { lbl: "Numero entrate", val: totalCount + "", color: "#c47f0c" },
+    { lbl: "Carta", val: byTipo.carta.peso.toFixed(1).replace(".",",") + " kg (" + byTipo.carta.count + ")", color: "#1e6fbf" },
+    { lbl: "Imballaggi", val: byTipo.imballaggi.peso.toFixed(1).replace(".",",") + " kg (" + byTipo.imballaggi.count + ")", color: "#c9a533" },
+    { lbl: "Vetro", val: byTipo.vetro.peso.toFixed(1).replace(".",",") + " kg (" + byTipo.vetro.count + ")", color: "#2e8b57" },
+    { lbl: "Targa più attiva", val: topTarga ? topTarga.name + " · " + topTarga.peso.toFixed(1).replace(".",",") + " kg" : "—", color: "#a5851f" }
+  ];
+
+  el.innerHTML = lines.map(function(x, i){
+    const isLast = (i === lines.length - 1);
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;' + (isLast ? '' : 'border-bottom:1px solid var(--border);') + 'font-size:13px;gap:12px">' +
+      '<span style="color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px">' +
+        '<span style="width:8px;height:8px;border-radius:50%;background:' + x.color + ';flex-shrink:0;box-shadow:0 0 0 3px ' + x.color + '22"></span>' + x.lbl +
+      '</span>' +
+      '<span style="font-weight:900;font-variant-numeric:tabular-nums;text-align:right;color:var(--text)">' + x.val + '</span>' +
+    '</div>';
+  }).join("");
+}
+
+function renderDonut(periodEntries, total) {
+  const donutEl = $("donut"), legendEl = $("donutLegend");
+  if (!donutEl || !legendEl) return;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    byTipo[k] = periodEntries.filter(function(e){ return e.tipo === k; }).reduce(function(s,e){ return s + e.peso; }, 0);
+  });
+  if (total <= 0) {
+    donutEl.innerHTML = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--panel-3)" stroke-width="14"/></svg>' +
+      '<div class="donut-center"><span class="dc-val">0</span><span class="dc-lbl">kg</span></div>';
+    legendEl.innerHTML = '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato nel periodo</div>';
+    return;
+  }
+  const C = 2 * Math.PI * 40;
+  const segs = [
+    { color: "#1e6fbf", value: byTipo.carta,      label: "Carta" },
+    { color: "#d4a017", value: byTipo.imballaggi, label: "Imballaggi" },
+    { color: "#2e8b57", value: byTipo.vetro,      label: "Vetro" }
+  ];
+  let cumulative = -90;
+  let svg = '<svg viewBox="0 0 100 100">';
+  svg += '<circle cx="50" cy="50" r="40" fill="none" stroke="var(--panel-3)" stroke-width="14"/>';
+  segs.forEach(function(s, idx){
+    if (s.value <= 0) return;
+    const pct = s.value / total;
+    const len = C * pct;
+    svg += '<circle class="donut-seg" cx="50" cy="50" r="40" fill="none" stroke="' + s.color + '" stroke-width="14" stroke-dasharray="' + len.toFixed(3) + ' ' + C.toFixed(3) + '" stroke-linecap="butt" style="--i:' + idx + ';--len:' + len.toFixed(3) + '" transform="rotate(' + cumulative.toFixed(2) + ' 50 50)"/>';
+    cumulative += pct * 360;
+  });
+  svg += '</svg>';
+  svg += '<div class="donut-center"><span class="dc-val">' + Math.round(total) + '</span><span class="dc-lbl">kg tot.</span></div>';
+  donutEl.innerHTML = svg;
+  legendEl.innerHTML = segs.map(function(s){
+    const pct = (s.value / total) * 100;
+    return '<div class="donut-legend-item">' +
+      '<span class="donut-legend-dot" style="background:' + s.color + '"></span>' +
+      '<span class="donut-legend-name">' + s.label + '</span>' +
+      '<span class="donut-legend-val">' + s.value.toFixed(1).replace(".",",") + ' kg</span>' +
+      '<span class="donut-legend-pct">' + pct.toFixed(0) + '%</span>' +
+    '</div>';
+  }).join("");
+}
+
+function renderMedie(periodEntries, totalPeso, range) {
+  const el = $("medieBlock"); if (!el) return;
+  const numDays = Math.max(1, Math.round((range.to - range.from) / 86400000) + 1);
+  const numEntries = periodEntries.length;
+  const entriesPerDay = numEntries / numDays;
+  const mediaKgPerEntrata = numEntries > 0 ? totalPeso / numEntries : 0;
+  const mediaKgPerDay = totalPeso / numDays;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    byTipo[k] = periodEntries.filter(function(e){ return e.tipo === k; }).reduce(function(s,e){ return s + e.peso; }, 0);
+  });
+  const tipoTop = Object.keys(byTipo).sort(function(a,b){ return byTipo[b] - byTipo[a]; })[0];
+  const lines = [
+    { lbl: "Media kg / giorno", val: mediaKgPerDay.toFixed(1).replace(".",",") + " kg", color: "#c47f0c" },
+    { lbl: "Media kg / entrata", val: mediaKgPerEntrata.toFixed(1).replace(".",",") + " kg", color: "#c47f0c" },
+    { lbl: "Entrate / giorno", val: entriesPerDay.toFixed(1).replace(".",","), color: "#1e6fbf" },
+    { lbl: "Tipo prevalente", val: totalPeso > 0 ? CONFIG.tipi[tipoTop].label : "—", color: "#2e8b57" }
+  ];
+  el.innerHTML = lines.map(function(x, i){
+    const isLast = (i === lines.length - 1);
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;' + (isLast ? '' : 'border-bottom:1px solid var(--border);') + 'font-size:13.5px;gap:12px">' +
+      '<span style="color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px">' +
+        '<span style="width:8px;height:8px;border-radius:50%;background:' + x.color + ';flex-shrink:0;box-shadow:0 0 0 3px ' + x.color + '22"></span>' + x.lbl +
+      '</span>' +
+      '<span style="font-weight:900;font-variant-numeric:tabular-nums;color:var(--text)">' + x.val + '</span>' +
+    '</div>';
+  }).join("");
+}
+
+function renderTopLists(periodEntries) {
+  renderList("topOp", periodEntries, "operatore");
+  renderList("topTarghe", periodEntries, "targa");
+}
+
+function renderList(targetId, periodEntries, key) {
+  const el = $(targetId); if (!el) return;
+  const map = {};
+  periodEntries.forEach(function(e){
+    const k = e[key]; if (!k) return;
+    if (!map[k]) map[k] = { peso: 0, count: 0 };
+    map[k].peso += e.peso;
+    map[k].count++;
+  });
+  const arr = Object.keys(map).map(function(k){
+    return { name: k, peso: map[k].peso, count: map[k].count };
+  }).sort(function(a, b){ return b.peso - a.peso; }).slice(0, 5);
+  if (!arr.length) {
+    el.innerHTML = '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato nel periodo</div>';
+    return;
+  }
+  el.innerHTML = arr.map(function(o, i){
+    return '<div class="list-item" style="animation:fadeIn .4s ease backwards;animation-delay:' + (i * 0.05) + 's">' +
+      '<span class="list-rank r' + (i + 1) + '">' + (i + 1) + '</span>' +
+      '<div class="list-body">' +
+        '<div class="list-name">' + o.name + '</div>' +
+        '<div class="list-sub">' + o.count + ' ' + (o.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+      '</div>' +
+      '<span class="list-val">' + o.peso.toFixed(1).replace(".",",") + ' kg</span>' +
+    '</div>';
+  }).join("");
+}
+
+function renderRecent(all) {
+  const el = $("recentList"); if (!el) return;
+  const recent = all.slice().sort(function(a, b){ return b.ts - a.ts; }).slice(0, 8);
+  const cntEl = $("recentCount");
+  if (cntEl) cntEl.textContent = recent.length ? "ultime " + recent.length : "";
+  if (!recent.length) {
+    const isLoading = isLoadingAny(monthsForChart(dashboardPeriod));
+    el.innerHTML = isLoading
+      ? '<div class="loading-state"><span class="spinner"></span>Caricamento da Drive...</div>'
+      : '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessuna registrazione</div>';
+    return;
+  }
+  el.innerHTML = recent.map(function(e, i){
+    const tipo = CONFIG.tipi[e.tipo] || { label: e.tipo, icon: "♻️" };
+    return '<div class="mini-entry" data-tipo="' + e.tipo + '" style="animation-delay:' + (i * 0.04) + 's">' +
+      '<div class="mini-icon">' + tipo.icon + '</div>' +
+      '<div class="mini-body">' +
+        '<div class="mini-line1">' +
+          '<span class="mini-tipo">' + tipo.label + '</span>' +
+          '<span class="mini-peso">' + e.peso.toFixed(1) + ' kg</span>' +
+        '</div>' +
+        '<div class="mini-line2">' +
+          '<span>' + e.operatore + '</span>' +
+          '<span>· ' + e.targa + '</span>' +
+          '<span>· ' + fmtDataIt(e.data) + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="mini-ora">' + e.ora + '</div>' +
+    '</div>';
+  }).join("");
+}
+
+/* ==================== PAGINA TOTALI ==================== */
+function renderTotali() {
+  renderTotaliSummary();
+  if (totaliView === "giornaliero") {
+    $("totaliListGiornaliero").style.display = "";
+    $("totaliListMensile").style.display = "none";
+    renderTotaliGiornaliero();
+  } else {
+    $("totaliListGiornaliero").style.display = "none";
+    $("totaliListMensile").style.display = "";
+    renderTotaliMensile();
+  }
+  const sub = $("totaliHeroSub");
+  if (sub) {
+    const now = new Date();
+    if (selectedTotaliPeriod) {
+      sub.textContent = "Riepilogo: " + selectedTotaliPeriod.label + " · " + (filterOperatore || "tutti gli operatori");
+    } else if (totaliView === "giornaliero") {
+      sub.textContent = "Ultimi " + CONFIG.giorniTotaliVista + " giorni · " + (filterOperatore || "tutti gli operatori");
+    } else {
+      sub.textContent = "Anno " + now.getFullYear() + " · " + (filterOperatore || "tutti gli operatori");
+    }
+  }
+}
+
+/* Ritorna le entries del periodo selezionato nella pagina Totali */
+function getTotaliScopeEntries() {
+  const all = getVisibleEntries();
+  const now = new Date();
+
+  // Se l'utente ha selezionato un giorno o un mese specifico
+  if (selectedTotaliPeriod) {
+    if (selectedTotaliPeriod.type === "day") {
+      return all.filter(function(e){ return e.data === selectedTotaliPeriod.key; });
+    }
+    if (selectedTotaliPeriod.type === "month") {
+      const prefix = selectedTotaliPeriod.key;
+      return all.filter(function(e){ return e.data && e.data.slice(0, 7) === prefix; });
+    }
+  }
+
+  // Default: ultimi 30 giorni (giornaliero) o anno corrente (mensile)
+  if (totaliView === "giornaliero") {
+    const from = new Date(now.getFullYear(), now.getMonth(), now.getDate() - (CONFIG.giorniTotaliVista - 1));
+    return entriesInRange(all, from, now);
+  } else {
+    const from = new Date(now.getFullYear(), 0, 1);
+    return entriesInRange(all, from, now);
+  }
+}
+
+function getTotaliScopeLabel() {
+  if (selectedTotaliPeriod) return selectedTotaliPeriod.label;
+  const now = new Date();
+  return totaliView === "giornaliero"
+    ? "Ultimi " + CONFIG.giorniTotaliVista + " giorni"
+    : "Anno " + now.getFullYear();
+}
+
+function renderTotaliSummary() {
+  const el = $("totaliSummaryGrid"); if (!el) return;
+  const scopeEntries = getTotaliScopeEntries();
+  const scopeLabel = getTotaliScopeLabel();
+
+  const totalPeso = scopeEntries.reduce(function(s,e){ return s + e.peso; }, 0);
+  const totalCount = scopeEntries.length;
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    const l = scopeEntries.filter(function(e){ return e.tipo === k; });
+    byTipo[k] = { peso: l.reduce(function(s,e){ return s + e.peso; }, 0), count: l.length };
+  });
+
+  const isSelectionActive = !!selectedTotaliPeriod;
+  const scopeIcon = isSelectionActive ? "filter_alt" : "calendar_month";
+
+  el.innerHTML =
+    '<div class="totali-summary-card tot">' +
+      '<div class="lbl">Totale periodo</div>' +
+      '<div class="val">' + totalPeso.toFixed(1).replace(".",",") + ' kg</div>' +
+      '<div class="sub">' + totalCount + ' ' + (totalCount === 1 ? 'entrata' : 'entrate') + '</div>' +
+      '<span class="scope"><span class="material-symbols-rounded">' + scopeIcon + '</span>' + scopeLabel + '</span>' +
+    '</div>' +
+    '<div class="totali-summary-card carta">' +
+      '<div class="lbl">📄 Carta</div>' +
+      '<div class="val">' + byTipo.carta.peso.toFixed(1).replace(".",",") + ' kg</div>' +
+      '<div class="sub">' + byTipo.carta.count + ' ' + (byTipo.carta.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+      '<span class="scope"><span class="material-symbols-rounded">' + scopeIcon + '</span>' + scopeLabel + '</span>' +
+    '</div>' +
+    '<div class="totali-summary-card imb">' +
+      '<div class="lbl">📦 Imballaggi</div>' +
+      '<div class="val">' + byTipo.imballaggi.peso.toFixed(1).replace(".",",") + ' kg</div>' +
+      '<div class="sub">' + byTipo.imballaggi.count + ' ' + (byTipo.imballaggi.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+      '<span class="scope"><span class="material-symbols-rounded">' + scopeIcon + '</span>' + scopeLabel + '</span>' +
+    '</div>' +
+    '<div class="totali-summary-card vetro">' +
+      '<div class="lbl">🍾 Vetro</div>' +
+      '<div class="val">' + byTipo.vetro.peso.toFixed(1).replace(".",",") + ' kg</div>' +
+      '<div class="sub">' + byTipo.vetro.count + ' ' + (byTipo.vetro.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+      '<span class="scope"><span class="material-symbols-rounded">' + scopeIcon + '</span>' + scopeLabel + '</span>' +
+    '</div>';
+}
+
+function celleTotali(tipo, peso, count) {
+  const kgCls = peso > 0 ? "kg" : "kg zero";
+  return '<span class="totali-cell ' + tipo + '">' +
+    '<span class="' + kgCls + '">' + peso.toFixed(1).replace(".",",") + ' kg</span>' +
+    '<span class="cnt">' + count + ' ' + (count === 1 ? 'entrata' : 'entrate') + '</span>' +
+  '</span>';
+}
+
+function buildExpandPanel(entries, label) {
+  if (!entries.length) {
+    return '<div class="totali-expand">' +
+      '<div class="totali-expand-head">' +
+        '<span class="material-symbols-rounded">receipt_long</span>' +
+        'Registrazioni · ' + label +
+      '</div>' +
+      '<div class="totali-expand-empty">Nessuna registrazione in questo periodo</div>' +
+    '</div>';
+  }
+  const sorted = entries.slice().sort(function(a,b){ return (b.ts||0) - (a.ts||0); });
+  const items = sorted.map(function(e, i){
+    const tipo = CONFIG.tipi[e.tipo] || { label: e.tipo, icon: "♻️" };
+    return '<div class="totali-exp-item" data-tipo="' + e.tipo + '" style="animation-delay:' + Math.min(i*0.02, 0.3) + 's">' +
+      '<div class="exp-ora">' + (e.ora || "--:--") + '</div>' +
+      '<div class="exp-icon">' + tipo.icon + '</div>' +
+      '<div class="exp-body">' +
+        '<div class="exp-tipo">' + tipo.label + '</div>' +
+        '<div class="exp-sub">' +
+          '<span>' + e.operatore + '</span>' +
+          '<span>· ' + e.targa + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="exp-peso">' + e.peso.toFixed(1) + ' kg</div>' +
+    '</div>';
+  }).join("");
+  return '<div class="totali-expand">' +
+    '<div class="totali-expand-head">' +
+      '<span class="material-symbols-rounded">receipt_long</span>' +
+      'Registrazioni · ' + label + ' · ' + entries.length +
+    '</div>' +
+    '<div class="totali-expand-list">' + items + '</div>' +
+  '</div>';
+}
+
+function entriesForDay(dayKey) {
+  const mk = dayKey.slice(0, 7);
+  const list = getEntriesFromCache(mk);
+  const seen = new Set();
+  const out = [];
+  list.forEach(function(e){
+    if (!e || !e.id) return;
+    if (seen.has(String(e.id))) return;
+    seen.add(String(e.id));
+    if (e.data !== dayKey) return;
+    if (filterOperatore && e.operatore !== filterOperatore) return;
+    out.push(e);
+  });
+  return out;
+}
+
+function entriesForMonth(mk) {
+  const list = getEntriesFromCache(mk);
+  const seen = new Set();
+  const out = [];
+  list.forEach(function(e){
+    if (!e || !e.id) return;
+    if (seen.has(String(e.id))) return;
+    seen.add(String(e.id));
+    if (filterOperatore && e.operatore !== filterOperatore) return;
+    out.push(e);
+  });
+  return out;
+}
+
+function renderTotaliGiornaliero() {
+  const el = $("totaliListGiornaliero"); if (!el) return;
+  const all = getVisibleEntries();
+  const now = new Date();
+  const todayK = todayKey();
+
+  let html = '<div class="totali-head">' +
+    '<span>Data</span>' +
+    '<span style="color:var(--carta)">📄 Carta</span>' +
+    '<span style="color:var(--ecolan-ocra-scuro)">📦 Imb. misti</span>' +
+    '<span style="color:var(--vetro)">🍾 Vetro</span>' +
+    '<span></span>' +
+  '</div>';
+
+  let rowsRendered = 0;
+  const maxDays = CONFIG.giorniTotaliVista;
+
+  for (let i = 0; i < maxDays; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+    const key = todayKey(d);
+    const dayEntries = all.filter(function(e){ return e.data === key; });
+    if (i > 0 && dayEntries.length === 0) continue;
+
+    const carta = dayEntries.filter(function(e){ return e.tipo === "carta"; });
+    const imb = dayEntries.filter(function(e){ return e.tipo === "imballaggi"; });
+    const vetro = dayEntries.filter(function(e){ return e.tipo === "vetro"; });
+    const somma = function(arr){ return arr.reduce(function(s,e){ return s + e.peso; }, 0); };
+
+    const isToday = key === todayK;
+    let relLbl = "";
+    if (i === 0) relLbl = "Oggi";
+    else if (i === 1) relLbl = "Ieri";
+    const label = isToday
+      ? '<span class="dot"></span>Oggi'
+      : '<span>' + fmtDataIt(key) + '</span>' + (relLbl ? ' <span class="rel">' + relLbl + '</span>' : '');
+
+    const rowCls = "totali-row" + (isToday ? " today" : "");
+    const isOpen = expandedKey === key;
+    const groupCls = "totali-group" + (isOpen ? " open" : "");
+
+    html += '<div class="' + groupCls + '" data-key="' + key + '" data-type="day">' +
+      '<div class="' + rowCls + '" data-data="' + key + '" style="animation-delay:' + (rowsRendered * 0.02) + 's">' +
+        '<span class="data-lbl">' + label + '</span>' +
+        celleTotali("carta", somma(carta), carta.length) +
+        celleTotali("imballaggi", somma(imb), imb.length) +
+        celleTotali("vetro", somma(vetro), vetro.length) +
+        '<span class="totali-chevron"><span class="material-symbols-rounded">expand_more</span></span>' +
+      '</div>';
+    if (isOpen) {
+      html += buildExpandPanel(entriesForDay(key), fmtDataIt(key));
+    }
+    html += '</div>';
+    rowsRendered++;
+  }
+
+  if (rowsRendered === 0) {
+    html += '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato negli ultimi ' + maxDays + ' giorni</div>';
+  }
+
+  el.innerHTML = html;
+  attachTotaliRowHandlers(el, "day");
+}
+
+function renderTotaliMensile() {
+  const el = $("totaliListMensile"); if (!el) return;
+  const all = getVisibleEntries();
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+
+  let html = '<div class="totali-head">' +
+    '<span>Mese</span>' +
+    '<span style="color:var(--carta)">📄 Carta</span>' +
+    '<span style="color:var(--ecolan-ocra-scuro)">📦 Imb. misti</span>' +
+    '<span style="color:var(--vetro)">🍾 Vetro</span>' +
+    '<span></span>' +
+  '</div>';
+
+  for (let m = 0; m < 12; m++) {
+    const prefix = currentYear + "-" + String(m + 1).padStart(2, "0");
+    const mEntries = all.filter(function(e){ return e.data && e.data.slice(0, 7) === prefix; });
+    const carta = mEntries.filter(function(e){ return e.tipo === "carta"; });
+    const imb = mEntries.filter(function(e){ return e.tipo === "imballaggi"; });
+    const vetro = mEntries.filter(function(e){ return e.tipo === "vetro"; });
+    const somma = function(arr){ return arr.reduce(function(s,e){ return s + e.peso; }, 0); };
+
+    const isCurrent = m === currentMonth;
+    const isFuture = m > currentMonth;
+    const label = isCurrent
+      ? '<span class="dot"></span>' + CONFIG.monthNames[m] + ' <span class="rel">Corrente</span>'
+      : CONFIG.monthNames[m];
+
+    const rowCls = "totali-row" + (isFuture ? " future" : "") + (isCurrent ? " today" : "");
+    const isOpen = !isFuture && expandedKey === prefix;
+    const groupCls = "totali-group" + (isOpen ? " open" : "");
+
+    html += '<div class="' + groupCls + '" data-key="' + prefix + '" data-type="month">' +
+      '<div class="' + rowCls + '" data-mese="' + prefix + '" style="animation-delay:' + (m * 0.03) + 's">' +
+        '<span class="data-lbl">' + label + '</span>' +
+        celleTotali("carta", somma(carta), carta.length) +
+        celleTotali("imballaggi", somma(imb), imb.length) +
+        celleTotali("vetro", somma(vetro), vetro.length) +
+        '<span class="totali-chevron"><span class="material-symbols-rounded">expand_more</span></span>' +
+      '</div>';
+    if (isOpen) {
+      const labelM = CONFIG.monthNames[m] + " " + currentYear;
+      html += buildExpandPanel(entriesForMonth(prefix), labelM);
+    }
+    html += '</div>';
+  }
+
+  el.innerHTML = html;
+  attachTotaliRowHandlers(el, "month");
+}
+
+/* Handlers per le righe totali (accordion + selezione periodo per le card) */
+function attachTotaliRowHandlers(container, mode) {
+  container.querySelectorAll(".totali-row:not(.future)").forEach(function(r){
+    r.addEventListener("click", function(){
+      const group = r.closest(".totali-group");
+      if (!group) return;
+      const key = group.dataset.key;
+      const wasOpen = group.classList.contains("open");
+
+      // Chiudi tutti gli altri gruppi + rimuovi pannelli aperti
+      container.querySelectorAll(".totali-group.open").forEach(function(g){
+        if (g !== group) {
+          g.classList.remove("open");
+          const exp = g.querySelector(".totali-expand");
+          if (exp) exp.remove();
+        }
+      });
+
+      if (wasOpen) {
+        // CHIUDO
+        group.classList.remove("open");
+        const exp = group.querySelector(".totali-expand");
+        if (exp) exp.remove();
+        expandedKey = null;
+        selectedTotaliPeriod = null;
+      } else {
+        // APRO
+        group.classList.add("open");
+        let entries, label;
+        if (mode === "day") {
+          const dayKey = group.dataset.key;
+          entries = entriesForDay(dayKey);
+          label = fmtDataIt(dayKey);
+          selectedTotaliPeriod = { type: "day", key: dayKey, label: "Giorno " + fmtDataIt(dayKey) };
+        } else {
+          const mk = group.dataset.key;
+          const [y, m] = mk.split("-").map(Number);
+          entries = entriesForMonth(mk);
+          label = CONFIG.monthNames[m - 1] + " " + y;
+          selectedTotaliPeriod = { type: "month", key: mk, label: "Mese di " + label };
+        }
+        const exp = group.querySelector(".totali-expand");
+        if (!exp) {
+          group.insertAdjacentHTML("beforeend", buildExpandPanel(entries, label));
+        }
+        expandedKey = key;
+      }
+
+      // Aggiorna le 4 card con il nuovo periodo (o con il default)
+      renderTotaliSummary();
+      // Aggiorna l'hero subtitle
+      const sub = $("totaliHeroSub");
+      if (sub) {
+        const now = new Date();
+        if (selectedTotaliPeriod) {
+          sub.textContent = "Riepilogo: " + selectedTotaliPeriod.label + " · " + (filterOperatore || "tutti gli operatori");
+        } else if (totaliView === "giornaliero") {
+          sub.textContent = "Ultimi " + CONFIG.giorniTotaliVista + " giorni · " + (filterOperatore || "tutti gli operatori");
+        } else {
+          sub.textContent = "Anno " + now.getFullYear() + " · " + (filterOperatore || "tutti gli operatori");
+        }
+      }
+    });
+  });
+}
+
+/* ==================== NAVIGAZIONE ==================== */
+function bindNav() {
+  document.querySelectorAll("#sidebarNav .nav-item").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      const target = btn.dataset.nav;
+      if (target === "totali") {
+        setPage("totali");
+      } else {
+        navigateToSection(target);
+      }
+    });
+  });
+
+  const sections = ["dashboard", "andamento", "ripartizione", "classifiche", "attivita"];
+  let ticking = false;
+  const onScroll = function(){
+    if (ticking || currentPage !== "main") return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      const y = window.scrollY + 120;
+      let current = "dashboard";
+      sections.forEach(function(s){
+        const el = document.getElementById("section-" + s);
+        if (el && el.offsetTop <= y) current = s;
+      });
+      document.querySelectorAll("#sidebarNav .nav-item").forEach(function(b){
+        if (b.dataset.nav === "totali") return;
+        b.classList.toggle("active", b.dataset.nav === current);
+      });
+      ticking = false;
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  $("navTheme").addEventListener("click", toggleTheme);
+}
+
+/* ==================== BIND ==================== */
+function bind() {
+  document.querySelectorAll("[data-sync-state]").forEach(function(el){
+    el.addEventListener("click", function(){ refreshData(true); });
+  });
+
+  $("filtroOperatore").addEventListener("change", function(e){
+    filterOperatore = e.target.value;
+    const el2 = $("filtroOperatore2");
+    if (el2) el2.value = filterOperatore;
+    expandedKey = null;
+    selectedTotaliPeriod = null;
+    renderAll();
+  });
+
+  $("filtroOperatore2").addEventListener("change", function(e){
+    filterOperatore = e.target.value;
+    const el1 = $("filtroOperatore");
+    if (el1) el1.value = filterOperatore;
+    expandedKey = null;
+    selectedTotaliPeriod = null;
+    renderAll();
+  });
+
+  document.querySelectorAll("#periodSelect button").forEach(function(b){
+    b.addEventListener("click", function(){
+      customPeriod = null;
+      updateCustomPeriodChip();
+      dashboardPeriod = b.dataset.period;
+      document.querySelectorAll("#periodSelect button").forEach(function(x){ x.classList.toggle("active", x === b); });
+      renderAll();
+      const months = monthsForChart(dashboardPeriod);
+      Promise.all(months.map(function(mk){ return fetchMonth(mk); })).then(function(){
+        renderAll();
+        updateCloudUI();
+      });
+      updateCloudUI();
+    });
+  });
+
+  document.querySelectorAll("#totaliTabSelect button").forEach(function(b){
+    b.addEventListener("click", function(){
+      totaliView = b.dataset.totali;
+      // Reset espansione e selezione quando si cambia tab
+      expandedKey = null;
+      selectedTotaliPeriod = null;
+      document.querySelectorAll("#totaliTabSelect button").forEach(function(x){ x.classList.toggle("active", x === b); });
+      renderTotali();
+    });
+  });
+
+  $("btnClearCustomPeriod").addEventListener("click", clearCustomPeriod);
+
+  $("btnForceMobile").addEventListener("click", function(){
+    sessionStorage.setItem("cdr_dash_force_mobile", "1");
+    $("mobileBlock").classList.remove("show");
+  });
+
+  window.addEventListener("resize", function(){
+    if (sessionStorage.getItem("cdr_dash_force_mobile") !== "1") checkViewport();
+  });
+
+  window.addEventListener("online", function(){ updateCloudUI(); refreshData(); });
+  window.addEventListener("offline", updateCloudUI);
+
+  bindNav();
+}
+
+function populateFiltroOperatore() {
+  const opts = '<option value="">Tutti gli operatori</option>' +
+    CONFIG.operatori.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("");
+  const el1 = $("filtroOperatore"); if (el1) el1.innerHTML = opts;
+  const el2 = $("filtroOperatore2"); if (el2) el2.innerHTML = opts;
+}
+
+function setupScrollReveal() {
+  const els = document.querySelectorAll('.reveal-on-scroll');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('revealed'); });
+    return;
+  }
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) {
+        en.target.classList.add('revealed');
+        obs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(function(e){ obs.observe(e); });
+}
+
+/* ==================== BOOT ==================== */
+function boot() {
+  try {
+    console.log("🚀 Avvio Dashboard CDR v6 (card dinamiche + hero antracite)");
+
+    loadTheme();
+    loadCache();
+    populateFiltroOperatore();
+    bind();
+    setupScrollReveal();
+    checkViewport();
+
+    renderAll();
+    updateCloudUI();
+    updateCustomPeriodChip();
+
+    const months = monthsForChart(dashboardPeriod).concat(monthsForTotali());
+    const uniqueMonths = Array.from(new Set(months));
+    Promise.all(uniqueMonths.map(function(mk){ return fetchMonth(mk); })).then(function(){
+      renderAll();
+      updateCloudUI();
+    });
+
+    if (isOnline()) setTimeout(function(){ refreshData(); }, 800);
+
+    console.log("✅ Dashboard pronta");
+  } catch(e) {
+    console.error("❌ Errore fatale:", e);
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+})();
+</script>
+</body>
+</html>
