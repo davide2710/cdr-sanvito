@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5f2e8" id="themeColorMeta">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CDR Admin">
+<meta name="mobile-web-app-capable" content="yes">
+<title>CDR Admin · Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+<link rel="icon" type="image/png" sizes="512x512" href="./icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+<link rel="manifest" href="./manifest-admin.json">
+<style>
+  :root, body[data-theme="light"]{
+    --ecolan-verde: #1e5a2e;
+    --ecolan-verde-scuro: #144020;
+    --ecolan-verde-chiaro: #4a8f5a;
+    --ecolan-verde-brillante: #2d8a4a;
+    --ecolan-ocra: #c9a533;
+    --ecolan-ocra-scuro: #a5851f;
+    --ecolan-ocra-brillante: #e5c04a;
+    --bg: #f5f2e8;
+    --bg-2: #ebe6d4;
+    --bg-3: #e0dac4;
+    --bg-solid: #f5f2e8;
+    --panel: #ffffff;
+    --panel-2: #f0ece0;
+    --panel-3: #e4dfd0;
+    --border: #d4cfbc;
+    --border-strong: #b8b19a;
+    --text: #1a2e1a;
+    --muted: #5a6b5a;
+    --accent: #1e5a2e;
+    --accent-dark: #144020;
+    --accent-container: rgba(30,90,46,.12);
+    --danger: #b91c1c;
+    --ok: #16a34a;
+    --warn: #d97706;
+    --carta: #1e6fbf;
+    --carta-dark: #0f4a86;
+    --imballaggi: #d4a017;
+    --imballaggi-dark: #a37a00;
+    --vetro: #2e8b57;
+    --vetro-dark: #1b5a37;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --browser-nav-inset: 0px;
+    --m3-standard: cubic-bezier(.2, 0, 0, 1);
+    --m3-emphasized: cubic-bezier(.05, .7, .1, 1);
+    --m3-emphasized-decel: cubic-bezier(.05, .7, .1, 1);
+    --m3-spring: cubic-bezier(.34, 1.56, .64, 1);
+    color-scheme: light;
+  }
+  body[data-theme="dark"]{
+    --ecolan-verde: #4a8f5a;
+    --ecolan-verde-scuro: #2d5c38;
+    --ecolan-verde-chiaro: #6eb57c;
+    --ecolan-verde-brillante: #3ea972;
+    --ecolan-ocra: #e5c04a;
+    --ecolan-ocra-scuro: #b8992f;
+    --ecolan-ocra-brillante: #f0d16a;
+    --bg: #0f1a12;
+    --bg-2: #0a130c;
+    --bg-3: #162a1c;
+    --bg-solid: #0f1a12;
+    --panel: #1a2e1e;
+    --panel-2: #223829;
+    --panel-3: #2d4634;
+    --border: #2f4a37;
+    --border-strong: #3d5c47;
+    --text: #e8f0e8;
+    --muted: #8fa08f;
+    --accent: #6eb57c;
+    --accent-dark: #4a8f5a;
+    --accent-container: rgba(110,181,124,.15);
+    --danger: #dc2626;
+    --ok: #22c55e;
+    --warn: #f59e0b;
+    --carta: #3a82cc;
+    --carta-dark: #1e5a96;
+    --imballaggi: #e5b800;
+    --imballaggi-dark: #a37a00;
+    --vetro: #3ea972;
+    --vetro-dark: #1e6b3e;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{height:100%;background-color:#f5f2e8;-webkit-text-size-adjust:100%}
+  html[data-theme="dark"]{background-color:#0f1a12}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;
+    height:100vh;height:100dvh;
+    display:flex;flex-direction:column;overflow:hidden;
+    background:linear-gradient(160deg,var(--bg) 0%,var(--bg-2) 40%,var(--bg-3) 100%);
+    background-color:var(--bg-solid);
+    color:var(--text);font-size:15px;line-height:1.4;
+    padding-top:var(--safe-top);
+    padding-left:var(--safe-left);
+    padding-right:var(--safe-right);
+    transition:background-color .4s ease, color .4s ease;
+    position:relative;
+  }
+  body::after{
+    content:"";position:fixed;left:0;right:0;bottom:0;height:120px;
+    background:var(--panel);z-index:-1;pointer-events:none;
+  }
+  button{font-family:inherit}
+  .material-symbols-rounded{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;user-select:none}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.15)}}
+  @keyframes popIn{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04);opacity:1}100%{transform:scale(1)}}
+  @keyframes slideDownLogin{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes theme-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  /* ===== APP SCROLLER ===== */
+  .app{
+    flex:1 1 auto;
+    overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    max-width:520px;width:100%;margin:0 auto;
+    padding:12px 14px calc(24px + var(--safe-bottom) + var(--browser-nav-inset));
+    display:flex;flex-direction:column;gap:14px;
+    position:relative;z-index:1;
+  }
+
+  /* ===== HEADER ===== */
+  header.app-header{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px;background:var(--panel);border-radius:var(--radius);
+    border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,.08);
+    transition:background .4s ease, border-color .4s ease;
+  }
+  body[data-theme="dark"] header.app-header{box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .logo-ecolan{width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background:#fff}
+  .logo-ecolan img{width:100%;height:100%;object-fit:contain;display:block}
+  .header-info{flex:1;min-width:0}
+  .header-info .title{font-size:15px;font-weight:900;line-height:1.1;color:var(--ecolan-verde);letter-spacing:.3px}
+  body[data-theme="dark"] .header-info .title{color:var(--ecolan-verde-chiaro)}
+  .header-info .subtitle{font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+  .theme-toggle{width:38px;height:38px;border-radius:50%;background:var(--panel-2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .5s var(--m3-spring), background .3s ease}
+  .theme-toggle:active{transform:scale(.88)}
+  .theme-toggle .material-symbols-rounded{font-size:20px;font-variation-settings:'FILL' 1, 'wght' 500;color:var(--ecolan-ocra);transition:transform .55s var(--m3-spring)}
+  .theme-toggle.animating .material-symbols-rounded{animation:theme-spin .6s var(--m3-spring)}
+  .sync-badge{
+    display:flex;align-items:center;gap:6px;background:var(--panel-2);
+    padding:6px 10px;border-radius:999px;border:1px solid var(--border);
+    font-size:11px;font-weight:600;cursor:pointer;
+    transition:transform .3s var(--m3-spring);
+  }
+  .sync-badge:active{transform:scale(.92)}
+  .sync-badge .cloud-dot{width:9px;height:9px;border-radius:50%;background:#94a3b8;flex-shrink:0}
+  .sync-badge .cloud-dot.on{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .sync-badge .cloud-dot.syncing{background:var(--warn);animation:pulse 1.2s infinite}
+  .sync-badge .cloud-dot.error{background:var(--danger);animation:pulse 1.5s infinite}
+  .sync-badge .cloud-dot.offline{background:#94a3b8}
+  .sync-badge .sync-icon{font-size:16px;color:var(--muted)}
+  .sync-badge.syncing .sync-icon{animation:spin 1.2s linear infinite;color:var(--warn)}
+  .sync-badge.on .sync-icon{color:var(--ok)}
+
+  /* ===== USER ROW ===== */
+  .user-row{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:8px 10px}
+  .user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--ecolan-ocra),var(--ecolan-ocra-scuro));color:#231a00;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+  .user-info{flex:1;min-width:0}
+  .user-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .user-role{font-size:11px;color:var(--muted)}
+  .icon-btn{width:40px;height:40px;border-radius:50%;background:var(--panel-2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .3s var(--m3-spring)}
+  .icon-btn:active{transform:scale(.88)}
+  .icon-btn .material-symbols-rounded{font-size:20px}
+  .icon-btn.logout:active{border-color:var(--danger);color:var(--danger)}
+
+  /* ===== CARD ===== */
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);transition:background .4s ease, border-color .4s ease}
+  body[data-theme="dark"] .card{box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .card-title{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:12px}
+  .card-title .material-symbols-rounded{font-size:18px;color:var(--accent);font-variation-settings:'FILL' 1}
+  .card-title .title-right{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);text-transform:none;letter-spacing:0}
+
+  /* ===== PERIOD SELECT ===== */
+  .period-select{
+    display:flex;gap:3px;padding:4px;background:var(--panel);
+    border:1px solid var(--border);border-radius:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .period-select button{
+    flex:1;padding:8px 6px;border:none;background:transparent;
+    color:var(--muted);font-size:12.5px;font-weight:700;
+    border-radius:10px;cursor:pointer;
+    transition:all .25s var(--m3-spring);
+  }
+  .period-select button.active{
+    background:linear-gradient(135deg,var(--ecolan-verde),var(--ecolan-verde-brillante));
+    color:#fff;box-shadow:0 4px 12px rgba(30,90,46,.3);
+  }
+  body[data-theme="dark"] .period-select button.active{color:#0a130c}
+  .period-select button:active{transform:scale(.95)}
+
+  /* ===== KPI CARDS ===== */
+  .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .kpi{
+    position:relative;overflow:hidden;border-radius:16px;
+    padding:14px 16px;color:#fff;
+    display:flex;flex-direction:column;gap:2px;
+    box-shadow:0 8px 20px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.15);
+    animation:popIn .5s var(--m3-spring) backwards;
+  }
+  .kpi:nth-child(1){animation-delay:.05s;grid-column:span 2}
+  .kpi:nth-child(2){animation-delay:.1s}
+  .kpi:nth-child(3){animation-delay:.15s}
+  .kpi:nth-child(4){animation-delay:.2s}
+  .kpi:nth-child(5){animation-delay:.25s}
+  .kpi::before{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.10);pointer-events:none}
+  .kpi-viola{background:linear-gradient(135deg,#3b1e5a 0%,#6a3fa0 45%,#9d6ce0 100%)}
+  .kpi-ocra{background:linear-gradient(135deg,#7c4a03 0%,#c47f0c 50%,#f0a828 100%)}
+  .kpi-blu{background:linear-gradient(135deg,#0a3a6a 0%,#1e6fbf 50%,#4a9fe0 100%)}
+  .kpi-ambra{background:linear-gradient(135deg,#8f6c10 0%,#c9a533 50%,#e5c04a 100%);color:#231a00}
+  .kpi-verde{background:linear-gradient(135deg,#144a2c 0%,#2e8b57 50%,#4aae77 100%)}
+  body[data-theme="dark"] .kpi-viola{background:linear-gradient(135deg,#4c2780 0%,#7a4fb5 55%,#a878ea 100%)}
+  .kpi-icon{
+    position:absolute;top:10px;right:10px;width:32px;height:32px;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:17px;background:rgba(255,255,255,.20);
+    font-variation-settings:'FILL' 1,'wght' 500;
+  }
+  .kpi-ambra .kpi-icon{background:rgba(0,0,0,.10)}
+  .kpi-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;opacity:.92;position:relative;padding-right:38px}
+  .kpi-value{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums;position:relative;line-height:1.05;margin-top:2px;display:flex;align-items:baseline;gap:4px}
+  .kpi:nth-child(1) .kpi-value{font-size:30px}
+  .kpi-unit{font-size:12px;font-weight:700;opacity:.85}
+  .kpi-sub{font-size:11px;font-weight:600;opacity:.88;position:relative;margin-top:1px}
+
+  /* ===== CHART ===== */
+  .chart-wrap{height:130px;display:flex;align-items:flex-end;gap:4px;padding-top:16px}
+  .chart-col{flex:1;display:grid;grid-template-rows:1fr auto;gap:4px;align-items:end;min-width:0}
+  .chart-bar{
+    width:100%;max-width:32px;margin:0 auto;border-radius:6px 6px 2px 2px;
+    background:linear-gradient(180deg,var(--ecolan-verde-chiaro),var(--ecolan-verde));
+    position:relative;min-height:3px;transition:height .7s var(--m3-spring);
+  }
+  body[data-theme="dark"] .chart-bar{background:linear-gradient(180deg,var(--ecolan-verde),var(--ecolan-verde-scuro))}
+  .chart-bar.empty{background:var(--panel-3)}
+  .chart-bar.today{background:linear-gradient(180deg,var(--ecolan-ocra-brillante),var(--ecolan-ocra))}
+  .chart-label{font-size:9.5px;font-weight:700;color:var(--muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chart-col.today .chart-label{color:var(--ecolan-ocra-scuro);font-weight:900}
+
+  /* ===== ENTRY LIST ===== */
+  .entries-list{display:flex;flex-direction:column;gap:8px}
+  .mini-entry{
+    display:flex;align-items:center;gap:10px;
+    padding:9px 11px;background:var(--panel-2);
+    border-radius:11px;border:1px solid var(--border);
+    border-left:4px solid var(--border);
+    animation:fadeIn .3s ease backwards;
+  }
+  .mini-entry[data-tipo="carta"]{border-left-color:var(--carta)}
+  .mini-entry[data-tipo="imballaggi"]{border-left-color:var(--imballaggi)}
+  .mini-entry[data-tipo="vetro"]{border-left-color:var(--vetro)}
+  .mini-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;background:var(--panel-3)}
+  .mini-entry[data-tipo="carta"] .mini-icon{background:rgba(30,111,191,.12)}
+  .mini-entry[data-tipo="imballaggi"] .mini-icon{background:rgba(212,160,23,.15)}
+  .mini-entry[data-tipo="vetro"] .mini-icon{background:rgba(46,139,87,.12)}
+  .mini-body{flex:1;min-width:0}
+  .mini-line1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .mini-tipo{font-size:12.5px;font-weight:800}
+  .mini-peso{font-size:13.5px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mini-line2{display:flex;flex-wrap:wrap;gap:3px 8px;font-size:10.5px;color:var(--muted);margin-top:1px}
+  .mini-ora{font-size:10.5px;font-weight:800;color:var(--muted);padding:2px 7px;background:var(--panel-3);border-radius:999px;flex-shrink:0}
+
+  /* ===== TOTALI (accordion) ===== */
+  .totali-head{
+    display:grid;grid-template-columns:80px 1fr 1fr 1fr 20px;gap:5px;
+    padding:8px 10px;margin-bottom:2px;
+    font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);
+  }
+  .totali-head span:not(:first-child):not(:last-child){text-align:right}
+  .totali-head span:last-child{text-align:center}
+  .totali-group{border-radius:10px;overflow:hidden}
+  .totali-row{
+    display:grid;grid-template-columns:80px 1fr 1fr 1fr 20px;gap:5px;
+    padding:8px 10px;border-radius:10px;align-items:center;cursor:pointer;
+    transition:background .2s ease;border:1px solid transparent;
+    animation:fadeIn .3s ease backwards;
+  }
+  .totali-row:active{transform:scale(.98);background:var(--panel-2)}
+  .totali-row.future{opacity:.35;cursor:default;pointer-events:none}
+  .totali-row.today{background:linear-gradient(135deg,rgba(201,165,51,.15),transparent);border-color:rgba(201,165,51,.35)}
+  .totali-group.open > .totali-row{border-color:var(--ecolan-verde);background:linear-gradient(135deg,rgba(30,90,46,.10),rgba(201,165,51,.08))}
+  .data-lbl{font-size:12px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:4px}
+  .data-lbl .dot{width:5px;height:5px;border-radius:50%;background:var(--ecolan-ocra);flex-shrink:0}
+  .data-lbl .rel{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase}
+  .totali-cell{display:flex;flex-direction:column;gap:0;padding:5px 7px;border-radius:8px;text-align:right}
+  .totali-cell.carta{background:rgba(30,111,191,.10);color:var(--carta)}
+  .totali-cell.imballaggi{background:rgba(212,160,23,.15);color:var(--ecolan-ocra-scuro)}
+  .totali-cell.vetro{background:rgba(46,139,87,.12);color:var(--vetro)}
+  body[data-theme="dark"] .totali-cell.carta{background:rgba(58,130,204,.14);color:#8dc3ee}
+  body[data-theme="dark"] .totali-cell.imballaggi{background:rgba(229,184,0,.14);color:#f0d16a}
+  body[data-theme="dark"] .totali-cell.vetro{background:rgba(62,169,114,.14);color:#7fd0a2}
+  .totali-cell .kg{font-size:12px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.15}
+  .totali-cell .cnt{font-size:9px;font-weight:700;opacity:.85}
+  .totali-cell .kg.zero{opacity:.45}
+  .totali-chevron{display:flex;align-items:center;justify-content:center;color:var(--muted);transition:transform .3s var(--m3-spring)}
+  .totali-chevron .material-symbols-rounded{font-size:18px}
+  .totali-group.open .totali-chevron{transform:rotate(180deg);color:var(--accent)}
+  .totali-expand{
+    background:var(--panel-2);border-radius:10px;margin-top:3px;padding:0 10px;
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .35s ease, opacity .25s ease, padding .3s ease;
+  }
+  .totali-group.open .totali-expand{max-height:800px;opacity:1;padding:10px}
+  .totali-expand-head{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+  .totali-expand-head .material-symbols-rounded{font-size:14px;color:var(--accent)}
+  .totali-expand-list{display:flex;flex-direction:column;gap:5px;max-height:280px;overflow-y:auto;padding-right:3px}
+  .totali-exp-item{
+    display:grid;grid-template-columns:42px 28px 1fr auto;gap:8px;align-items:center;
+    padding:7px 9px;background:var(--panel);border-radius:9px;
+    border:1px solid var(--border);border-left:3px solid var(--border);
+    animation:fadeIn .3s ease backwards;
+  }
+  .totali-exp-item[data-tipo="carta"]{border-left-color:var(--carta)}
+  .totali-exp-item[data-tipo="imballaggi"]{border-left-color:var(--imballaggi)}
+  .totali-exp-item[data-tipo="vetro"]{border-left-color:var(--vetro)}
+  .totali-exp-item .exp-ora{font-size:11px;font-weight:900;font-variant-numeric:tabular-nums}
+  .totali-exp-item .exp-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--panel-3)}
+  .totali-exp-item[data-tipo="carta"] .exp-icon{background:rgba(30,111,191,.12)}
+  .totali-exp-item[data-tipo="imballaggi"] .exp-icon{background:rgba(212,160,23,.15)}
+  .totali-exp-item[data-tipo="vetro"] .exp-icon{background:rgba(46,139,87,.12)}
+  .totali-exp-item .exp-tipo{font-size:11.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .totali-exp-item .exp-sub{font-size:10px;color:var(--muted);font-weight:600}
+  .totali-exp-item .exp-peso{font-size:12.5px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ===== LISTE TOP ===== */
+  .list{display:flex;flex-direction:column;gap:6px}
+  .list-item{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--panel-2);border-radius:11px;border:1px solid var(--border)}
+  .list-rank{width:26px;height:26px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--muted),var(--text))}
+  .list-rank.r1{background:linear-gradient(135deg,#fbbf24,#b45309);color:#231a00}
+  .list-rank.r2{background:linear-gradient(135deg,#e2e8f0,#64748b);color:#1e293b}
+  .list-rank.r3{background:linear-gradient(135deg,#d97706,#7c2d12)}
+  .list-body{flex:1;min-width:0}
+  .list-name{font-size:12.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .list-sub{font-size:10.5px;color:var(--muted);font-weight:600}
+  .list-val{font-size:13px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--ecolan-verde);white-space:nowrap;flex-shrink:0}
+  body[data-theme="dark"] .list-val{color:var(--ecolan-verde-chiaro)}
+
+  /* ===== MEDIE ===== */
+  .medie-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;gap:10px}
+  .medie-row:last-child{border-bottom:none}
+  .medie-lbl{color:var(--muted);font-weight:700;display:flex;align-items:center;gap:7px}
+  .medie-lbl .bullet{width:7px;height:7px;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+  .medie-val{font-weight:900;font-variant-numeric:tabular-nums}
+
+  /* ===== EMPTY ===== */
+  .empty{text-align:center;padding:24px 12px;color:var(--muted);font-size:12.5px;font-weight:600}
+  .empty .material-symbols-rounded{font-size:38px;display:block;margin:0 auto 6px;opacity:.35}
+
+  .loading-state{display:flex;align-items:center;gap:8px;padding:18px 12px;justify-content:center;color:var(--muted);font-size:12.5px;font-weight:600}
+  .loading-state .spinner{width:20px;height:20px;border:3px solid var(--panel-3);border-top-color:var(--accent);border-radius:50%;animation:spin .9s linear infinite}
+
+  /* ===== TAB BAR ===== */
+  .tab-bar{
+    flex:0 0 auto;background:var(--panel);
+    backdrop-filter:blur(24px) saturate(180%);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
+    border-top:1px solid var(--border);
+    padding:6px;
+    padding-bottom:calc(6px + max(var(--safe-bottom),var(--browser-nav-inset)));
+    display:flex;justify-content:space-around;gap:2px;z-index:50;position:relative;
+  }
+  body[data-theme="dark"] .tab-bar{background:rgba(26,46,30,.92)}
+  body[data-theme="light"] .tab-bar{background:rgba(255,255,255,.95)}
+  .tab-btn{position:relative;flex:1;background:transparent;border:none;color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;min-height:60px;justify-content:center;user-select:none}
+  .tab-icon-wrapper{position:relative;width:60px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:transparent;transition:background-color .4s var(--m3-emphasized-decel)}
+  .tab-btn.active .tab-icon-wrapper{background:var(--accent-container)}
+  .tab-icon{font-size:22px;color:var(--muted);font-variation-settings:'FILL' 0,'wght' 400;transition:font-variation-settings .45s var(--m3-spring),transform .45s var(--m3-spring),color .35s ease}
+  .tab-btn.active .tab-icon{color:var(--accent);font-variation-settings:'FILL' 1,'wght' 500;transform:scale(1.08)}
+  .tab-btn:active .tab-icon{transform:scale(.88)}
+  .tab-label{font-size:10.5px;font-weight:600;letter-spacing:.2px;color:var(--muted);transition:color .35s ease,font-weight .35s ease}
+  .tab-btn.active .tab-label{color:var(--text);font-weight:800}
+  .tab-content{display:none}
+  .tab-content.active{display:flex;flex-direction:column;gap:14px;animation:fadeIn .3s ease}
+
+  /* ===== LOGIN OVERLAY ===== */
+  #loginOverlay{
+    position:fixed;inset:0;z-index:200;
+    background:linear-gradient(160deg,var(--bg) 0%,var(--bg-2) 40%,var(--bg-3) 100%);
+    background-color:var(--bg-solid);
+    display:none;align-items:center;justify-content:center;
+    padding:max(20px,var(--safe-top)) 20px max(20px,max(var(--safe-bottom),var(--browser-nav-inset)));
+    overflow-y:auto;
+  }
+  #loginOverlay.show{display:flex}
+  .login-card{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:28px 22px;box-shadow:0 24px 60px rgba(0,0,0,.2);animation:slideDownLogin .5s var(--m3-spring)}
+  body[data-theme="dark"] .login-card{box-shadow:0 24px 60px rgba(0,0,0,.7)}
+  .login-logo{width:110px;height:110px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;background:#fff;box-shadow:0 8px 20px rgba(30,90,46,.15)}
+  .login-logo img{width:100%;height:100%;object-fit:contain;display:block}
+  .login-card h1{font-size:20px;font-weight:900;text-align:center;margin-bottom:6px;color:var(--ecolan-verde)}
+  body[data-theme="dark"] .login-card h1{color:var(--ecolan-verde-chiaro)}
+  .login-card .sub{text-align:center;color:var(--muted);font-size:12.5px;margin-bottom:22px}
+  .login-card .sub strong{color:var(--ecolan-ocra-scuro);font-weight:900}
+  .form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .form-field label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding-left:4px}
+  .form-field input{width:100%;background:var(--panel-2);color:var(--text);border:2px solid var(--border);border-radius:14px;padding:14px 16px;font-size:16px;font-weight:600;outline:none;min-height:52px;transition:border-color .3s ease}
+  .form-field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-container)}
+  .btn-login{width:100%;margin-top:6px;padding:16px;border:none;border-radius:16px;background:linear-gradient(120deg,var(--ecolan-verde),var(--ecolan-verde-scuro));color:#fff;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(30,90,46,.35);min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .3s var(--m3-spring)}
+  .btn-login:active{transform:scale(.96)}
+  .btn-login .material-symbols-rounded{font-size:20px;font-variation-settings:'FILL' 1}
+  .login-error{color:var(--danger);font-size:13px;margin-top:12px;text-align:center;min-height:20px;font-weight:600}
+  .login-theme-toggle{position:fixed;top:calc(20px + var(--safe-top));right:calc(20px + var(--safe-right));width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:201}
+  .login-theme-toggle .material-symbols-rounded{font-size:22px;color:var(--ecolan-ocra);font-variation-settings:'FILL' 1,'wght' 500}
+
+  /* ===== TOAST ===== */
+  #toast{
+    position:fixed;left:50%;bottom:calc(100px + max(var(--safe-bottom),var(--browser-nav-inset)));
+    transform:translate(-50%,120%);
+    background:var(--panel);border:1px solid var(--border);color:var(--text);
+    padding:14px 20px;border-radius:16px;font-weight:700;font-size:13.5px;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:0;z-index:300;pointer-events:none;
+    max-width:calc(100vw - 32px);text-align:center;
+    transition:transform .45s var(--m3-spring), opacity .35s ease;
+  }
+  body[data-theme="dark"] #toast{box-shadow:0 12px 30px rgba(0,0,0,.6)}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #toast.ok{border-color:var(--ok)}
+  #toast.err{border-color:var(--danger)}
+</style>
+</head>
+<body data-theme="light">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cdr-symbol" viewBox="0 0 200 200">
+    <rect width="200" height="200" rx="42" fill="#f5f2e8"/>
+    <path d="M 100 28 L 22 88 Q 16 94 24 96 L 100 96 Z" fill="#1e5a2e"/>
+    <path d="M 100 28 L 178 88 Q 184 94 176 96 L 100 96 Z" fill="#c9a533"/>
+    <circle cx="100" cy="66" r="21" fill="#f5f2e8"/>
+  </symbol>
+</svg>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginOverlay">
+  <button class="login-theme-toggle" id="btnLoginTheme" title="Cambia tema">
+    <span class="material-symbols-rounded" id="loginThemeIcon">dark_mode</span>
+  </button>
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="./icon.png" alt="CDR Admin" onerror="this.style.display='none';this.parentNode.innerHTML='<svg viewBox=\'0 0 200 200\' style=\'width:100%;height:100%\'><use href=\'#cdr-symbol\'/></svg>'">
+    </div>
+    <h1>CDR Admin</h1>
+    <div class="sub">Accesso riservato a <strong>ANGELUCCI Davide</strong></div>
+    <div class="form-field">
+      <label>Password admin</label>
+      <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Inserisci la password">
+    </div>
+    <button class="btn-login" id="btnLogin">
+      <span class="material-symbols-rounded">lock_open</span> Accedi
+    </button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div class="app" id="appScroller">
+
+  <header class="app-header">
+    <div class="logo-ecolan">
+      <img src="./icon.png" alt="CDR" onerror="this.style.display='none';this.parentNode.nextElementSibling.style.display='block';this.parentNode.innerHTML='<svg viewBox=\'0 0 200 200\' style=\'width:100%;height:100%\'><use href=\'#cdr-symbol\'/></svg>'">
+    </div>
+    <div class="header-info">
+      <div class="title">CDR Admin</div>
+      <div class="subtitle" id="clock">--/--/---- --:--</div>
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" id="btnTheme" title="Cambia tema">
+        <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
+      </button>
+      <div class="sync-badge" id="syncBadge" title="Sincronizza ora">
+        <span class="cloud-dot" id="cloudDot"></span>
+        <span class="material-symbols-rounded sync-icon">cloud_sync</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== TAB: RIEPILOGO ===== -->
+  <div class="tab-content active" id="tab-riepilogo">
+    <div class="period-select" id="periodSelect">
+      <button class="active" data-period="oggi">Oggi</button>
+      <button data-period="7gg">7 giorni</button>
+      <button data-period="mese">Mese</button>
+      <button data-period="anno">Anno</button>
+    </div>
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">bar_chart</span>
+        Andamento
+        <span class="title-right" id="chartSubtitle"></span>
+      </div>
+      <div class="chart-wrap" id="chart"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">schedule</span>
+        Ultime registrazioni
+        <span class="title-right" id="recentCount"></span>
+      </div>
+      <div class="entries-list" id="recentList">
+        <div class="loading-state"><span class="spinner"></span>Caricamento...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: TOTALI ===== -->
+  <div class="tab-content" id="tab-totali">
+    <div class="period-select" id="totaliTabSelect">
+      <button class="active" data-totali="giornaliero">Giornaliero</button>
+      <button data-totali="mensile">Mensile</button>
+    </div>
+
+    <div class="card" style="padding:14px 10px">
+      <div id="totaliListGiornaliero"></div>
+      <div id="totaliListMensile" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: ALTRO ===== -->
+  <div class="tab-content" id="tab-altro">
+    <div class="user-row">
+      <div class="user-avatar" id="userAvatar">AD</div>
+      <div class="user-info">
+        <div class="user-name" id="userName">ANGELUCCI Davide</div>
+        <div class="user-role">Amministratore</div>
+      </div>
+      <button class="icon-btn logout" id="btnLogout" title="Esci">
+        <span class="material-symbols-rounded">logout</span>
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">emoji_events</span>
+        Top operatori
+        <span class="title-right" id="topOpSub"></span>
+      </div>
+      <div class="list" id="topOp"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">local_shipping</span>
+        Top targhe
+        <span class="title-right" id="topTargheSub"></span>
+      </div>
+      <div class="list" id="topTarghe"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">speed</span>
+        Medie del periodo
+      </div>
+      <div id="medieBlock"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">cloud_sync</span>
+        Sincronizzazione
+      </div>
+      <div class="medie-row">
+        <span class="medie-lbl">
+          <span class="bullet" style="background:var(--ok)"></span>
+          Stato
+        </span>
+        <span class="medie-val" id="syncStateText">--</span>
+      </div>
+      <div class="medie-row">
+        <span class="medie-lbl">
+          <span class="bullet" style="background:var(--ecolan-ocra)"></span>
+          Ultimo aggiornamento
+        </span>
+        <span class="medie-val" id="lastSyncText">--</span>
+      </div>
+      <div class="medie-row">
+        <span class="medie-lbl">
+          <span class="bullet" style="background:var(--carta)"></span>
+          Mesi in cache
+        </span>
+        <span class="medie-val" id="cacheMonthsText">0</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn-login" id="btnForceSync" style="font-size:13.5px;padding:12px;min-height:44px">
+          <span class="material-symbols-rounded">cloud_sync</span> Sincronizza ora
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="material-symbols-rounded">info</span>
+        Info
+      </div>
+      <div class="medie-row">
+        <span class="medie-lbl">
+          <span class="bullet" style="background:var(--muted)"></span>
+          Versione
+        </span>
+        <span class="medie-val">Admin Mobile v1.0</span>
+      </div>
+      <div class="medie-row">
+        <span class="medie-lbl">
+          <span class="bullet" style="background:var(--muted)"></span>
+          Utente
+        </span>
+        <span class="medie-val" id="infoUser">--</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="riepilogo">
+    <div class="tab-icon-wrapper"><span class="material-symbols-rounded tab-icon">dashboard</span></div>
+    <span class="tab-label">Riepilogo</span>
+  </button>
+  <button class="tab-btn" data-tab="totali">
+    <div class="tab-icon-wrapper"><span class="material-symbols-rounded tab-icon">calendar_month</span></div>
+    <span class="tab-label">Totali</span>
+  </button>
+  <button class="tab-btn" data-tab="altro">
+    <div class="tab-icon-wrapper"><span class="material-symbols-rounded tab-icon">more_horiz</span></div>
+    <span class="tab-label">Altro</span>
+  </button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function() {
+"use strict";
+
+/* ==================== INSET CALCULATOR ==================== */
+function updateBrowserNavInset() {
+  var vv = window.visualViewport;
+  if (!vv) return;
+  var wh = window.innerHeight;
+  var vh = vv.height;
+  var ot = vv.offsetTop || 0;
+  var inset = wh - vh - ot;
+  if (inset < 0) inset = 0;
+  if (inset > 100) inset = 100;
+  document.documentElement.style.setProperty('--browser-nav-inset', inset + 'px');
+}
+function initInsetCalculator() {
+  if (!window.visualViewport) return;
+  updateBrowserNavInset();
+  window.visualViewport.addEventListener('resize', updateBrowserNavInset);
+  window.visualViewport.addEventListener('scroll', updateBrowserNavInset);
+  window.addEventListener('resize', updateBrowserNavInset);
+  window.addEventListener('orientationchange', function(){ setTimeout(updateBrowserNavInset, 300); });
+  setTimeout(updateBrowserNavInset, 100);
+  setTimeout(updateBrowserNavInset, 500);
+  setTimeout(updateBrowserNavInset, 1500);
+}
+
+/* ==================== CONFIG ==================== */
+const CONFIG = {
+  admin: "ANGELUCCI Davide",
+  masterPassword: "cdrsanvito",
+  adminDefaultPassword: "angeluccidavide",
+  tipi: {
+    carta:      { label:"Carta",            icon:"📄" },
+    imballaggi: { label:"Imballaggi misti", icon:"📦" },
+    vetro:      { label:"Vetro",            icon:"🍾" }
+  },
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyZnE4n_jFr-whx6Jy9-Uz3dJOWHxvTJUSL0vr_aoKc1iNGGZAK7jOwDISLL1Vic_gg/exec",
+  appsScriptSecret: "cdrsanvito-2025-segreto-segreto",
+  monthShort: ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],
+  dayShort: ["Dom","Lun","Mar","Mer","Gio","Ven","Sab"],
+  monthNames: ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"],
+  cacheFreshMs: 5 * 60 * 1000,
+  giorniTotaliVista: 30
+};
+
+/* ==================== CHIAVI (condivise con dashboard desktop) ==================== */
+const THEME_KEY              = "cdr_sanvito_v13_theme";
+const DASH_VIEW_KEY          = "cdr_sanvito_dash_view_v2";
+const DASH_LASTSYNC_KEY      = "cdr_sanvito_dash_lastsync_v2";
+const DASH_DELETEDIDS_KEY    = "cdr_sanvito_dash_deleted_v2";
+const ADMIN_SESSION_KEY      = "cdr_sanvito_admin_session_v1";
+
+/* ==================== STATO ==================== */
+let viewCache = {};
+let lastSyncPerMonth = {};
+let deletedIds = new Set();
+let monthsInFlight = {};
+let currentTab = "riepilogo";
+let dashboardPeriod = "oggi";
+let totaliView = "giornaliero";
+let expandedKey = null;
+let adminLogged = false;
+let syncInProgress = false;
+let currentTheme = "light";
+let cachedPasswords = null;
+
+const $ = (id) => document.getElementById(id);
+
+/* ==================== UTILITY ==================== */
+function todayKey(d) { d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+function monthKeyFromDate(d) { d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0"); }
+function parseMonthKey(mk) { const p = mk.split("-"); return { year: parseInt(p[0],10), month: parseInt(p[1],10) }; }
+function fmtKg(n) { return n.toFixed(1).replace(".",",") + " kg"; }
+function fmtDataIt(iso) { if (!iso) return ""; const p = iso.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
+function fmtDataShort(iso) { if (!iso) return ""; const p = iso.split("-"); return p[2]+"/"+p[1]; }
+function toast(msg, kind) {
+  kind = kind || "ok";
+  const t = $("toast"); if (!t) return;
+  t.textContent = msg; t.className = "show " + kind;
+  clearTimeout(t._tid); t._tid = setTimeout(function(){ t.className = ""; }, 2600);
+}
+function isOnline() { return navigator.onLine !== false; }
+function isDeleted(id) { return deletedIds.has(String(id)); }
+
+/* ==================== TEMA ==================== */
+function detectSystemTheme() {
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  return "light";
+}
+function applyTheme(theme, animate) {
+  currentTheme = theme;
+  document.body.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.backgroundColor = (theme === "light") ? "#f5f2e8" : "#0f1a12";
+  const icon = $("themeIcon"), loginIcon = $("loginThemeIcon");
+  const newIcon = theme === "light" ? "dark_mode" : "light_mode";
+  if (icon) icon.textContent = newIcon;
+  if (loginIcon) loginIcon.textContent = newIcon;
+  const meta = document.getElementById("themeColorMeta");
+  if (meta) meta.setAttribute("content", theme === "light" ? "#f5f2e8" : "#0f1a12");
+  if (animate) {
+    const btn = $("btnTheme");
+    if (btn) {
+      btn.classList.remove("animating");
+      void btn.offsetWidth;
+      btn.classList.add("animating");
+      setTimeout(function(){ btn.classList.remove("animating"); }, 650);
+    }
+  }
+  localStorage.setItem(THEME_KEY, theme);
+}
+function toggleTheme() { applyTheme(currentTheme === "light" ? "dark" : "light", true); }
+function loadTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  applyTheme(saved === "light" || saved === "dark" ? saved : detectSystemTheme(), false);
+}
+
+/* ==================== PROXY ==================== */
+function proxyGet(params) {
+  const withSecret = Object.assign({ secret: CONFIG.appsScriptSecret }, params);
+  const qs = Object.keys(withSecret).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(withSecret[k]); }).join("&");
+  return fetch(CONFIG.appsScriptUrl + "?" + qs, { method: "GET" })
+    .then(function(res){ if (!res.ok) throw new Error("Proxy GET " + res.status); return res.json(); })
+    .then(function(data){ if (data.error) throw new Error(data.error); return data; });
+}
+function apiGetEntries(y, m) { return proxyGet({ action: "getEntries", year: y, month: m }).then(function(r){ return r.entries || []; }); }
+function apiGetDeletedIds() { return proxyGet({ action: "getDeletedIds" }).then(function(r){ return r.ids || []; }); }
+function apiGetPasswords() { return proxyGet({ action: "getPasswords" }).then(function(r){ return r.content || {}; }); }
+
+/* ==================== CACHE ==================== */
+function loadCache() {
+  try { viewCache = JSON.parse(localStorage.getItem(DASH_VIEW_KEY) || "{}") || {}; } catch(e) { viewCache = {}; }
+  try { lastSyncPerMonth = JSON.parse(localStorage.getItem(DASH_LASTSYNC_KEY) || "{}") || {}; } catch(e) { lastSyncPerMonth = {}; }
+  try { deletedIds = new Set((JSON.parse(localStorage.getItem(DASH_DELETEDIDS_KEY) || "[]") || []).map(String)); } catch(e) { deletedIds = new Set(); }
+}
+function saveCache() {
+  try {
+    localStorage.setItem(DASH_VIEW_KEY, JSON.stringify(viewCache));
+    localStorage.setItem(DASH_LASTSYNC_KEY, JSON.stringify(lastSyncPerMonth));
+    localStorage.setItem(DASH_DELETEDIDS_KEY, JSON.stringify(Array.from(deletedIds)));
+  } catch(e) { console.warn("saveCache", e); }
+}
+
+/* ==================== VIEW HELPERS ==================== */
+function getEntriesFromCache(monthKey) {
+  const list = viewCache[monthKey] || [];
+  return list.filter(function(e){ return !isDeleted(e.id); });
+}
+function monthsForChart(period) {
+  const now = new Date();
+  const list = [];
+  if (period === "oggi" || period === "7gg") {
+    list.push(monthKeyFromDate(now));
+    const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    list.push(monthKeyFromDate(prev));
+  } else if (period === "mese") {
+    list.push(monthKeyFromDate(now));
+  } else if (period === "anno") {
+    const cm = now.getMonth() + 1;
+    for (let i = 1; i <= cm; i++) list.push(now.getFullYear() + "-" + String(i).padStart(2,"0"));
+  }
+  return Array.from(new Set(list));
+}
+function monthsForTotali() {
+  const now = new Date();
+  const set = new Set();
+  const cm = now.getMonth() + 1;
+  for (let i = 1; i <= cm; i++) set.add(now.getFullYear() + "-" + String(i).padStart(2,"0"));
+  const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+  set.add(monthKeyFromDate(prev));
+  return Array.from(set);
+}
+
+/* ==================== FETCH ==================== */
+function fetchMonth(monthKey, force) {
+  if (!isOnline()) return Promise.resolve(null);
+  if (monthsInFlight[monthKey]) return monthsInFlight[monthKey];
+  const fresh = lastSyncPerMonth[monthKey] && (Date.now() - lastSyncPerMonth[monthKey] < CONFIG.cacheFreshMs);
+  if (!force && fresh && viewCache[monthKey]) return Promise.resolve(viewCache[monthKey]);
+
+  const p = parseMonthKey(monthKey);
+  const promise = apiGetEntries(p.year, p.month)
+    .then(function(list){
+      const map = new Map();
+      (list || []).forEach(function(e){
+        if (!e || !e.id) return;
+        if (isDeleted(e.id)) return;
+        map.set(String(e.id), e);
+      });
+      viewCache[monthKey] = Array.from(map.values());
+      lastSyncPerMonth[monthKey] = Date.now();
+      saveCache();
+      return viewCache[monthKey];
+    })
+    .catch(function(e){ console.warn("Fetch " + monthKey + " fallito:", e.message); return null; })
+    .then(function(r){ delete monthsInFlight[monthKey]; return r; });
+  monthsInFlight[monthKey] = promise;
+  return promise;
+}
+
+/* ==================== SYNC UI ==================== */
+function updateCloudUI() {
+  const badge = $("syncBadge"), dot = $("cloudDot");
+  if (!badge || !dot) return;
+  let dotCls = "cloud-dot", badgeCls = "sync-badge";
+  if (!isOnline()) { dotCls += " offline"; badgeCls += " offline"; }
+  else if (syncInProgress) { dotCls += " syncing"; badgeCls += " syncing"; }
+  else if (lastSyncPerMonth["_all"] && (Date.now() - lastSyncPerMonth["_all"] < 60000)) { dotCls += " on"; badgeCls += " on"; }
+  else if (lastSyncPerMonth["_all"]) { dotCls += " on"; badgeCls += " on"; }
+  else { dotCls += " syncing"; badgeCls += " syncing"; }
+  dot.className = dotCls;
+  badge.className = badgeCls;
+
+  // Aggiorna info in tab Altro
+  const stText = $("syncStateText");
+  const lsText = $("lastSyncText");
+  const cmText = $("cacheMonthsText");
+  if (stText) stText.textContent = !isOnline() ? "Offline" : (syncInProgress ? "Sincronizzazione..." : "OK");
+  if (lsText) {
+    if (lastSyncPerMonth["_all"]) {
+      const d = new Date(lastSyncPerMonth["_all"]);
+      lsText.textContent = d.toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit"}) + " " + d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
+    } else lsText.textContent = "Mai";
+  }
+  if (cmText) cmText.textContent = Object.keys(viewCache).length;
+}
+
+function refreshData(fromUI) {
+  if (!isOnline()) { updateCloudUI(); if (fromUI) toast("Nessuna connessione","err"); return Promise.resolve(false); }
+  if (syncInProgress) return Promise.resolve(false);
+  syncInProgress = true; updateCloudUI();
+
+  const months = monthsForChart(dashboardPeriod).concat(monthsForTotali());
+  const uniqueMonths = Array.from(new Set(months));
+
+  return Promise.resolve()
+    .then(function(){ return apiGetDeletedIds(); })
+    .then(function(ids){
+      let changed = false;
+      (ids || []).forEach(function(id){
+        if (!deletedIds.has(String(id))) { deletedIds.add(String(id)); changed = true; }
+      });
+      if (changed) {
+        Object.keys(viewCache).forEach(function(mk){
+          const before = viewCache[mk].length;
+          viewCache[mk] = viewCache[mk].filter(function(e){ return !isDeleted(e.id); });
+          if (viewCache[mk].length !== before) changed = true;
+        });
+        saveCache();
+      }
+    })
+    .then(function(){ return Promise.all(uniqueMonths.map(function(mk){ return fetchMonth(mk, true); })); })
+    .then(function(){
+      lastSyncPerMonth["_all"] = Date.now();
+      saveCache();
+      renderAll();
+      if (fromUI) toast("✓ Sincronizzato","ok");
+      return true;
+    })
+    .catch(function(e){
+      console.error("refreshData", e);
+      if (fromUI) toast("Errore: " + e.message,"err");
+      return false;
+    })
+    .then(function(r){
+      syncInProgress = false;
+      updateCloudUI();
+      return r;
+    });
+}
+
+/* ==================== DATA ==================== */
+function getVisibleEntries() {
+  const seen = new Set();
+  const out = [];
+  Object.keys(viewCache).forEach(function(mk){
+    (viewCache[mk] || []).forEach(function(e){
+      if (!e || !e.id) return;
+      if (seen.has(String(e.id))) return;
+      if (isDeleted(e.id)) return;
+      seen.add(String(e.id));
+      out.push(e);
+    });
+  });
+  return out;
+}
+function getPeriodRange(period) {
+  const now = new Date();
+  const t = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (period === "oggi") return { from: t, to: t };
+  if (period === "7gg") { const f = new Date(t); f.setDate(f.getDate() - 6); return { from: f, to: t }; }
+  if (period === "mese") return { from: new Date(now.getFullYear(), now.getMonth(), 1), to: t };
+  if (period === "anno") return { from: new Date(now.getFullYear(), 0, 1), to: t };
+  return { from: t, to: t };
+}
+function entriesInRange(list, from, to) {
+  const f = todayKey(from), t = todayKey(to);
+  return list.filter(function(e){ return e.data && e.data >= f && e.data <= t; });
+}
+function periodLabel(p) {
+  if (p === "oggi") return "Oggi";
+  if (p === "7gg") return "Ultimi 7 giorni";
+  if (p === "mese") return "Questo mese";
+  if (p === "anno") return "Quest'anno";
+  return "";
+}
+
+/* ==================== RENDER ==================== */
+function renderAll() {
+  renderRiepilogo();
+  renderTotali();
+  renderAltro();
+}
+
+function renderRiepilogo() {
+  const all = getVisibleEntries();
+  const range = getPeriodRange(dashboardPeriod);
+  const periodEntries = entriesInRange(all, range.from, range.to);
+  const totalPeso = periodEntries.reduce(function(s,e){ return s + e.peso; }, 0);
+  const totalCount = periodEntries.length;
+
+  // KPI
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    const l = periodEntries.filter(function(e){ return e.tipo === k; });
+    byTipo[k] = { peso: l.reduce(function(s,e){ return s + e.peso; }, 0), count: l.length };
+  });
+  const numDays = Math.max(1, Math.round((range.to - range.from) / 86400000) + 1);
+  const media = totalPeso / numDays;
+
+  const el = $("kpiGrid");
+  if (el) {
+    el.innerHTML =
+      '<div class="kpi kpi-viola">' +
+        '<span class="kpi-icon material-symbols-rounded">scale</span>' +
+        '<span class="kpi-label">Peso totale</span>' +
+        '<span class="kpi-value"><span>' + totalPeso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+        '<span class="kpi-sub">' + periodLabel(dashboardPeriod) + ' · ' + numDays + (numDays === 1 ? ' giorno' : ' giorni') + ' · ' + totalCount + ' entrate</span>' +
+      '</div>' +
+      '<div class="kpi kpi-ocra">' +
+        '<span class="kpi-icon material-symbols-rounded">speed</span>' +
+        '<span class="kpi-label">Media / giorno</span>' +
+        '<span class="kpi-value"><span>' + media.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+      '</div>' +
+      '<div class="kpi kpi-blu">' +
+        '<span class="kpi-icon material-symbols-rounded">description</span>' +
+        '<span class="kpi-label">Carta</span>' +
+        '<span class="kpi-value"><span>' + byTipo.carta.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+        '<span class="kpi-sub">' + byTipo.carta.count + ' ' + (byTipo.carta.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '</div>' +
+      '<div class="kpi kpi-ambra">' +
+        '<span class="kpi-icon material-symbols-rounded">inventory_2</span>' +
+        '<span class="kpi-label">Imballaggi</span>' +
+        '<span class="kpi-value"><span>' + byTipo.imballaggi.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+        '<span class="kpi-sub">' + byTipo.imballaggi.count + ' ' + (byTipo.imballaggi.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '</div>' +
+      '<div class="kpi kpi-verde">' +
+        '<span class="kpi-icon material-symbols-rounded">wine_bar</span>' +
+        '<span class="kpi-label">Vetro</span>' +
+        '<span class="kpi-value"><span>' + byTipo.vetro.peso.toFixed(1).replace(".",",") + '</span><span class="kpi-unit">kg</span></span>' +
+        '<span class="kpi-sub">' + byTipo.vetro.count + ' ' + (byTipo.vetro.count === 1 ? 'entrata' : 'entrate') + '</span>' +
+      '</div>';
+  }
+
+  // Chart
+  const chartEl = $("chart");
+  if (chartEl) {
+    const bars = [];
+    const now = new Date();
+    if (dashboardPeriod === "oggi" || dashboardPeriod === "7gg") {
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+        const key = todayKey(d);
+        const peso = all.filter(function(e){ return e.data === key; }).reduce(function(s,e){ return s + e.peso; }, 0);
+        bars.push({ label: CONFIG.dayShort[d.getDay()], value: peso, isToday: i === 0 });
+      }
+      $("chartSubtitle").textContent = "Ultimi 7 giorni";
+    } else if (dashboardPeriod === "mese") {
+      const y = now.getFullYear(), m = now.getMonth();
+      const firstDay = new Date(y, m, 1);
+      const lastDay = new Date(y, m + 1, 0);
+      const numWeeks = Math.ceil((lastDay.getDate() + firstDay.getDay()) / 7);
+      const prefix = y + "-" + String(m + 1).padStart(2, "0");
+      for (let w = 0; w < numWeeks; w++) {
+        const startD = 1 + w * 7 - firstDay.getDay();
+        const endD = startD + 6;
+        const peso = all.filter(function(e){
+          if (!e.data || e.data.slice(0, 7) !== prefix) return false;
+          const day = parseInt(e.data.slice(8), 10);
+          return day >= Math.max(1, startD) && day <= Math.min(lastDay.getDate(), endD);
+        }).reduce(function(s,e){ return s + e.peso; }, 0);
+        const isCur = (now.getDate() >= Math.max(1,startD) && now.getDate() <= Math.min(lastDay.getDate(),endD));
+        bars.push({ label: "S" + (w + 1), value: peso, isToday: isCur });
+      }
+      $("chartSubtitle").textContent = "Settimane di " + CONFIG.monthShort[m];
+    } else if (dashboardPeriod === "anno") {
+      const y = now.getFullYear();
+      for (let i = 0; i < 12; i++) {
+        const prefix = y + "-" + String(i + 1).padStart(2, "0");
+        const peso = all.filter(function(e){ return e.data && e.data.slice(0, 7) === prefix; })
+          .reduce(function(s,e){ return s + e.peso; }, 0);
+        bars.push({ label: CONFIG.monthShort[i], value: peso, isToday: i === now.getMonth() });
+      }
+      $("chartSubtitle").textContent = "Anno " + y;
+    }
+    const max = Math.max.apply(null, bars.map(function(b){ return b.value; }).concat([1]));
+    chartEl.innerHTML = bars.map(function(b, i){
+      const pct = max > 0 ? (b.value / max) * 100 : 0;
+      const h = b.value > 0 ? Math.max(pct, 8) : 4;
+      const cls = "chart-bar" + (b.value > 0 ? "" : " empty") + (b.isToday ? " today" : "");
+      return '<div class="chart-col' + (b.isToday ? " today" : "") + '">' +
+        '<div class="' + cls + '" style="height:' + h + '%"></div>' +
+        '<span class="chart-label">' + b.label + '</span>' +
+      '</div>';
+    }).join("");
+  }
+
+  // Recenti
+  const recentEl = $("recentList");
+  if (recentEl) {
+    const recent = all.slice().sort(function(a,b){ return b.ts - a.ts; }).slice(0, 5);
+    const cnt = $("recentCount");
+    if (cnt) cnt.textContent = recent.length ? "ultime " + recent.length : "";
+    if (!recent.length) {
+      recentEl.innerHTML = '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessuna registrazione</div>';
+    } else {
+      recentEl.innerHTML = recent.map(function(e, i){
+        const tipo = CONFIG.tipi[e.tipo] || { label: e.tipo, icon: "♻️" };
+        return '<div class="mini-entry" data-tipo="' + e.tipo + '" style="animation-delay:' + (i * 0.04) + 's">' +
+          '<div class="mini-icon">' + tipo.icon + '</div>' +
+          '<div class="mini-body">' +
+            '<div class="mini-line1">' +
+              '<span class="mini-tipo">' + tipo.label + '</span>' +
+              '<span class="mini-peso">' + e.peso.toFixed(1) + ' kg</span>' +
+            '</div>' +
+            '<div class="mini-line2">' +
+              '<span>' + e.operatore + '</span>' +
+              '<span>· ' + e.targa + '</span>' +
+              '<span>· ' + fmtDataIt(e.data) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="mini-ora">' + e.ora + '</div>' +
+        '</div>';
+      }).join("");
+    }
+  }
+}
+
+/* ==================== TOTALI ==================== */
+function renderTotali() {
+  if (totaliView === "giornaliero") {
+    $("totaliListGiornaliero").style.display = "";
+    $("totaliListMensile").style.display = "none";
+    renderTotaliGiornaliero();
+  } else {
+    $("totaliListGiornaliero").style.display = "none";
+    $("totaliListMensile").style.display = "";
+    renderTotaliMensile();
+  }
+}
+
+function celleTotali(tipo, peso, count) {
+  const kgCls = peso > 0 ? "kg" : "kg zero";
+  return '<span class="totali-cell ' + tipo + '">' +
+    '<span class="' + kgCls + '">' + peso.toFixed(1).replace(".",",") + '</span>' +
+    '<span class="cnt">' + count + '</span>' +
+  '</span>';
+}
+
+function buildExpandPanel(entries, label) {
+  if (!entries.length) {
+    return '<div class="totali-expand">' +
+      '<div class="totali-expand-head"><span class="material-symbols-rounded">receipt_long</span>Registrazioni · ' + label + '</div>' +
+      '<div style="padding:10px;text-align:center;color:var(--muted);font-size:12px">Nessuna registrazione</div>' +
+    '</div>';
+  }
+  const sorted = entries.slice().sort(function(a,b){ return (b.ts||0) - (a.ts||0); });
+  const items = sorted.map(function(e, i){
+    const tipo = CONFIG.tipi[e.tipo] || { label: e.tipo, icon: "♻️" };
+    return '<div class="totali-exp-item" data-tipo="' + e.tipo + '" style="animation-delay:' + Math.min(i*0.02, 0.3) + 's">' +
+      '<div class="exp-ora">' + (e.ora || "--:--") + '</div>' +
+      '<div class="exp-icon">' + tipo.icon + '</div>' +
+      '<div>' +
+        '<div class="exp-tipo">' + tipo.label + '</div>' +
+        '<div class="exp-sub">' + e.operatore + ' · ' + e.targa + '</div>' +
+      '</div>' +
+      '<div class="exp-peso">' + e.peso.toFixed(1) + ' kg</div>' +
+    '</div>';
+  }).join("");
+  return '<div class="totali-expand">' +
+    '<div class="totali-expand-head"><span class="material-symbols-rounded">receipt_long</span>' + entries.length + ' registrazioni · ' + label + '</div>' +
+    '<div class="totali-expand-list">' + items + '</div>' +
+  '</div>';
+}
+
+function entriesForDay(dayKey) {
+  const mk = dayKey.slice(0, 7);
+  const list = getEntriesFromCache(mk);
+  const seen = new Set();
+  return list.filter(function(e){
+    if (!e || !e.id) return false;
+    if (seen.has(String(e.id))) return false;
+    seen.add(String(e.id));
+    return e.data === dayKey;
+  });
+}
+function entriesForMonth(mk) {
+  const list = getEntriesFromCache(mk);
+  const seen = new Set();
+  return list.filter(function(e){
+    if (!e || !e.id) return false;
+    if (seen.has(String(e.id))) return false;
+    seen.add(String(e.id));
+    return true;
+  });
+}
+
+function renderTotaliGiornaliero() {
+  const el = $("totaliListGiornaliero"); if (!el) return;
+  const all = getVisibleEntries();
+  const now = new Date();
+  const todayK = todayKey();
+
+  let html = '<div class="totali-head">' +
+    '<span>Data</span>' +
+    '<span style="color:var(--carta)">📄 Carta</span>' +
+    '<span style="color:var(--ecolan-ocra-scuro)">📦 Imb.</span>' +
+    '<span style="color:var(--vetro)">🍾 Vetro</span>' +
+    '<span></span>' +
+  '</div>';
+
+  let rendered = 0;
+  for (let i = 0; i < CONFIG.giorniTotaliVista; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+    const key = todayKey(d);
+    const dayEntries = all.filter(function(e){ return e.data === key; });
+    if (i > 0 && dayEntries.length === 0) continue;
+
+    const carta = dayEntries.filter(function(e){ return e.tipo === "carta"; });
+    const imb = dayEntries.filter(function(e){ return e.tipo === "imballaggi"; });
+    const vetro = dayEntries.filter(function(e){ return e.tipo === "vetro"; });
+    const somma = function(arr){ return arr.reduce(function(s,e){ return s + e.peso; }, 0); };
+
+    const isToday = key === todayK;
+    let rel = "";
+    if (i === 0) rel = "Oggi";
+    else if (i === 1) rel = "Ieri";
+    const label = isToday
+      ? '<span class="dot"></span>Oggi'
+      : fmtDataIt(key) + (rel ? ' <span class="rel">' + rel + '</span>' : '');
+
+    const rowCls = "totali-row" + (isToday ? " today" : "");
+    const isOpen = expandedKey === key;
+    const groupCls = "totali-group" + (isOpen ? " open" : "");
+
+    html += '<div class="' + groupCls + '" data-key="' + key + '" data-type="day">' +
+      '<div class="' + rowCls + '" data-key="' + key + '" style="animation-delay:' + (rendered * 0.02) + 's">' +
+        '<span class="data-lbl">' + label + '</span>' +
+        celleTotali("carta", somma(carta), carta.length) +
+        celleTotali("imballaggi", somma(imb), imb.length) +
+        celleTotali("vetro", somma(vetro), vetro.length) +
+        '<span class="totali-chevron"><span class="material-symbols-rounded">expand_more</span></span>' +
+      '</div>';
+    if (isOpen) html += buildExpandPanel(entriesForDay(key), fmtDataIt(key));
+    html += '</div>';
+    rendered++;
+  }
+  if (rendered === 0) {
+    html += '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato negli ultimi ' + CONFIG.giorniTotaliVista + ' giorni</div>';
+  }
+  el.innerHTML = html;
+  attachTotaliHandlers(el, "day");
+}
+
+function renderTotaliMensile() {
+  const el = $("totaliListMensile"); if (!el) return;
+  const all = getVisibleEntries();
+  const now = new Date();
+  const cy = now.getFullYear(), cm = now.getMonth();
+
+  let html = '<div class="totali-head">' +
+    '<span>Mese</span>' +
+    '<span style="color:var(--carta)">📄 Carta</span>' +
+    '<span style="color:var(--ecolan-ocra-scuro)">📦 Imb.</span>' +
+    '<span style="color:var(--vetro)">🍾 Vetro</span>' +
+    '<span></span>' +
+  '</div>';
+
+  for (let m = 0; m < 12; m++) {
+    const prefix = cy + "-" + String(m + 1).padStart(2, "0");
+    const mEntries = all.filter(function(e){ return e.data && e.data.slice(0, 7) === prefix; });
+    const carta = mEntries.filter(function(e){ return e.tipo === "carta"; });
+    const imb = mEntries.filter(function(e){ return e.tipo === "imballaggi"; });
+    const vetro = mEntries.filter(function(e){ return e.tipo === "vetro"; });
+    const somma = function(arr){ return arr.reduce(function(s,e){ return s + e.peso; }, 0); };
+
+    const isCur = m === cm;
+    const isFut = m > cm;
+    const label = isCur
+      ? '<span class="dot"></span>' + CONFIG.monthNames[m] + ' <span class="rel">corr.</span>'
+      : CONFIG.monthNames[m];
+
+    const rowCls = "totali-row" + (isFut ? " future" : "") + (isCur ? " today" : "");
+    const isOpen = !isFut && expandedKey === prefix;
+    const groupCls = "totali-group" + (isOpen ? " open" : "");
+
+    html += '<div class="' + groupCls + '" data-key="' + prefix + '" data-type="month">' +
+      '<div class="' + rowCls + '" data-key="' + prefix + '" style="animation-delay:' + (m * 0.03) + 's">' +
+        '<span class="data-lbl">' + label + '</span>' +
+        celleTotali("carta", somma(carta), carta.length) +
+        celleTotali("imballaggi", somma(imb), imb.length) +
+        celleTotali("vetro", somma(vetro), vetro.length) +
+        '<span class="totali-chevron"><span class="material-symbols-rounded">expand_more</span></span>' +
+      '</div>';
+    if (isOpen) html += buildExpandPanel(entriesForMonth(prefix), CONFIG.monthNames[m] + " " + cy);
+    html += '</div>';
+  }
+  el.innerHTML = html;
+  attachTotaliHandlers(el, "month");
+}
+
+function attachTotaliHandlers(container, mode) {
+  container.querySelectorAll(".totali-row:not(.future)").forEach(function(r){
+    r.addEventListener("click", function(){
+      const group = r.closest(".totali-group");
+      if (!group) return;
+      const key = group.dataset.key;
+      const wasOpen = group.classList.contains("open");
+
+      container.querySelectorAll(".totali-group.open").forEach(function(g){
+        if (g !== group) {
+          g.classList.remove("open");
+          const exp = g.querySelector(".totali-expand");
+          if (exp) exp.remove();
+        }
+      });
+
+      if (wasOpen) {
+        group.classList.remove("open");
+        const exp = group.querySelector(".totali-expand");
+        if (exp) exp.remove();
+        expandedKey = null;
+      } else {
+        group.classList.add("open");
+        let entries, label;
+        if (mode === "day") {
+          entries = entriesForDay(key);
+          label = fmtDataIt(key);
+        } else {
+          const [y, m] = key.split("-").map(Number);
+          entries = entriesForMonth(key);
+          label = CONFIG.monthNames[m - 1] + " " + y;
+        }
+        const exp = group.querySelector(".totali-expand");
+        if (!exp) group.insertAdjacentHTML("beforeend", buildExpandPanel(entries, label));
+        expandedKey = key;
+      }
+    });
+  });
+}
+
+/* ==================== ALTRO ==================== */
+function renderAltro() {
+  const all = getVisibleEntries();
+  const range = getPeriodRange(dashboardPeriod);
+  const periodEntries = entriesInRange(all, range.from, range.to);
+
+  // Top operatori
+  const opMap = {};
+  periodEntries.forEach(function(e){
+    if (!opMap[e.operatore]) opMap[e.operatore] = { peso: 0, count: 0 };
+    opMap[e.operatore].peso += e.peso;
+    opMap[e.operatore].count++;
+  });
+  const topOp = Object.keys(opMap).map(function(k){
+    return { name: k, peso: opMap[k].peso, count: opMap[k].count };
+  }).sort(function(a,b){ return b.peso - a.peso; }).slice(0, 5);
+
+  const opEl = $("topOp");
+  if (opEl) {
+    if (!topOp.length) opEl.innerHTML = '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato</div>';
+    else opEl.innerHTML = topOp.map(function(o, i){
+      return '<div class="list-item" style="animation:fadeIn .4s ease backwards;animation-delay:' + (i*0.05) + 's">' +
+        '<span class="list-rank r' + (i+1) + '">' + (i+1) + '</span>' +
+        '<div class="list-body">' +
+          '<div class="list-name">' + o.name + '</div>' +
+          '<div class="list-sub">' + o.count + ' ' + (o.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+        '</div>' +
+        '<span class="list-val">' + o.peso.toFixed(1).replace(".",",") + ' kg</span>' +
+      '</div>';
+    }).join("");
+  }
+  const topOpSub = $("topOpSub");
+  if (topOpSub) topOpSub.textContent = periodLabel(dashboardPeriod);
+
+  // Top targhe
+  const tMap = {};
+  periodEntries.forEach(function(e){
+    if (!tMap[e.targa]) tMap[e.targa] = { peso: 0, count: 0 };
+    tMap[e.targa].peso += e.peso;
+    tMap[e.targa].count++;
+  });
+  const topT = Object.keys(tMap).map(function(k){
+    return { name: k, peso: tMap[k].peso, count: tMap[k].count };
+  }).sort(function(a,b){ return b.peso - a.peso; }).slice(0, 5);
+
+  const tEl = $("topTarghe");
+  if (tEl) {
+    if (!topT.length) tEl.innerHTML = '<div class="empty"><span class="material-symbols-rounded">inbox</span>Nessun dato</div>';
+    else tEl.innerHTML = topT.map(function(o, i){
+      return '<div class="list-item" style="animation:fadeIn .4s ease backwards;animation-delay:' + (i*0.05) + 's">' +
+        '<span class="list-rank r' + (i+1) + '">' + (i+1) + '</span>' +
+        '<div class="list-body">' +
+          '<div class="list-name">' + o.name + '</div>' +
+          '<div class="list-sub">' + o.count + ' ' + (o.count === 1 ? 'entrata' : 'entrate') + '</div>' +
+        '</div>' +
+        '<span class="list-val">' + o.peso.toFixed(1).replace(".",",") + ' kg</span>' +
+      '</div>';
+    }).join("");
+  }
+  const tSub = $("topTargheSub");
+  if (tSub) tSub.textContent = periodLabel(dashboardPeriod);
+
+  // Medie
+  const numDays = Math.max(1, Math.round((range.to - range.from) / 86400000) + 1);
+  const numEntries = periodEntries.length;
+  const totalPeso = periodEntries.reduce(function(s,e){ return s + e.peso; }, 0);
+  const mediaKgDay = totalPeso / numDays;
+  const mediaKgEntry = numEntries > 0 ? totalPeso / numEntries : 0;
+  const entriesDay = numEntries / numDays;
+
+  const byTipo = {};
+  Object.keys(CONFIG.tipi).forEach(function(k){
+    byTipo[k] = periodEntries.filter(function(e){ return e.tipo === k; }).reduce(function(s,e){ return s + e.peso; }, 0);
+  });
+  const tipoTop = Object.keys(byTipo).sort(function(a,b){ return byTipo[b] - byTipo[a]; })[0];
+
+  const medieEl = $("medieBlock");
+  if (medieEl) {
+    const rows = [
+      { lbl: "Media kg / giorno", val: mediaKgDay.toFixed(1).replace(".",",") + " kg", color: "#c47f0c" },
+      { lbl: "Media kg / entrata", val: mediaKgEntry.toFixed(1).replace(".",",") + " kg", color: "#c47f0c" },
+      { lbl: "Entrate / giorno", val: entriesDay.toFixed(1).replace(".",","), color: "#1e6fbf" },
+      { lbl: "Tipo prevalente", val: totalPeso > 0 ? CONFIG.tipi[tipoTop].label : "—", color: "#2e8b57" }
+    ];
+    medieEl.innerHTML = rows.map(function(x){
+      return '<div class="medie-row">' +
+        '<span class="medie-lbl"><span class="bullet" style="background:' + x.color + '"></span>' + x.lbl + '</span>' +
+        '<span class="medie-val">' + x.val + '</span>' +
+      '</div>';
+    }).join("");
+  }
+
+  // Info
+  const infoUser = $("infoUser");
+  if (infoUser) infoUser.textContent = CONFIG.admin;
+
+  updateCloudUI();
+}
+
+/* ==================== TABS ==================== */
+function switchTab(name) {
+  currentTab = name;
+  document.querySelectorAll(".tab-btn").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === name); });
+  document.querySelectorAll(".tab-content").forEach(function(c){ c.classList.toggle("active", c.id === "tab-" + name); });
+  if (navigator.vibrate) navigator.vibrate(8);
+  const scroller = $("appScroller");
+  if (scroller) scroller.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ==================== LOGIN ==================== */
+function showLoginError(msg) { const el = $("loginError"); if (el) el.textContent = msg || ""; }
+
+function checkAdminPassword(pwd) {
+  // 1) Master password → sempre OK
+  if (pwd === CONFIG.masterPassword) return true;
+  // 2) Password personale admin di default
+  if (pwd === CONFIG.adminDefaultPassword) return true;
+  // 3) Password dal cloud (se già caricata)
+  if (cachedPasswords && cachedPasswords[CONFIG.admin]) {
+    const p = cachedPasswords[CONFIG.admin];
+    const stored = typeof p === "string" ? p : (p.pwd || "");
+    if (stored === pwd) return true;
+  }
+  return false;
+}
+
+function tryLogin() {
+  const pwd = $("loginPassword").value;
+  if (!pwd) { showLoginError("Inserisci la password"); return; }
+
+  // Se non ho ancora le password dal cloud, provo a scaricarle
+  const attempt = function() {
+    if (checkAdminPassword(pwd)) {
+      adminLogged = true;
+      localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify({ ts: Date.now() }));
+      $("loginOverlay").classList.remove("show");
+      $("loginPassword").value = "";
+      showLoginError("");
+      toast("✓ Benvenuto Davide","ok");
+      // Sync iniziale
+      setTimeout(function(){ refreshData(); }, 400);
+    } else {
+      showLoginError("Password errata. Accesso riservato.");
+    }
+  };
+
+  if (cachedPasswords) {
+    attempt();
+  } else {
+    apiGetPasswords()
+      .then(function(remote){
+        cachedPasswords = remote || {};
+        attempt();
+      })
+      .catch(function(){
+        // Offline: uso solo le password hardcoded
+        attempt();
+      });
+  }
+}
+
+function doLogout() {
+  if (!confirm("Vuoi uscire dall'area admin?")) return;
+  adminLogged = false;
+  localStorage.removeItem(ADMIN_SESSION_KEY);
+  $("loginOverlay").classList.add("show");
+  $("loginPassword").value = "";
+  showLoginError("");
+  switchTab("riepilogo");
+}
+
+function checkStoredSession() {
+  try {
+    const raw = localStorage.getItem(ADMIN_SESSION_KEY);
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    // Sessione valida per 30 giorni
+    if (s && s.ts && (Date.now() - s.ts) < 30 * 24 * 60 * 60 * 1000) return true;
+  } catch(e) {}
+  return false;
+}
+
+/* ==================== BIND ==================== */
+function bind() {
+  // Tabs
+  document.querySelectorAll(".tab-btn").forEach(function(b){
+    b.addEventListener("click", function(){ switchTab(b.dataset.tab); });
+  });
+
+  // Period select
+  document.querySelectorAll("#periodSelect button").forEach(function(b){
+    b.addEventListener("click", function(){
+      dashboardPeriod = b.dataset.period;
+      document.querySelectorAll("#periodSelect button").forEach(function(x){ x.classList.toggle("active", x === b); });
+      renderAll();
+      const months = monthsForChart(dashboardPeriod);
+      Promise.all(months.map(function(mk){ return fetchMonth(mk); })).then(function(){
+        renderAll();
+        updateCloudUI();
+      });
+    });
+  });
+
+  // Totali tabs
+  document.querySelectorAll("#totaliTabSelect button").forEach(function(b){
+    b.addEventListener("click", function(){
+      totaliView = b.dataset.totali;
+      expandedKey = null;
+      document.querySelectorAll("#totaliTabSelect button").forEach(function(x){ x.classList.toggle("active", x === b); });
+      renderTotali();
+    });
+  });
+
+  // Theme
+  $("btnTheme").addEventListener("click", toggleTheme);
+  $("btnLoginTheme").addEventListener("click", toggleTheme);
+
+  // Login
+  $("btnLogin").addEventListener("click", tryLogin);
+  $("loginPassword").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); tryLogin(); } });
+
+  // Logout
+  $("btnLogout").addEventListener("click", doLogout);
+
+  // Sync
+  $("syncBadge").addEventListener("click", function(){ refreshData(true); });
+  $("btnForceSync").addEventListener("click", function(){ refreshData(true); });
+
+  // Network
+  window.addEventListener("online", function(){ updateCloudUI(); refreshData(); });
+  window.addEventListener("offline", updateCloudUI);
+
+  // Clock
+  function renderClock() {
+    const d = new Date();
+    const el = $("clock");
+    if (el) el.textContent = d.toLocaleDateString("it-IT") + " · " + d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+  }
+  renderClock();
+  setInterval(renderClock, 1000);
+}
+
+/* ==================== BOOT ==================== */
+function boot() {
+  try {
+    console.log("🚀 Avvio CDR Admin Mobile v1");
+
+    loadTheme();
+    initInsetCalculator();
+    loadCache();
+    bind();
+
+    // Controlla se c'è una sessione attiva
+    if (checkStoredSession()) {
+      adminLogged = true;
+      $("loginOverlay").classList.remove("show");
+      renderAll();
+      updateCloudUI();
+      // Sync in background
+      setTimeout(function(){ refreshData(); }, 500);
+      // Carica password dal cloud per verifiche future
+      apiGetPasswords().then(function(r){ cachedPasswords = r || {}; }).catch(function(){});
+    } else {
+      $("loginOverlay").classList.add("show");
+      renderAll();
+      // Precarica password in background
+      apiGetPasswords().then(function(r){ cachedPasswords = r || {}; }).catch(function(){});
+    }
+
+    // Fetch del mese corrente
+    const months = monthsForChart(dashboardPeriod).concat(monthsForTotali());
+    const uniqueMonths = Array.from(new Set(months));
+    Promise.all(uniqueMonths.map(function(mk){ return fetchMonth(mk); })).then(function(){
+      renderAll();
+      updateCloudUI();
+    });
+
+    console.log("✅ Admin pronta");
+  } catch(e) {
+    console.error("❌ Errore fatale:", e);
+    $("loginOverlay").classList.add("show");
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+})();
+</script>
+</body>
+</html>
